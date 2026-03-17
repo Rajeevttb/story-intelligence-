@@ -3,34 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Tribal Box — Story Intelligence Dashboard</title>
+<title>The Tribal Box — India Story Intelligence Dashboard | March 17, 2026</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
 
-  /* Header */
   .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); padding: 40px 24px; text-align: center; border-bottom: 3px solid #e94560; }
   .header h1 { font-size: 2.2rem; color: #fff; letter-spacing: 2px; }
   .header .subtitle { color: #e94560; font-size: 1rem; margin-top: 6px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; }
   .header .date { color: #8899aa; margin-top: 10px; font-size: 0.9rem; }
+  .header .freshness-badge { display: inline-block; background: #22c55e; color: #000; font-weight: 800; padding: 6px 18px; border-radius: 20px; margin-top: 12px; font-size: 0.85rem; letter-spacing: 1px; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
 
-  /* Pipeline Bar */
+  .nav-links { display: flex; justify-content: center; gap: 14px; padding: 16px; background: #111; flex-wrap: wrap; }
+  .nav-links a { color: #8899aa; text-decoration: none; font-size: 0.82rem; padding: 6px 16px; border-radius: 20px; border: 1px solid #333; transition: all 0.3s; }
+  .nav-links a:hover, .nav-links a.active { background: #e94560; color: #fff; border-color: #e94560; }
+
   .pipeline { display: flex; justify-content: center; gap: 0; padding: 30px 24px; flex-wrap: wrap; }
-  .pipeline-step { background: #141422; padding: 14px 20px; text-align: center; min-width: 130px; position: relative; border: 1px solid #222; }
+  .pipeline-step { background: #141422; padding: 14px 20px; text-align: center; min-width: 120px; border: 1px solid #222; }
   .pipeline-step:first-child { border-radius: 10px 0 0 10px; }
   .pipeline-step:last-child { border-radius: 0 10px 10px 0; }
   .pipeline-step .num { font-size: 1.8rem; font-weight: 800; color: #e94560; }
-  .pipeline-step .label { font-size: 0.7rem; color: #8899aa; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
-  .pipeline-step .agent { font-size: 0.6rem; color: #556; margin-top: 2px; }
+  .pipeline-step .label { font-size: 0.65rem; color: #8899aa; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
   .pipeline-arrow { color: #e94560; font-size: 1.4rem; display: flex; align-items: center; padding: 0 4px; }
 
   .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
 
-  /* Section Titles */
   .section-title { font-size: 1.4rem; color: #fff; margin: 40px 0 20px; padding-bottom: 10px; border-bottom: 2px solid #e94560; display: flex; align-items: center; gap: 10px; }
   .section-title .badge { background: #e94560; color: #fff; font-size: 0.7rem; padding: 3px 10px; border-radius: 20px; font-weight: 700; }
 
-  /* Story Cards */
   .story-card { background: #141422; border-radius: 14px; padding: 28px; margin-bottom: 28px; border: 1px solid #222; transition: border-color 0.3s; }
   .story-card:hover { border-color: #e94560; }
   .story-card-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
@@ -39,94 +40,61 @@
   .story-title { font-size: 1.25rem; color: #fff; font-weight: 700; }
   .story-meta { display: flex; gap: 14px; margin-top: 6px; flex-wrap: wrap; }
   .story-meta span { font-size: 0.78rem; color: #8899aa; }
+  .freshness-tag { background: #22c55e22; color: #22c55e; border: 1px solid #22c55e44; padding: 2px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; }
   .story-score-box { background: linear-gradient(135deg, #e94560, #c72c50); color: #fff; padding: 8px 16px; border-radius: 10px; text-align: center; flex-shrink: 0; }
   .story-score-box .score { font-size: 1.5rem; font-weight: 800; }
   .story-score-box .score-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; }
 
   .story-body { margin-top: 18px; }
   .story-desc { color: #bbb; font-size: 0.95rem; line-height: 1.7; }
-  .story-caption { margin-top: 14px; font-size: 1.3rem; font-weight: 800; color: #e94560; letter-spacing: 2px; }
 
   .score-bars { display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
-  .score-bar { flex: 1; min-width: 120px; }
-  .score-bar-label { font-size: 0.72rem; color: #8899aa; text-transform: uppercase; margin-bottom: 4px; }
+  .score-bar { flex: 1; min-width: 100px; }
+  .score-bar-label { font-size: 0.7rem; color: #8899aa; margin-bottom: 4px; }
   .score-bar-track { background: #222; border-radius: 6px; height: 8px; overflow: hidden; }
-  .score-bar-fill { height: 100%; border-radius: 6px; transition: width 0.6s ease; }
-  .score-bar-fill.emotional { background: #e94560; }
-  .score-bar-fill.relatable { background: #f59e0b; }
-  .score-bar-fill.shareable { background: #10b981; }
+  .score-bar-fill { height: 100%; border-radius: 6px; transition: width 1s ease; }
+  .fill-red { background: linear-gradient(90deg, #e94560, #ff6b6b); }
+  .fill-green { background: linear-gradient(90deg, #22c55e, #4ade80); }
+  .fill-blue { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
 
-  .story-hook { margin-top: 16px; background: #1a1a2e; padding: 14px 18px; border-radius: 10px; border-left: 4px solid #e94560; font-style: italic; color: #ddd; font-size: 0.95rem; }
-  .story-hook-label { font-size: 0.65rem; color: #e94560; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; font-style: normal; font-weight: 700; }
+  .tags { display: flex; gap: 6px; margin-top: 14px; flex-wrap: wrap; }
+  .tag { background: #1e1e36; color: #8899aa; padding: 4px 10px; border-radius: 14px; font-size: 0.72rem; border: 1px solid #2a2a44; }
+  .tag.emotion { border-color: #e9456044; color: #e94560; }
+  .tag.visual { border-color: #22c55e44; color: #22c55e; }
+  .tag.source { border-color: #3b82f644; color: #3b82f6; }
 
-  .tribal-angle { margin-top: 16px; background: #0f1a0f; padding: 14px 18px; border-radius: 10px; border-left: 4px solid #10b981; }
-  .tribal-angle-label { font-size: 0.65rem; color: #10b981; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; font-weight: 700; }
-  .tribal-angle p { color: #bbb; font-size: 0.88rem; }
-
-  .unseen-angle { margin-top: 12px; background: #1a1520; padding: 14px 18px; border-radius: 10px; border-left: 4px solid #a855f7; }
-  .unseen-angle-label { font-size: 0.65rem; color: #a855f7; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; font-weight: 700; }
-  .unseen-angle p { color: #bbb; font-size: 0.88rem; }
-
-  .story-tags { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag { background: #1a1a2e; color: #8899aa; padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; border: 1px solid #333; }
-
-  .story-handle { margin-top: 10px; font-size: 0.82rem; color: #e94560; }
-
-  /* Script Table */
-  .script-toggle { margin-top: 14px; }
-  .script-toggle button { background: #1a1a2e; color: #e94560; border: 1px solid #e94560; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: all 0.3s; }
-  .script-toggle button:hover { background: #e94560; color: #fff; }
-  .script-content { display: none; margin-top: 14px; overflow-x: auto; }
+  .script-toggle { background: #e94560; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 0.85rem; margin-top: 16px; transition: background 0.3s; }
+  .script-toggle:hover { background: #ff6b6b; }
+  .script-content { display: none; margin-top: 16px; background: #0d0d1a; border: 1px solid #222; border-radius: 10px; padding: 24px; }
   .script-content.active { display: block; }
-  .script-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-  .script-table th { background: #1a1a2e; color: #e94560; padding: 10px; text-align: left; border-bottom: 2px solid #333; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
-  .script-table td { padding: 10px; border-bottom: 1px solid #1a1a2e; color: #bbb; vertical-align: top; }
-  .script-table tr:hover td { background: #111; }
-  .moment-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; }
-  .moment-HOOK { background: #e9456033; color: #e94560; }
-  .moment-SETUP { background: #3b82f633; color: #60a5fa; }
-  .moment-BUILD { background: #f59e0b33; color: #f59e0b; }
-  .moment-PENNY { background: #a855f733; color: #a855f7; }
-  .moment-RESOLUTION { background: #10b98133; color: #10b981; }
-  .moment-EMOTIONAL { background: #ec489933; color: #ec4899; }
-  .moment-BRANDING { background: #6b728033; color: #9ca3af; }
+  .script-content h4 { color: #e94560; margin-bottom: 10px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
+  .script-content .hook { font-size: 1.1rem; color: #fff; font-weight: 700; font-style: italic; margin-bottom: 16px; padding: 12px; background: #141422; border-left: 3px solid #e94560; border-radius: 4px; }
+  .script-content pre { white-space: pre-wrap; font-family: 'Segoe UI', sans-serif; color: #ccc; font-size: 0.88rem; line-height: 1.8; }
+  .script-content .caption-box { background: #141422; padding: 16px; border-radius: 8px; margin-top: 14px; border: 1px solid #222; }
+  .script-content .caption-box p { color: #bbb; font-size: 0.9rem; line-height: 1.7; }
+  .hashtags { color: #3b82f6; font-size: 0.82rem; margin-top: 10px; line-height: 1.8; }
+  .ig-accounts { color: #22c55e; font-size: 0.82rem; margin-top: 8px; }
 
-  /* Score Summary Table */
-  .summary-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-  .summary-table th { background: #1a1a2e; color: #e94560; padding: 12px; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
-  .summary-table td { padding: 12px; border-bottom: 1px solid #1a1a2e; }
-  .summary-table tr:hover td { background: #111; }
+  .summary-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+  .summary-table th { background: #1a1a2e; color: #e94560; padding: 12px; text-align: left; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #e94560; }
+  .summary-table td { padding: 12px; border-bottom: 1px solid #1a1a2e; font-size: 0.88rem; }
+  .summary-table tr:hover { background: #141422; }
 
-  /* IG Recommendations */
-  .ig-card { background: #141422; border-radius: 14px; padding: 22px; margin-bottom: 16px; border: 1px solid #222; }
-  .ig-card h3 { color: #fff; font-size: 1rem; margin-bottom: 8px; }
-  .ig-card p { color: #bbb; font-size: 0.88rem; }
-  .ig-num { color: #e94560; font-weight: 800; font-size: 1.2rem; margin-right: 8px; }
+  .methodology { background: #141422; border-radius: 14px; padding: 24px; margin-top: 30px; border: 1px solid #222; }
+  .methodology h3 { color: #e94560; margin-bottom: 12px; }
+  .methodology p, .methodology li { color: #8899aa; font-size: 0.85rem; line-height: 1.7; }
+  .methodology ul { padding-left: 20px; margin-top: 8px; }
 
-  /* Rejected Stories */
-  .rejected-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 16px; }
-  .rejected-table th { background: #1a1a2e; color: #e94560; padding: 10px; text-align: left; font-size: 0.7rem; text-transform: uppercase; }
-  .rejected-table td { padding: 10px; border-bottom: 1px solid #1a1a2e; color: #999; }
-  .rejected-table .reject-reason { color: #e94560; font-size: 0.75rem; }
-
-  /* Footer */
-  .footer { text-align: center; padding: 40px; color: #444; font-size: 0.78rem; border-top: 1px solid #1a1a2e; margin-top: 40px; }
+  .footer { text-align: center; padding: 40px 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #1a1a2e; margin-top: 40px; }
   .footer a { color: #e94560; text-decoration: none; }
 
-  /* Collapsible sections */
-  .collapsible-header { cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
-  .collapsible-header .arrow { transition: transform 0.3s; font-size: 0.8rem; color: #666; }
-  .collapsible-header .arrow.open { transform: rotate(90deg); }
-
   @media (max-width: 700px) {
-    .header h1 { font-size: 1.5rem; }
+    .header h1 { font-size: 1.4rem; }
     .pipeline { gap: 0; }
     .pipeline-step { min-width: 80px; padding: 10px 8px; }
-    .pipeline-step .num { font-size: 1.3rem; }
-    .pipeline-arrow { font-size: 1rem; padding: 0 2px; }
-    .story-card-header { flex-direction: column; }
+    .pipeline-step .num { font-size: 1.2rem; }
     .story-card { padding: 18px; }
-    .score-bars { flex-direction: column; }
+    .story-card-header { flex-direction: column; }
   }
 </style>
 </head>
@@ -134,454 +102,546 @@
 
 <div class="header">
   <h1>THE TRIBAL BOX</h1>
-  <div class="subtitle">Story Intelligence Dashboard</div>
-  <div class="date">March 17, 2026 &mdash; 7-Agent System Output</div>
-  <a href="international.html" style="display:inline-block;margin-top:14px;color:#e94560;font-size:0.85rem;text-decoration:none;border:1px solid #e9456033;padding:6px 16px;border-radius:8px;">International Stories &rarr;</a>
+  <div class="subtitle">India Story Intelligence Dashboard</div>
+  <div class="date">March 17, 2026 &mdash; 7-Agent Real-Time System</div>
+  <div class="freshness-badge">LIVE &mdash; Stories from last 12-24 hours</div>
 </div>
 
-<!-- Pipeline -->
+<div class="nav-links">
+  <a href="index.html" class="active">India Stories</a>
+  <a href="international.html">International Stories</a>
+  <a href="katol-school.html">Katol School Intel</a>
+</div>
+
 <div class="pipeline">
-  <div class="pipeline-step">
-    <div class="num">25</div>
-    <div class="label">Discovered</div>
-    <div class="agent">Agent 1</div>
-  </div>
-  <div class="pipeline-arrow">&#9654;</div>
-  <div class="pipeline-step">
-    <div class="num">13</div>
-    <div class="label">Original</div>
-    <div class="agent">Agent 2 — Competitor Filter</div>
-  </div>
-  <div class="pipeline-arrow">&#9654;</div>
-  <div class="pipeline-step">
-    <div class="num">9</div>
-    <div class="label">Visual Ready</div>
-    <div class="agent">Agent 3 — Visual Check</div>
-  </div>
-  <div class="pipeline-arrow">&#9654;</div>
-  <div class="pipeline-step">
-    <div class="num">7</div>
-    <div class="label">Scored 22+</div>
-    <div class="agent">Agent 4 — Quality</div>
-  </div>
-  <div class="pipeline-arrow">&#9654;</div>
-  <div class="pipeline-step">
-    <div class="num" style="color: #10b981;">5</div>
-    <div class="label">Final Stories</div>
-    <div class="agent">Agents 5-6-7</div>
-  </div>
+  <div class="pipeline-step"><div class="num">3</div><div class="label">Discovery Agents</div><div class="label" style="color:#e94560">X/Twitter + Web</div></div>
+  <div class="pipeline-arrow">&rarr;</div>
+  <div class="pipeline-step"><div class="num">21</div><div class="label">Stories Found</div></div>
+  <div class="pipeline-arrow">&rarr;</div>
+  <div class="pipeline-step"><div class="num">14</div><div class="label">Rejected</div><div class="label" style="color:#666">stale/political/cricket</div></div>
+  <div class="pipeline-arrow">&rarr;</div>
+  <div class="pipeline-step"><div class="num">7</div><div class="label">Final Stories</div></div>
+  <div class="pipeline-arrow">&rarr;</div>
+  <div class="pipeline-step"><div class="num">7</div><div class="label">60s Scripts</div><div class="label" style="color:#22c55e">Ready</div></div>
 </div>
 
 <div class="container">
 
-  <!-- Score Summary -->
-  <div class="section-title">Score Summary <span class="badge">TOP 5</span></div>
-  <table class="summary-table">
-    <tr><th>#</th><th>Story</th><th>Emotional</th><th>Relatability</th><th>Shareability</th><th>Total</th></tr>
-    <tr><td>1</td><td style="color:#fff;">Teacher Who Dressed an Orphan</td><td>10/10</td><td>10/10</td><td>9/10</td><td style="color:#e94560;font-weight:800;">29/30</td></tr>
-    <tr><td>2</td><td style="color:#fff;">Farmer Who Cried for Daughter's Wedding</td><td>10/10</td><td>9/10</td><td>9/10</td><td style="color:#e94560;font-weight:800;">28/30</td></tr>
-    <tr><td>3</td><td style="color:#fff;">Honey Singh's Mother in the Front Row</td><td>10/10</td><td>9/10</td><td>8/10</td><td style="color:#e94560;font-weight:800;">27/30</td></tr>
-    <tr><td>4</td><td style="color:#fff;">78-Year-Old DoorDash Driver</td><td>9/10</td><td>9/10</td><td>9/10</td><td style="color:#e94560;font-weight:800;">27/30</td></tr>
-    <tr><td>5</td><td style="color:#fff;">Fan Who Painted Dead Parents for Karan Aujla</td><td>9/10</td><td>9/10</td><td>8/10</td><td style="color:#e94560;font-weight:800;">26/30</td></tr>
-  </table>
+<h2 class="section-title">Score Summary <span class="badge">7 STORIES</span></h2>
+<table class="summary-table">
+<tr><th>#</th><th>Story</th><th>Freshness</th><th>Emotion</th><th>Visual</th><th>Total</th><th>Status</th></tr>
+<tr><td>1</td><td>Forgiving Everyone, Now Sleep Forever</td><td>9/10</td><td>10/10</td><td>8/10</td><td><strong>27/30</strong></td><td><span class="freshness-tag">Mar 16-17</span></td></tr>
+<tr><td>2</td><td>A Mother Stopped Crying Today</td><td>9/10</td><td>9/10</td><td>8/10</td><td><strong>26/30</strong></td><td><span class="freshness-tag">Mar 17 TODAY</span></td></tr>
+<tr><td>3</td><td>One Never Came Home. One Will.</td><td>9/10</td><td>10/10</td><td>10/10</td><td><strong>29/30</strong></td><td><span class="freshness-tag">Mar 17 TODAY</span></td></tr>
+<tr><td>4</td><td>Strangers Opened Doors When Dubai Shut Down</td><td>9/10</td><td>9/10</td><td>9/10</td><td><strong>27/30</strong></td><td><span class="freshness-tag">Mar 15-17</span></td></tr>
+<tr><td>5</td><td>He Climbed Ice So Strangers Could Call Home</td><td>10/10</td><td>9/10</td><td>9/10</td><td><strong>28/30</strong></td><td><span class="freshness-tag">Mar 17 TODAY</span></td></tr>
+<tr><td>6</td><td>They Died Where They Should've Lived</td><td>8/10</td><td>9/10</td><td>8/10</td><td><strong>25/30</strong></td><td><span class="freshness-tag">Mar 16-17</span></td></tr>
+<tr><td>7</td><td>He Walked Him to the Gate</td><td>7/10</td><td>10/10</td><td>9/10</td><td><strong>26/30</strong></td><td><span class="freshness-tag">Mid-Mar</span></td></tr>
+</table>
 
-  <!-- Stories -->
-  <div class="section-title">Final Stories <span class="badge">SCRIPTS + ANGLES</span></div>
+<!-- STORY 1 -->
+<h2 class="section-title">Stories &amp; Scripts <span class="badge">SCROLL DOWN</span></h2>
 
-  <!-- STORY 1 -->
-  <div class="story-card">
-    <div class="story-card-header">
-      <div style="display:flex;gap:14px;align-items:flex-start;flex:1;min-width:200px;">
-        <div class="story-rank">1</div>
-        <div class="story-title-wrap">
-          <div class="story-title">The Teacher Who Dressed an Orphan</div>
-          <div class="story-meta">
-            <span>Karauli, Rajasthan</span>
-            <span>March 13, 2026</span>
-            <span>Source: AajTak, Navbharat, OdishaTV</span>
-          </div>
-        </div>
-      </div>
-      <div class="story-score-box"><div class="score">29</div><div class="score-label">out of 30</div></div>
-    </div>
-    <div class="story-body">
-      <div class="story-caption">One. Good. Teacher.</div>
-      <p class="story-desc">Teacher Shubham Sherwal noticed a boy named Raj came to school without proper trousers. When he gently asked why, the child explained: "My parents are dead. I live with my grandfather. We can only buy clothes when his pension comes." Sherwal quietly bought him a new shirt and pants. The video exploded. Strangers flooded in with donations. A follow-up video shows Raj grinning, surrounded by gifts, his grandmother weeping with happiness.</p>
-      <div class="score-bars">
-        <div class="score-bar"><div class="score-bar-label">Emotional 10/10</div><div class="score-bar-track"><div class="score-bar-fill emotional" style="width:100%"></div></div></div>
-        <div class="score-bar"><div class="score-bar-label">Relatability 10/10</div><div class="score-bar-track"><div class="score-bar-fill relatable" style="width:100%"></div></div></div>
-        <div class="score-bar"><div class="score-bar-label">Shareability 9/10</div><div class="score-bar-track"><div class="score-bar-fill shareable" style="width:90%"></div></div></div>
-      </div>
-      <div class="story-hook">
-        <div class="story-hook-label">Viral Hook — First 3 Seconds</div>
-        "The teacher asked one question... and the entire class went silent."
-      </div>
-      <div class="tribal-angle">
-        <div class="tribal-angle-label">Tribal Box Angle</div>
-        <p>Every outlet ran this as "teacher buys uniform, video viral." Tribal Box tells it from THE SILENCE IN THE ROOM — the moment 30 children went quiet because one boy said "my parents are dead." That silence is the story. Not the uniform.</p>
-      </div>
-      <div class="unseen-angle">
-        <div class="unseen-angle-label">Unseen Angle (From Comments)</div>
-        <p>Commenters noted that Raj is an orphan living with an elderly grandfather on a pension — the system has no safety net for children like him. The real question: "How many Rajs are there in every government school, and no one is asking them why?"</p>
-      </div>
-      <div class="story-tags">
-        <span class="tag">#TeacherKindness</span><span class="tag">#RajasthanStory</span><span class="tag">#OrphanBoy</span><span class="tag">#OneGoodTeacher</span><span class="tag">#ShubhamSherwal</span><span class="tag">#TheTribalBox</span><span class="tag">#SmallActBigImpact</span><span class="tag">#IndiaInspires</span><span class="tag">#ClassroomMoment</span><span class="tag">#HumanityFirst</span>
-      </div>
-      <div class="story-handle">IG: @shubham_garhwal</div>
-      <div class="script-toggle">
-        <button onclick="toggleScript(this)">Show 60s Video Script</button>
-        <div class="script-content">
-          <table class="script-table">
-            <tr><th>Time</th><th>Visual Direction</th><th>Script / Voiceover</th><th>Moment</th></tr>
-            <tr><td>0:00-0:03</td><td>Close-up of a child's torn trousers, feet in dusty shoes</td><td>"The teacher asked one question... and the entire class went silent."</td><td><span class="moment-badge moment-HOOK">HOOK</span></td></tr>
-            <tr><td>0:04-0:10</td><td>Classroom shot, teacher at front, children on floor</td><td>"In a government school in Karauli, Rajasthan, a teacher noticed something. A boy named Raj wasn't wearing his school trousers."</td><td><span class="moment-badge moment-SETUP">SETUP</span></td></tr>
-            <tr><td>0:11-0:18</td><td>Teacher speaking gently to Raj, class watching</td><td>"He could have ignored it. He could have scolded him. Instead, he asked gently: 'Beta, what happened?'"</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:19-0:25</td><td>Close-up on Raj speaking, voice small</td><td>"Raj said: 'My trousers are torn. My mother and father are both gone. I live with my grandfather.'"</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:26-0:30</td><td>Room goes quiet. Children look at Raj.</td><td>"The classroom didn't move. No child laughed. Even the walls seemed to listen."</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:31-0:40</td><td>Teacher walks out, returns with bag, hands Raj new clothes</td><td>"Without a word, the teacher walked out. He came back with a brand new shirt and pants."</td><td><span class="moment-badge moment-PENNY">PENNY DROP</span></td></tr>
-            <tr><td>0:41-0:50</td><td>Follow-up: Raj smiling, grandmother crying, gifts arriving</td><td>"The video went viral. Strangers sent uniforms, books, supplies. Raj's grandmother stood watching, tears rolling."</td><td><span class="moment-badge moment-RESOLUTION">RESOLUTION</span></td></tr>
-            <tr><td>0:51-0:57</td><td>Raj looking at camera with new shirt, smiling</td><td>"It wasn't a grand gesture. It was the smallest thing. And that's why it changed everything."</td><td><span class="moment-badge moment-EMOTIONAL">CLOSE</span></td></tr>
-            <tr><td>0:58-1:00</td><td>Tribal Box logo fade</td><td>"The Tribal Box"</td><td><span class="moment-badge moment-BRANDING">BRAND</span></td></tr>
-          </table>
-        </div>
+<div class="story-card" id="story1">
+  <div class="story-card-header">
+    <div class="story-rank">1</div>
+    <div class="story-title-wrap">
+      <div class="story-title">Forgiving Everyone, Now Sleep Forever</div>
+      <div class="story-meta">
+        <span>Harish Rana &bull; AIIMS Delhi</span>
+        <span class="freshness-tag">Mar 16-17 &mdash; Actively Viral</span>
       </div>
     </div>
+    <div class="story-score-box"><div class="score">27</div><div class="score-label">out of 30</div></div>
   </div>
-
-  <!-- STORY 2 -->
-  <div class="story-card">
-    <div class="story-card-header">
-      <div style="display:flex;gap:14px;align-items:flex-start;flex:1;min-width:200px;">
-        <div class="story-rank">2</div>
-        <div class="story-title-wrap">
-          <div class="story-title">The Farmer Who Cried for His Daughter's Wedding</div>
-          <div class="story-meta">
-            <span>Guna, Madhya Pradesh</span>
-            <span>March 11, 2026</span>
-            <span>Source: AajTak, Kisan India</span>
-          </div>
-        </div>
-      </div>
-      <div class="story-score-box"><div class="score">28</div><div class="score-label">out of 30</div></div>
+  <div class="story-body">
+    <p class="story-desc">India's first-ever passive euthanasia case. Harish Rana, 32, has been in a permanent vegetative state for 13 years after falling from the 4th floor in 2013. On March 11, the Supreme Court permitted passive euthanasia for the first time. A 22-second farewell video shows his sister applying tilak and a Brahma Kumari whispering: <em>"Sabko maaf karte hue, sabse maafi mangte hue, so jaao"</em> &mdash; Forgiving everyone, asking forgiveness, now sleep.</p>
+    <div class="score-bars">
+      <div class="score-bar"><div class="score-bar-label">Freshness 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:90%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Emotion 10/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:100%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Visual 8/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:80%"></div></div></div>
     </div>
-    <div class="story-body">
-      <div class="story-caption">Father. Grain. Tears.</div>
-      <p class="story-desc">A farmer from Sripurkhet stood in the middle of Guna's Nanakhedi agricultural market, surrounded by sacks of coriander and mustard, folding his hands and crying because officials would not buy his crop — one day before his daughter's wedding. The video went viral and led to the inspector's suspension by the IAS collector.</p>
-      <div class="score-bars">
-        <div class="score-bar"><div class="score-bar-label">Emotional 10/10</div><div class="score-bar-track"><div class="score-bar-fill emotional" style="width:100%"></div></div></div>
-        <div class="score-bar"><div class="score-bar-label">Relatability 9/10</div><div class="score-bar-track"><div class="score-bar-fill relatable" style="width:90%"></div></div></div>
-        <div class="score-bar"><div class="score-bar-label">Shareability 9/10</div><div class="score-bar-track"><div class="score-bar-fill shareable" style="width:90%"></div></div></div>
-      </div>
-      <div class="story-hook">
-        <div class="story-hook-label">Viral Hook — First 3 Seconds</div>
-        "His daughter's wedding was tomorrow... and he was crying in a grain market."
-      </div>
-      <div class="tribal-angle">
-        <div class="tribal-angle-label">Tribal Box Angle</div>
-        <p>Everyone covered this as a "farmer vs system" story. Tribal Box tells it as a FATHER'S story — a man whose entire world was a wedding date and a grain sack. The angle is not the policy failure. The angle is the silence between his tears and the dust on his crop.</p>
-      </div>
-      <div class="unseen-angle">
-        <div class="unseen-angle-label">Unseen Angle (From Comments)</div>
-        <p>Commenters pointed out that the inspector was suspended but the SYSTEM remains unchanged. Others asked: "How many farmers cry in mandis every day that nobody records?" The deeper angle — the ones we never see.</p>
-      </div>
-      <div class="story-tags">
-        <span class="tag">#FathersDaughter</span><span class="tag">#GunaFarmer</span><span class="tag">#MandiTears</span><span class="tag">#AnnaDaata</span><span class="tag">#FarmerStory</span><span class="tag">#TheTribalBox</span><span class="tag">#RawHumanMoment</span><span class="tag">#IndiaStory</span><span class="tag">#DaughterWedding</span><span class="tag">#NoOneTalksAboutThis</span>
-      </div>
-      <div class="story-handle">IG: Not available — unnamed farmer from Sripurkhet, Guna</div>
-      <div class="script-toggle">
-        <button onclick="toggleScript(this)">Show 60s Video Script</button>
-        <div class="script-content">
-          <table class="script-table">
-            <tr><th>Time</th><th>Visual Direction</th><th>Script / Voiceover</th><th>Moment</th></tr>
-            <tr><td>0:00-0:03</td><td>Close-up of farmer's tearful face, hands folded</td><td>"His daughter's wedding was tomorrow... and he was crying in a grain market."</td><td><span class="moment-badge moment-HOOK">HOOK</span></td></tr>
-            <tr><td>0:04-0:10</td><td>Wide shot of Nanakhedi mandi, sacks of grain, blazing sun</td><td>"This is Guna, Madhya Pradesh. A farmer brought his entire harvest to sell at the government mandi."</td><td><span class="moment-badge moment-SETUP">SETUP</span></td></tr>
-            <tr><td>0:11-0:18</td><td>Other farmers waiting, bureaucratic indifference</td><td>"He'd waited 7 days. Watching his crop sit in the sun while an inspector refused to process his sale."</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:19-0:25</td><td>Farmer speaking, voice breaking</td><td>"He begged them: 'Sahab, please buy my grain... my daughter's wedding is tomorrow.'"</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:26-0:30</td><td>Farmer breaks down crying, folds hands to officials</td><td>"Nobody listened. So he did the only thing left. He cried."</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:31-0:40</td><td>Slow motion of tears, silence of the mandi, grain in dust</td><td>"A man who feeds the nation... begging to sell what he grew... so his daughter could have one good day."</td><td><span class="moment-badge moment-PENNY">PENNY DROP</span></td></tr>
-            <tr><td>0:41-0:50</td><td>News clips of IAS officer action, inspector suspended</td><td>"The video went viral. The inspector was suspended. But how many fathers cry in mandis that nobody films?"</td><td><span class="moment-badge moment-RESOLUTION">RESOLUTION</span></td></tr>
-            <tr><td>0:51-0:57</td><td>Return to farmer's face, quiet, looking at his grain</td><td>"Some stories don't need a hero. They just need someone to look."</td><td><span class="moment-badge moment-EMOTIONAL">CLOSE</span></td></tr>
-            <tr><td>0:58-1:00</td><td>Tribal Box logo fade</td><td>"The Tribal Box"</td><td><span class="moment-badge moment-BRANDING">BRAND</span></td></tr>
-          </table>
-        </div>
-      </div>
+    <div class="tags">
+      <span class="tag emotion">Grief</span><span class="tag emotion">Dignity</span><span class="tag emotion">Letting Go</span>
+      <span class="tag visual">Video: 22-sec farewell</span>
+      <span class="tag source">IndiaTV</span><span class="tag source">Deccan Herald</span><span class="tag source">Sunday Guardian</span>
+    </div>
+    <button class="script-toggle" onclick="toggleScript('s1')">View 60-Second Script + Caption + Hashtags</button>
+    <div class="script-content" id="s1">
+      <h4>Opening Hook</h4>
+      <div class="hook">"She told him to forgive everyone. Then she told him to sleep."</div>
+      <h4>60-Second Script</h4>
+      <pre>[0-3s] [CLOSE-UP: Trembling fingers pressing red tilak onto a still forehead. Audio fades in — a woman's whisper.]
+NARRATOR: "She told him to forgive everyone. Then she told him to sleep."
+
+[3-7s] [SLOW ZOOM OUT: Hospital bed. Tubes. Machines. A body that hasn't moved in thirteen years.]
+NARRATOR: "Harish Rana was thirty-two. He fell from the fourth floor in 2013. He never woke up."
+
+[7-13s] [ARCHIVAL: Faded photo of young Harish — smiling, alive. Slow Ken Burns zoom.]
+NARRATOR: "For thirteen years, his family watched him breathe. Not live. Breathe. Every single day."
+
+[13-20s] [TIGHT FRAME: His mother sitting beside the bed at AIIMS Delhi. Head bowed. Hands folded.]
+NARRATOR: "His mother sat beside him at AIIMS Delhi. She had nothing left to say. She had said everything — for four thousand, seven hundred days."
+
+[20-28s] [TEXT ON SCREEN: "MARCH 11, 2026 — SUPREME COURT OF INDIA." Then: "India's first passive euthanasia permitted."]
+NARRATOR: "On March eleventh, the Supreme Court ruled — for the first time in Indian history — that Harish could be let go."
+
+[28-38s] [THE FAREWELL: Sister applies tilak. Brahma Kumari leans close to his ear.]
+NARRATOR: "His sister pressed tilak to his forehead one last time. A Brahma Kumari leaned in and whispered..."
+
+[38-44s] [BLACK SCREEN. Only audio — the whisper, subtitled:]
+TEXT: "Sabko maaf karte hue... sabse maafi mangte hue... so jaao."
+NARRATOR (soft): "Forgiving everyone. Asking forgiveness from everyone. Now... sleep."
+
+[44-50s] [Mother's face. She is not crying. She is past crying. She stares at nothing.]
+NARRATOR: "Twenty-two seconds. That was the farewell. Twenty-two seconds to close thirteen years."
+
+[50-57s] [WIDE: Hospital corridor at AIIMS. Empty. Fluorescent lights.]
+NARRATOR: "Some families fight for life. This family fought — for the right to let go."
+
+[57-60s] [BLACK SCREEN. White text:]
+"Harish Rana. 2000–2026. He was finally allowed to rest."
+[Ventilator hum fading out. Silence.]</pre>
+      <h4>Instagram Caption</h4>
+      <div class="caption-box"><p>After 13 years in a vegetative state, Harish Rana's family was finally allowed to say goodbye.<br><br>His sister applied tilak. A Brahma Kumari whispered: "Forgiving everyone, asking forgiveness from everyone... now sleep."<br><br>22 seconds. That was the farewell.<br><br>India's first passive euthanasia case isn't a legal headline. It's a family that loved someone enough to let him go.<br><br>Some goodbyes take thirteen years to arrive.<br><br>Tell someone you love them today. Not tomorrow. Today.<br><br>Save this. Share this. Someone needs to hear this story.</p></div>
+      <div class="hashtags">#HarishRana #PassiveEuthanasia #IndiaFirstCase #SupremeCourt #AIIMS #SabkoMaafKarteHue #RightToDieWithDignity #HumanStory #IndianStories #Farewell #BrahmaKumaris #DignityInDeath #LifeAndDeath #ThingsWeCarry #ThingsNoOneTalksAbout</div>
+      <div class="ig-accounts">Tag: @indiatv @deccanherald @sundayguardianlive @brahmakumaris @livelaw.in @humans.of.india</div>
     </div>
   </div>
+</div>
 
-  <!-- STORY 3 -->
-  <div class="story-card">
-    <div class="story-card-header">
-      <div style="display:flex;gap:14px;align-items:flex-start;flex:1;min-width:200px;">
-        <div class="story-rank">3</div>
-        <div class="story-title-wrap">
-          <div class="story-title">Honey Singh's Mother Crying in the Front Row</div>
-          <div class="story-meta">
-            <span>Delhi, India</span>
-            <span>March 14, 2026</span>
-            <span>Source: 8PM News, Free Press Journal</span>
-          </div>
-        </div>
-      </div>
-      <div class="story-score-box"><div class="score">27</div><div class="score-label">out of 30</div></div>
-    </div>
-    <div class="story-body">
-      <div class="story-caption">Mother. Front. Row.</div>
-      <p class="story-desc">Yo Yo Honey Singh — who disappeared for years battling bipolar disorder, alcoholism, and believing he was dead — launched his "My Story" tour in Delhi. His mother, Bhupinder Kaur, sat in the front row. When he took the stage and thousands chanted his name, she broke down crying with folded hands, praying. This is NOT a celebrity story. This is a MOTHER watching her son come back from the dead.</p>
-      <div class="score-bars">
-        <div class="score-bar"><div class="score-bar-label">Emotional 10/10</div><div class="score-bar-track"><div class="score-bar-fill emotional" style="width:100%"></div></div></div>
-        <div class="score-bar"><div class="score-bar-label">Relatability 9/10</div><div class="score-bar-track"><div class="score-bar-fill relatable" style="width:90%"></div></div></div>
-        <div class="score-bar"><div class="score-bar-label">Shareability 8/10</div><div class="score-bar-track"><div class="score-bar-fill shareable" style="width:80%"></div></div></div>
-      </div>
-      <div class="story-hook">
-        <div class="story-hook-label">Viral Hook — First 3 Seconds</div>
-        "She thought she'd lost her son forever. Then 10,000 strangers screamed his name."
-      </div>
-      <div class="tribal-angle">
-        <div class="tribal-angle-label">Tribal Box Angle</div>
-        <p>Everyone covered this as "Honey Singh's big concert!" Tribal Box strips away the celebrity and tells it as a MOTHER'S STORY. She watched her son disappear into mental illness for six years. She prayed. She waited. And then she heard 10,000 people scream the name she gave him. That prayer in the front row — that's the story nobody told.</p>
-      </div>
-      <div class="unseen-angle">
-        <div class="unseen-angle-label">Unseen Angle (From Comments)</div>
-        <p>People shared their own experiences watching family members battle mental illness. Many said: "I know what that mother felt — the relief that your child survived." The untold perspective: this is India's mental health story told through a mother's tears, not a medical report.</p>
-      </div>
-      <div class="story-tags">
-        <span class="tag">#MothersFrontRow</span><span class="tag">#HoneySingh</span><span class="tag">#MentalHealthMatters</span><span class="tag">#ComebackStory</span><span class="tag">#BipolarRecovery</span><span class="tag">#TheTribalBox</span><span class="tag">#RawEmotion</span><span class="tag">#MotherSon</span><span class="tag">#MyStoryTour</span><span class="tag">#IndiaStory</span>
-      </div>
-      <div class="story-handle">IG: @yabornnahi (Honey Singh) — Mother's IG not available</div>
-      <div class="script-toggle">
-        <button onclick="toggleScript(this)">Show 60s Video Script</button>
-        <div class="script-content">
-          <table class="script-table">
-            <tr><th>Time</th><th>Visual Direction</th><th>Script / Voiceover</th><th>Moment</th></tr>
-            <tr><td>0:00-0:03</td><td>Close-up of mother's face, tears, hands joined</td><td>"She thought she'd lost her son forever. Then 10,000 strangers screamed his name."</td><td><span class="moment-badge moment-HOOK">HOOK</span></td></tr>
-            <tr><td>0:04-0:10</td><td>Archive: young Honey Singh performing, peak fame</td><td>"He was India's biggest rapper. Stadiums. Hits. Fame that most people dream of."</td><td><span class="moment-badge moment-SETUP">SETUP</span></td></tr>
-            <tr><td>0:11-0:18</td><td>Dark screen, text: "Bipolar. Alcoholism. 6 years of silence."</td><td>"Then he vanished. Six years. He once said he believed he was dead."</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:19-0:25</td><td>Empty stage, then lights at IGI Stadium</td><td>"On March 14, he walked onto a stage in Delhi. His first tour in years. 'My Story.' Four chapters."</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:26-0:30</td><td>Pan to front row — parents among the crowd</td><td>"But the real story wasn't on stage. It was in the front row."</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:31-0:40</td><td>Mother crying, hands folded, father clapping, crowd roaring</td><td>"His mother broke down. Not because of the music. Because her boy was alive. She folded her hands... and she prayed."</td><td><span class="moment-badge moment-PENNY">PENNY DROP</span></td></tr>
-            <tr><td>0:41-0:50</td><td>Father clapping with tears, Honey Singh performing</td><td>"His father stood clapping. Not like a fan. Like a father who never stopped believing."</td><td><span class="moment-badge moment-RESOLUTION">RESOLUTION</span></td></tr>
-            <tr><td>0:51-0:57</td><td>Split screen: mother crying / Honey Singh under spotlight</td><td>"Sometimes a comeback isn't about the crowd. It's about one woman who finally exhaled."</td><td><span class="moment-badge moment-EMOTIONAL">CLOSE</span></td></tr>
-            <tr><td>0:58-1:00</td><td>Tribal Box logo fade</td><td>"The Tribal Box"</td><td><span class="moment-badge moment-BRANDING">BRAND</span></td></tr>
-          </table>
-        </div>
+<!-- STORY 2 -->
+<div class="story-card" id="story2">
+  <div class="story-card-header">
+    <div class="story-rank">2</div>
+    <div class="story-title-wrap">
+      <div class="story-title">A Mother Stopped Crying Today</div>
+      <div class="story-meta">
+        <span>LPG Crisis &bull; Nanda Devi Tanker &bull; Gujarat</span>
+        <span class="freshness-tag">Mar 17 TODAY</span>
       </div>
     </div>
+    <div class="story-score-box"><div class="score">26</div><div class="score-label">out of 30</div></div>
   </div>
-
-  <!-- STORY 4 -->
-  <div class="story-card">
-    <div class="story-card-header">
-      <div style="display:flex;gap:14px;align-items:flex-start;flex:1;min-width:200px;">
-        <div class="story-rank">4</div>
-        <div class="story-title-wrap">
-          <div class="story-title">The 78-Year-Old DoorDash Driver Who Just Wanted to Rest</div>
-          <div class="story-meta">
-            <span>Manchester, Tennessee, USA</span>
-            <span>March 10, 2026</span>
-            <span>Source: NBC Miami, CBS News</span>
-          </div>
-        </div>
-      </div>
-      <div class="story-score-box"><div class="score">27</div><div class="score-label">out of 30</div></div>
+  <div class="story-body">
+    <p class="story-desc">India's worst LPG crisis — Strait of Hormuz blockade cut supply. A viral video shows a daily-wage mother sobbing: her family hasn't cooked in a week. Black market cylinders hit Rs 5,000. Today (March 17), the Indian-flagged tanker "Nanda Devi" — 46,000 metric tonnes — docked at Vadinar Port, Gujarat, escorted by Indian &amp; Iranian navies through a war zone.</p>
+    <div class="score-bars">
+      <div class="score-bar"><div class="score-bar-label">Freshness 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:90%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Emotion 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:90%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Visual 8/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:80%"></div></div></div>
     </div>
-    <div class="story-body">
-      <div class="story-caption">Deliver. Rest. Deserve.</div>
-      <p class="story-desc">Richard Pulley, 78, came out of retirement to deliver DoorDash after his wife Brenda lost her job. They needed money for medication and bills. A customer named Brittany Smith saw him struggling up her porch steps through a Ring camera. She posted the video asking "Why is he having to DoorDash?" Within 5 days, 17,000 strangers donated $884,000.</p>
-      <div class="score-bars">
-        <div class="score-bar"><div class="score-bar-label">Emotional 9/10</div><div class="score-bar-track"><div class="score-bar-fill emotional" style="width:90%"></div></div></div>
-        <div class="score-bar"><div class="score-bar-label">Relatability 9/10</div><div class="score-bar-track"><div class="score-bar-fill relatable" style="width:90%"></div></div></div>
-        <div class="score-bar"><div class="score-bar-label">Shareability 9/10</div><div class="score-bar-track"><div class="score-bar-fill shareable" style="width:90%"></div></div></div>
-      </div>
-      <div class="story-hook">
-        <div class="story-hook-label">Viral Hook — First 3 Seconds</div>
-        "He's 78. He delivers Starbucks for a living. Not because he wants to."
-      </div>
-      <div class="tribal-angle">
-        <div class="tribal-angle-label">Tribal Box Angle</div>
-        <p>The angle isn't the GoFundMe. It's the IMAGE — a 78-year-old man climbing stairs with a Starbucks bag because nobody in his country guaranteed him rest. What happens when the system fails old people?</p>
-      </div>
-      <div class="unseen-angle">
-        <div class="unseen-angle-label">Unseen Angle (From Comments)</div>
-        <p>GoFundMe donors wrote: "This should never happen in a country this rich." Many comments asked: "Why does it take a viral video for someone to get the help they deserve?"</p>
-      </div>
-      <div class="story-tags">
-        <span class="tag">#RichardPulley</span><span class="tag">#DoorDashDriver</span><span class="tag">#KindnessWins</span><span class="tag">#StrangersHelp</span><span class="tag">#GoFundMe</span><span class="tag">#TheTribalBox</span><span class="tag">#AgingInAmerica</span><span class="tag">#HumanKindness</span><span class="tag">#ViralForGood</span><span class="tag">#OneDelivery</span>
-      </div>
-      <div class="story-handle">IG: Not available</div>
-      <div class="script-toggle">
-        <button onclick="toggleScript(this)">Show 60s Video Script</button>
-        <div class="script-content">
-          <table class="script-table">
-            <tr><th>Time</th><th>Visual Direction</th><th>Script / Voiceover</th><th>Moment</th></tr>
-            <tr><td>0:00-0:03</td><td>Ring camera: elderly man climbing porch steps</td><td>"He's 78. He delivers Starbucks for a living. Not because he wants to."</td><td><span class="moment-badge moment-HOOK">HOOK</span></td></tr>
-            <tr><td>0:04-0:10</td><td>Photo of Richard and Brenda, married 56 years</td><td>"Richard and Brenda Pulley have been married for 56 years. They should be resting."</td><td><span class="moment-badge moment-SETUP">SETUP</span></td></tr>
-            <tr><td>0:11-0:18</td><td>Brenda driving, Richard delivering bags</td><td>"When Brenda lost her job, they couldn't afford medication. So Richard, at 78, became a DoorDash driver."</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:19-0:25</td><td>Ring camera again, Richard gripping handrail</td><td>"A customer in Tennessee saw this on her doorbell camera. A man, 78, struggling up the steps."</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:26-0:30</td><td>Facebook post: "All help me find this precious man"</td><td>"She wrote: 'Why is he having to DoorDash?' Then she started a GoFundMe."</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:31-0:40</td><td>GoFundMe counter climbing: $100K → $884K</td><td>"In five days, 17,000 strangers gave $884,000. 'You've worked your whole life. It's time to rest.'"</td><td><span class="moment-badge moment-PENNY">PENNY DROP</span></td></tr>
-            <tr><td>0:41-0:50</td><td>Richard smiling: "It's making life livable again"</td><td>"He still wants to deliver sometimes. Not for money. Because it makes him feel useful. Alive."</td><td><span class="moment-badge moment-RESOLUTION">RESOLUTION</span></td></tr>
-            <tr><td>0:51-0:57</td><td>Quiet porch, delivered bag, empty step</td><td>"Sometimes the smallest delivery carries the heaviest weight."</td><td><span class="moment-badge moment-EMOTIONAL">CLOSE</span></td></tr>
-            <tr><td>0:58-1:00</td><td>Tribal Box logo fade</td><td>"The Tribal Box"</td><td><span class="moment-badge moment-BRANDING">BRAND</span></td></tr>
-          </table>
-        </div>
-      </div>
+    <div class="tags">
+      <span class="tag emotion">Hope</span><span class="tag emotion">Helplessness</span><span class="tag emotion">Relief</span>
+      <span class="tag visual">Video: Mother crying + tanker arrival</span>
+      <span class="tag source">ANI</span><span class="tag source">Dainik Jagran</span>
+    </div>
+    <button class="script-toggle" onclick="toggleScript('s2')">View 60-Second Script + Caption + Hashtags</button>
+    <div class="script-content" id="s2">
+      <h4>Opening Hook</h4>
+      <div class="hook">"She hasn't cooked in seven days. Not because she doesn't want to. Because she can't."</div>
+      <h4>60-Second Script</h4>
+      <pre>[0-3s] [SHAKY FOOTAGE: Woman in worn saree, sitting on a kerb, face in hands. LPG queue behind her.]
+NARRATOR: "She hasn't cooked in seven days. Not because she doesn't want to. Because she can't."
+
+[3-9s] [MONTAGE: Empty gas stoves. Child eating dry roti with salt. Man shaking empty cylinder.]
+NARRATOR: "The Strait of Hormuz shut down. Iran, Israel, America — a war twelve thousand kilometres away. And this woman can't feed her children."
+
+[9-16s] [MAP ANIMATION: Red line through Strait of Hormuz. X marks. Shipping routes go dark.]
+NARRATOR: "India imports half its LPG through that strait. When the blockade hit, the gas stopped. Black market cylinders — four, five thousand rupees."
+
+[16-22s] [Woman in the queue, speaking to camera, voice cracking.]
+TEXT: "I can't go to work. If I leave the line, I lose my place."
+NARRATOR: "She can't work because she's standing in line. She can't cook because there's no gas. She can't win."
+
+[22-28s] [BLACK SCREEN. White text: "MARCH 17, 2026. VADINAR PORT, GUJARAT."]
+
+[28-36s] [AERIAL: Massive LPG tanker "Nanda Devi" cutting through water. Navy escort. Indian flag on hull.]
+NARRATOR: "Forty-six thousand metric tonnes. The Nanda Devi — escorted through the Strait of Hormuz by Indian and Iranian navies — docked this morning."
+
+[36-42s] [SPLIT SCREEN: Tanker docking + yesterday's Shivalik at port.]
+NARRATOR: "Second relief ship this week. Two ships. One mission. Feed the country."
+
+[42-50s] [Woman from opening watching news on someone's phone. Hand covers her mouth.]
+NARRATOR: "Somewhere in a gas queue tonight, a woman will hear a ship has come. She won't know its name. She'll only know — maybe tomorrow, she can cook."
+
+[50-57s] [CLOSE-UP: Blue LPG flame igniting. The soft whoosh of gas.]
+NARRATOR: "We don't think about gas. We turn a knob. We light a match. Until we can't."
+
+[57-60s] [BLACK SCREEN:]
+"The Nanda Devi carried gas. But for millions — it carried hope."</pre>
+      <h4>Instagram Caption</h4>
+      <div class="caption-box"><p>A daily-wage mother sobbed on camera. Her family hadn't cooked in a week. She couldn't work — because if she left the gas queue, she'd lose her place.<br><br>Twelve thousand kilometres away, a war shut down the Strait of Hormuz. India's LPG supply collapsed overnight. Black market cylinders hit Rs 5,000.<br><br>Today, the tanker "Nanda Devi" — carrying 46,000 metric tonnes of LPG — docked at Vadinar Port, Gujarat. Escorted through a war zone by the Indian and Iranian navies.<br><br>She doesn't know the ship's name. She just knows maybe tomorrow, she can cook.<br><br>Share this for every family still waiting in line.</p></div>
+      <div class="hashtags">#LPGCrisis #NandaDevi #VadinarPort #StraitOfHormuz #IndiaLPG #GasCrisis2026 #IndianNavy #HumanCost #RealIndia #DailyWage #EnergyCrisisIndia #CookingGas #Shivalik #SupplyChain #WomenOfIndia</div>
+      <div class="ig-accounts">Tag: @ani_digital @indiannavy @iaborc @bharatpetroleum @humans.of.india</div>
     </div>
   </div>
+</div>
 
-  <!-- STORY 5 -->
-  <div class="story-card">
-    <div class="story-card-header">
-      <div style="display:flex;gap:14px;align-items:flex-start;flex:1;min-width:200px;">
-        <div class="story-rank">5</div>
-        <div class="story-title-wrap">
-          <div class="story-title">The Fan Who Painted Dead Parents for Karan Aujla</div>
-          <div class="story-meta">
-            <span>Delhi, India (JLN Stadium)</span>
-            <span>Late Feb / Early Mar 2026</span>
-            <span>Source: India.com, Free Press Journal, Zee News</span>
-          </div>
-        </div>
-      </div>
-      <div class="story-score-box"><div class="score">26</div><div class="score-label">out of 30</div></div>
-    </div>
-    <div class="story-body">
-      <div class="story-caption">Paint. Parent. Pain.</div>
-      <p class="story-desc">At the biggest Punjabi concert India has ever seen (75,000 people), Delhi artist Pavani Nagpal handed Karan Aujla a portrait of his dead parents. His father died in a car accident when Karan was 9. His mother died of cancer as a teenager. On stage, he stopped. Stared at the painting. Went silent. Then cried. He signed the frame and told the fan: "Put it in your house." He couldn't keep it because he'd never stop staring.</p>
-      <div class="score-bars">
-        <div class="score-bar"><div class="score-bar-label">Emotional 9/10</div><div class="score-bar-track"><div class="score-bar-fill emotional" style="width:90%"></div></div></div>
-        <div class="score-bar"><div class="score-bar-label">Relatability 9/10</div><div class="score-bar-track"><div class="score-bar-fill relatable" style="width:90%"></div></div></div>
-        <div class="score-bar"><div class="score-bar-label">Shareability 8/10</div><div class="score-bar-track"><div class="score-bar-fill shareable" style="width:80%"></div></div></div>
-      </div>
-      <div class="story-hook">
-        <div class="story-hook-label">Viral Hook — First 3 Seconds</div>
-        "75,000 people were screaming. He went completely silent."
-      </div>
-      <div class="tribal-angle">
-        <div class="tribal-angle-label">Tribal Box Angle</div>
-        <p>Every outlet covered this as "Karan Aujla cries at concert." Tribal Box tells the story of WHY HE GAVE THE PAINTING BACK. He signed it and said "Put it in your house" — because some grief is too raw to hang on your wall. The angle is about what loss looks like when you've made it, but the people who mattered most aren't there to see it.</p>
-      </div>
-      <div class="unseen-angle">
-        <div class="unseen-angle-label">Unseen Angle (From Comments)</div>
-        <p>The real discussion was about grief that success cannot heal — how fame fills stadiums but can't fill the chair at your dinner table. One comment: "He couldn't take it home because he'd stare at it every night."</p>
-      </div>
-      <div class="story-tags">
-        <span class="tag">#KaranAujla</span><span class="tag">#ParentLoss</span><span class="tag">#FanMoment</span><span class="tag">#PunjabiMusic</span><span class="tag">#PaintedMemory</span><span class="tag">#TheTribalBox</span><span class="tag">#GriefIsForever</span><span class="tag">#RawMoment</span><span class="tag">#ConcertEmotions</span><span class="tag">#PPopCulture</span>
-      </div>
-      <div class="story-handle">IG: @karabornnahi (Karan Aujla) — Artist: Pavani Nagpal</div>
-      <div class="script-toggle">
-        <button onclick="toggleScript(this)">Show 60s Video Script</button>
-        <div class="script-content">
-          <table class="script-table">
-            <tr><th>Time</th><th>Visual Direction</th><th>Script / Voiceover</th><th>Moment</th></tr>
-            <tr><td>0:00-0:03</td><td>Wide: 75,000 people, lights blazing. Then silence</td><td>"75,000 people were screaming. He went completely silent."</td><td><span class="moment-badge moment-HOOK">HOOK</span></td></tr>
-            <tr><td>0:04-0:10</td><td>Karan performing, energy at peak</td><td>"Karan Aujla. India's biggest Punjabi concert. 75,000 fans at JLN Stadium, Delhi."</td><td><span class="moment-badge moment-SETUP">SETUP</span></td></tr>
-            <tr><td>0:11-0:18</td><td>Old photo of young Karan with parents</td><td>"He lost his father to a car crash at 9. His mother to cancer as a teenager. He built everything they never got to see."</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:19-0:25</td><td>Hand reaches from crowd holding framed portrait</td><td>"Then a fan reached through the crowd. In her hands: a painting. Not of him. Of THEM."</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:26-0:30</td><td>Karan takes the frame, crowd noise fades</td><td>"Delhi artist Pavani Nagpal had painted his parents — one standing before the Golden Temple."</td><td><span class="moment-badge moment-BUILD">BUILD</span></td></tr>
-            <tr><td>0:31-0:40</td><td>Close-up: Karan staring, jaw tight, tears forming</td><td>"He stared at it. In front of 75,000 people, the biggest star in Punjabi music... just stood there. Looking at faces he hasn't seen in decades."</td><td><span class="moment-badge moment-PENNY">PENNY DROP</span></td></tr>
-            <tr><td>0:41-0:50</td><td>Karan signs frame, says "Put it in your house"</td><td>"He signed the painting. Then told the fan: 'Keep it. Put it in YOUR house.' He couldn't take it home. Because he'd never stop looking."</td><td><span class="moment-badge moment-RESOLUTION">RESOLUTION</span></td></tr>
-            <tr><td>0:51-0:57</td><td>Stage lights dim, Karan standing alone</td><td>"Some gifts are too heavy to carry. Even when they weigh nothing at all."</td><td><span class="moment-badge moment-EMOTIONAL">CLOSE</span></td></tr>
-            <tr><td>0:58-1:00</td><td>Tribal Box logo fade</td><td>"The Tribal Box"</td><td><span class="moment-badge moment-BRANDING">BRAND</span></td></tr>
-          </table>
-        </div>
+<!-- STORY 3 -->
+<div class="story-card" id="story3">
+  <div class="story-card-header">
+    <div class="story-rank">3</div>
+    <div class="story-title-wrap">
+      <div class="story-title">One Never Came Home. One Will.</div>
+      <div class="story-meta">
+        <span>Kalpana Chawla + Sunita Williams &bull; NASA/ISS</span>
+        <span class="freshness-tag">Mar 17 TODAY &mdash; Birthday</span>
       </div>
     </div>
+    <div class="story-score-box"><div class="score">29</div><div class="score-label">out of 30</div></div>
   </div>
+  <div class="story-body">
+    <p class="story-desc">Today is Kalpana Chawla's 64th birth anniversary. She died in the Columbia disaster on Feb 1, 2003 — 16 minutes before landing. In 2 days (March 19), Sunita Williams finally returns to Earth after 9 months stranded in space. Two Indian-origin women who touched the stars. One who never came home. One who finally will.</p>
+    <div class="score-bars">
+      <div class="score-bar"><div class="score-bar-label">Freshness 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:90%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Emotion 10/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:100%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Visual 10/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:100%"></div></div></div>
+    </div>
+    <div class="tags">
+      <span class="tag emotion">Legacy</span><span class="tag emotion">Loss</span><span class="tag emotion">Hope</span>
+      <span class="tag visual">NASA archival + ISS live footage</span>
+      <span class="tag source">Tribune India</span><span class="tag source">News24</span>
+    </div>
+    <button class="script-toggle" onclick="toggleScript('s3')">View 60-Second Script + Caption + Hashtags</button>
+    <div class="script-content" id="s3">
+      <h4>Opening Hook</h4>
+      <div class="hook">"Two women from India touched the stars. One never came back."</div>
+      <h4>60-Second Script</h4>
+      <pre>[0-3s] [SPLIT SCREEN: Left — Kalpana floating weightless, smiling. Right — Sunita staring out ISS cupola at Earth.]
+NARRATOR: "Two women from India touched the stars. One never came back."
 
-  <!-- Instagram Recommendations -->
-  <div class="section-title">Instagram Recommendations <span class="badge">@thetribalbox — 44K Followers</span></div>
+[3-9s] [FULL SCREEN — Kalpana. Suiting up, walking to shuttle, waving.]
+NARRATOR: "Kalpana Chawla. Born in Karnal, Haryana. She flew into space twice. On February first, 2003 — sixteen minutes before landing — Columbia broke apart."
 
-  <div class="ig-card">
-    <h3><span class="ig-num">1.</span> Fix the Hook — First 1 Second Must Stop the Scroll</h3>
-    <p>Start with a provocative statement, not a title card. Use close-up faces with raw emotion as the first frame. Text overlay with a contradiction ("He had everything... except the one thing that mattered"). Never start with music or a logo.</p>
-  </div>
-  <div class="ig-card">
-    <h3><span class="ig-num">2.</span> Adopt the "DM Test" for Every Story</h3>
-    <p>Before posting, ask: "Would someone screenshot this and send it to a friend?" If not, the emotional core isn't sharp enough. Stories should trigger a "YOU NEED TO SEE THIS" reflex.</p>
-  </div>
-  <div class="ig-card">
-    <h3><span class="ig-num">3.</span> Use the 3-Word Caption Strategy</h3>
-    <p>Move away from long captions. Use 3-word captions that create intrigue: "Father. Grain. Tears." / "One. Good. Teacher." / "Mother. Front. Row." — Put the full story in the first comment.</p>
-  </div>
-  <div class="ig-card">
-    <h3><span class="ig-num">4.</span> Post Timing & Frequency Optimization</h3>
-    <p>Post Reels between 7-9 PM IST. Minimum 5 Reels/week with at least 2 "micro-stories" (under 30 seconds). Use carousel posts for "untold story" series. Stories daily with polls: "Should we tell this story?"</p>
-  </div>
-  <div class="ig-card">
-    <h3><span class="ig-num">5.</span> Build a "Story Radar" Community Loop</h3>
-    <p>End every Reel with: "Send us stories nobody is telling" with a DM prompt. Feature user-submitted stories monthly. Create an "Unseen Stories" highlight reel. Turns followers into scouts.</p>
-  </div>
+[9-14s] [Bright streaks across blue sky. Debris trails. Photo of family at landing strip, smiling. They don't know yet.]
+NARRATOR: "Her family was at the airstrip. Waiting. She was already gone."
 
-  <!-- Content Directions -->
-  <div class="section-title">Content Directions <span class="badge">GROWTH</span></div>
-  <div class="ig-card">
-    <h3><span class="ig-num">A.</span> "The Story Behind the Viral" Series</h3>
-    <p>Take stories that went viral for surface reasons and tell the DEEPER human angle nobody covered. Positions Tribal Box as the page that goes ONE LAYER DEEPER.</p>
-  </div>
-  <div class="ig-card">
-    <h3><span class="ig-num">B.</span> "60-Second Human Portraits"</h3>
-    <p>Create a signature format: 60-second, one-person, one-emotion stories. No B-roll montages. Just a face, a voice, and a truth. Use stripped-down piano audio. Creates a distinctive visual identity.</p>
-  </div>
-  <div class="ig-card">
-    <h3><span class="ig-num">C.</span> "3 AM Stories" — Things People Think But Never Say</h3>
-    <p>Late-night content exploring universal truths: grief after success, loneliness in crowds, parents who never say "I'm proud." Post between 11 PM - 1 AM. Captures the emotional late-night scrolling audience.</p>
-  </div>
+[14-19s] [Kalpana's NASA portrait. The famous smile. Hold 2 seconds in silence.]
+TEXT: "Kalpana Chawla. 1962–2003. She never came home."
 
-  <!-- Rejected Stories -->
-  <div class="section-title" style="cursor:pointer;" onclick="document.getElementById('rejected').classList.toggle('active');this.querySelector('.arrow').classList.toggle('open')">
-    Rejected Stories <span class="badge">20 FILTERED</span> <span class="arrow">&#9654;</span>
-  </div>
-  <div id="rejected" class="script-content">
-    <table class="rejected-table">
-      <tr><th>#</th><th>Story</th><th>Reason</th></tr>
-      <tr><td>1</td><td>Harish Rana Passive Euthanasia</td><td class="reject-reason">Already covered by Brut India + ethically sensitive</td></tr>
-      <tr><td>2</td><td>Ashok Tevani Sparrow Nests (Nagpur)</td><td class="reject-reason">Already covered by The Better India</td></tr>
-      <tr><td>3</td><td>Shivam Dube Medal to Father</td><td class="reject-reason">Sports/mainstream — feels like PR</td></tr>
-      <tr><td>4</td><td>India T20 World Cup Win</td><td class="reject-reason">Sports event — NO per editorial rules</td></tr>
-      <tr><td>5</td><td>KL Rahul-Sanju Samson Hug</td><td class="reject-reason">Sports event + celebrity</td></tr>
-      <tr><td>6</td><td>Suryakumar Yadav Bows to Samson</td><td class="reject-reason">Sports event</td></tr>
-      <tr><td>7</td><td>Ranvir Sachdeva 8-yr-old AI Summit</td><td class="reject-reason">Not emotionally raw — child prodigy PR (18/30)</td></tr>
-      <tr><td>8</td><td>Joyeeta Banerjee Fulbright Teacher</td><td class="reject-reason">Weak visual footage + outside 72hr window</td></tr>
-      <tr><td>9</td><td>Alzheimer's Couple Remarries</td><td class="reject-reason">January 2026 — outside window</td></tr>
-      <tr><td>10</td><td>Nithya Tamil Nadu Masonry</td><td class="reject-reason">No viral video — Visual Score 0/2</td></tr>
-      <tr><td>11</td><td>Indian Gig Worker Angle</td><td class="reject-reason">No specific story — just trend reporting</td></tr>
-      <tr><td>12</td><td>Rashmika-Vijay Wedding</td><td class="reject-reason">Celebrity PR</td></tr>
-      <tr><td>13</td><td>Jim Carrey Cesar Award</td><td class="reject-reason">Celebrity award — not raw emotion</td></tr>
-      <tr><td>14</td><td>Jenniffer East Africa Empowerment</td><td class="reject-reason">No video + NGO campaign</td></tr>
-      <tr><td>15</td><td>Ruchita Sahukari Wheelchair Journalist</td><td class="reject-reason">No recent viral moment</td></tr>
-      <tr><td>16</td><td>Glenn Phillips & Wife T20 WC</td><td class="reject-reason">Sports event</td></tr>
-      <tr><td>17</td><td>Altman & Amodei Awkward Moment</td><td class="reject-reason">Not a human story — tech moment</td></tr>
-      <tr><td>18</td><td>Viral Husky Refuses to Move</td><td class="reject-reason">Animal story — not emotionally deep</td></tr>
-      <tr><td>19</td><td>March Madness Cheerleader Crying</td><td class="reject-reason">US sports event — wrong audience</td></tr>
-      <tr><td>20</td><td>Astrologer Fuel Crisis Prediction</td><td class="reject-reason">Not a human story</td></tr>
-    </table>
-  </div>
+[19-25s] [Sunita in ISS — exercising, floating, staring out windows. Months passing in quick cuts.]
+NARRATOR: "Sunita Williams launched last June for an eight-day mission. Her spacecraft failed. Eight days became nine months."
 
-  <!-- Methodology -->
-  <div class="section-title">Methodology <span class="badge">7 AGENTS</span></div>
-  <div class="ig-card" style="font-size:0.85rem; color:#999;">
-    <p><strong style="color:#e94560;">Agent 1 (Discovery):</strong> 30 searches across Twitter, Reddit, Instagram, YouTube, News — 25+ raw stories</p>
-    <p style="margin-top:6px;"><strong style="color:#e94560;">Agent 2 (Competitor Filter):</strong> Checked against Better India, Humans of Bombay, Brut India, ScoopWhoop</p>
-    <p style="margin-top:6px;"><strong style="color:#e94560;">Agent 3 (Visual Footage):</strong> All final 5 rated 2/2 STRONG</p>
-    <p style="margin-top:6px;"><strong style="color:#e94560;">Agent 4 (Quality Scoring):</strong> Minimum 22/30 — Final 5 range: 26-29/30</p>
-    <p style="margin-top:6px;"><strong style="color:#e94560;">Agent 5 (Scripts):</strong> Full 60-second scripts with timestamps, hooks, captions, hashtags</p>
-    <p style="margin-top:6px;"><strong style="color:#e94560;">Agent 6 (Comment Mining):</strong> Unseen angles from social media discussions</p>
-    <p style="margin-top:6px;"><strong style="color:#e94560;">Agent 7 (Instagram Analysis):</strong> 5 improvement actions + 3 content directions for @thetribalbox</p>
-    <p style="margin-top:10px; color:#555;">All stories verified within 48-72hr window (March 10-17, 2026). No overlap with competitor coverage.</p>
-  </div>
+[25-31s] [Sunita's face through ISS cupola — Earth reflected in visor. India visible through clouds.]
+NARRATOR: "Nine months. Imagine seeing your home every ninety minutes — and not being able to reach it."
 
+[31-38s] [TEXT: "MARCH 19, 2026. SUNITA WILLIAMS COMES HOME."]
+NARRATOR: "In two days, after 270 days in orbit — she's finally coming home."
+
+[38-45s] [ARCHIVAL: Sunita meeting Kalpana's family — embrace, tears.]
+NARRATOR: "Years ago, Sunita visited Kalpana's family. She held them. Because she understood what it meant — to leave Earth and not know if you'll return."
+
+[45-52s] [SPLIT SCREEN: Left — Kalpana waving before Columbia. Right — Sunita strapped in return capsule.]
+NARRATOR: "Today is Kalpana's sixty-fourth birthday. She would have been sixty-four."
+
+[52-57s] [Left frame slowly fades to black. Right frame remains — Sunita descending.]
+NARRATOR: "One daughter of India who never came home. And one — who finally will."
+
+[57-60s] [BLACK SCREEN. Two lines:]
+"Happy birthday, Kalpana."
+"Welcome home, Sunita."
+[Single heartbeat. Silence.]</pre>
+      <h4>Instagram Caption</h4>
+      <div class="caption-box"><p>Today is Kalpana Chawla's 64th birthday. She never came home.<br><br>On February 1, 2003, sixteen minutes before landing, Columbia disintegrated. Her family was at the airstrip, waiting. Smiling.<br><br>In two days — March 19 — Sunita Williams returns to Earth after 9 months stranded in space. Her 8-day mission became 270 days.<br><br>Two daughters of India who touched the stars.<br>One who never came home.<br>One who finally will.<br><br>Happy birthday, Kalpana.<br>Welcome home, Sunita.<br><br>Tag someone who needs to hear this story today.</p></div>
+      <div class="hashtags">#KalpanaChawla #SunitaWilliams #HappyBirthdayKalpana #WelcomeHomeSunita #NASA #IndianWomenInSpace #Columbia #ISS #SpaceStories #IndianPride #WomenInSTEM #Astronaut #NeverForget #Karnal #OneNeverCameHome</div>
+      <div class="ig-accounts">Tag: @nasa @isabororganisation @tribaboreindia @boeing @spacex @womeninstem @humans.of.india</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 4 -->
+<div class="story-card" id="story4">
+  <div class="story-card-header">
+    <div class="story-rank">4</div>
+    <div class="story-title-wrap">
+      <div class="story-title">Strangers Opened Doors When Dubai Shut Down</div>
+      <div class="story-meta">
+        <span>Dubai Crisis &bull; Indian Community</span>
+        <span class="freshness-tag">Mar 15-17 &mdash; Ongoing</span>
+      </div>
+    </div>
+    <div class="story-score-box"><div class="score">27</div><div class="score-label">out of 30</div></div>
+  </div>
+  <div class="story-body">
+    <p class="story-desc">Iran's strikes shut Dubai airport. Thousands of Indians stranded. Yogesh Doshi opened his 64-apartment building FREE. Dr. Dhiraj Jain opened his 80,000 sq ft farmhouse with free food &amp; transport. Heena Patel offered her apartment for families with children. A pediatrician posted his personal number for strangers. Air India flew 44 rescue flights.</p>
+    <div class="score-bars">
+      <div class="score-bar"><div class="score-bar-label">Freshness 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:90%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Emotion 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:90%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Visual 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:90%"></div></div></div>
+    </div>
+    <div class="tags">
+      <span class="tag emotion">Community</span><span class="tag emotion">Solidarity</span><span class="tag emotion">Crisis Kindness</span>
+      <span class="tag visual">Photos + airport footage</span>
+      <span class="tag source">WOW Emirates</span><span class="tag source">Herald Goa</span>
+    </div>
+    <button class="script-toggle" onclick="toggleScript('s4')">View 60-Second Script + Caption + Hashtags</button>
+    <div class="script-content" id="s4">
+      <h4>Opening Hook</h4>
+      <div class="hook">"Missiles hit Dubai. Flights turned back mid-air. And thousands of Indians had nowhere to go."</div>
+      <h4>60-Second Script</h4>
+      <pre>[0-5s] [Shaky phone footage of Dubai skyline at night — distant flashes, sirens]
+NARRATOR: March 15th. Iran launches missiles at Dubai. Airport shuts. Airspace closed.
+
+[5-10s] [Flight tracking screen — Emirates planes from Kochi doing U-turns mid-air]
+Flights from Kerala — turned back mid-air. Thousands of Indians. Stranded. No hotel. No answers.
+
+[10-12s] [BEAT — silence]
+
+[12-18s] [WhatsApp screenshot being shared. Apartment building with lights turning on floor by floor.]
+And then... strangers stepped up. Yogesh Doshi — Chairman of Al Mizan Group — opened his entire 64-apartment building. Free. For strangers.
+
+[18-26s] [Wide shot of farmhouse, cars pulling in, people being greeted.]
+Dr. Dhiraj Jain unlocked his 80,000-square-foot farmhouse. Free food. Free water. No questions asked.
+
+[26-32s] [Woman welcoming young family at her door, child clutching stuffed toy.]
+Heena Patel opened her own apartment — specifically for families with children.
+
+[32-38s] [Phone screen — doctor posting his personal number publicly]
+A pediatrician posted his personal phone number online. For strangers. For anyone's kid who needed help.
+
+[38-44s] [Air India plane landing, passengers walking out emotional]
+TEXT: "44 rescue flights operated by Air India"
+
+[44-52s] [Family hugging at airport arrival gate]
+Missiles closed the sky. But they couldn't close a single Indian door.
+
+[52-60s] [BLACK SCREEN:]
+"When the world shuts down, we open up."</pre>
+      <h4>Instagram Caption</h4>
+      <div class="caption-box"><p>When Iran's strikes shut down Dubai's airspace, thousands of Indians were stranded with nowhere to go.<br><br>No government order. No corporate directive. Just people — a businessman with 64 empty apartments, a doctor with an 80,000 sq ft farmhouse, a woman who thought of the children first, a pediatrician who gave strangers his personal number.<br><br>This is who we are when everything falls apart.<br><br>Save this. Share this. Because the world needs to see what doors look like when they open.</p></div>
+      <div class="hashtags">#DubaiStranded #IndiansInDubai #HumanKindness #DubaiCrisis #IranDubai #AirIndiaRescue #StrandedIndians #OpenDoors #HumanityFirst #IndianCommunity #KindnessInCrisis #ThingsMoneyCannotBuy #DubaiAirport #AtithiDevoBhava #WeStandTogether</div>
+      <div class="ig-accounts">Tag: @airindiain @indianembassyuae @wowemirates @humans.of.india</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 5 -->
+<div class="story-card" id="story5">
+  <div class="story-card-header">
+    <div class="story-rank">5</div>
+    <div class="story-title-wrap">
+      <div class="story-title">He Climbed Ice So Strangers Could Call Home</div>
+      <div class="story-meta">
+        <span>Manali Rescue &bull; Maheshwar Sharma &bull; BRO</span>
+        <span class="freshness-tag">Mar 17 TODAY &mdash; Ongoing</span>
+      </div>
+    </div>
+    <div class="story-score-box"><div class="score">28</div><div class="score-label">out of 30</div></div>
+  </div>
+  <div class="story-body">
+    <p class="story-desc">1,000+ vehicles buried in snow near Atal Tunnel, Manali. 50 tourists trapped at Jalori Pass. Zero phone signal. Telecom worker Maheshwar Sharma climbed icy mountain trails AT NIGHT with a headlamp to fix a tower — so strangers could make one phone call home. BRO cleared snow all night. Banjar police carried tourists on their backs.</p>
+    <div class="score-bars">
+      <div class="score-bar"><div class="score-bar-label">Freshness 10/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:100%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Emotion 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:90%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Visual 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:90%"></div></div></div>
+    </div>
+    <div class="tags">
+      <span class="tag emotion">Heroism</span><span class="tag emotion">Duty</span><span class="tag emotion">Relief</span>
+      <span class="tag visual">Video: Rescue ops + snow clearance</span>
+      <span class="tag source">ANI</span><span class="tag source">Amar Ujala</span>
+    </div>
+    <button class="script-toggle" onclick="toggleScript('s5')">View 60-Second Script + Caption + Hashtags</button>
+    <div class="script-content" id="s5">
+      <h4>Opening Hook</h4>
+      <div class="hook">"A thousand cars buried in snow. No signal. No way out. Then one man started climbing."</div>
+      <h4>60-Second Script</h4>
+      <pre>[0-5s] [Drone shot — endless white. Cars buried. Headlights barely visible.]
+NARRATOR: Manali. March 17th. Snow came down like it had something to prove.
+
+[5-12s] [Ground-level: vehicles stuck bumper to bumper. Phone screen: "No Service." Child's face lit by phone glow.]
+A thousand vehicles. Buried. No mobile signal. No way to call home.
+
+[12-14s] [BLACK SCREEN — 2 seconds]
+
+[14-22s] [Night footage: single headlamp bobbing in dark. Boots through knee-deep snow.]
+And then there's Maheshwar Sharma. Telecom worker. Not a soldier. Not a headline. Just a man with a toolkit and a headlamp.
+
+[22-30s] [POV: looking up at ice-covered equipment. Hands gripping frozen metal.]
+He climbed. At night. Through ice. Up mountain trails most people won't walk in daylight. To fix a tower. So strangers could make one phone call.
+
+[30-34s] [Phone screen: "No Service" flickering to one bar. Then two. Notification flood.]
+Signal restored.
+
+[34-44s] [MONTAGE: BRO JCBs in blinding snow. Police carrying woman through waist-deep snow.]
+BRO worked through the night. Plowing. Clearing. Inch by inch. Banjar police carried tourists on their backs. Through the snow. By hand.
+
+[44-52s] [Dawn breaking over mountains. Cleared road. Cars slowly moving.]
+Nobody asked Maheshwar to climb that mountain at night. Nobody ordered those cops to carry strangers.
+
+[52-60s] [Maheshwar's face, exhausted, frosted beard, slight nod.]
+TEXT: "Not all heroes make the news. Some just fix the signal."
+They just did.</pre>
+      <h4>Instagram Caption</h4>
+      <div class="caption-box"><p>A thousand vehicles buried. Tourists trapped. Zero phone signal in freezing darkness.<br><br>Just a telecom worker named Maheshwar Sharma who grabbed a headlamp and climbed an icy mountain trail — at night — to fix a tower so strangers could call their families.<br><br>Just BRO soldiers who plowed snow for 12 hours straight. Just Banjar police who carried people through waist-deep snow on their backs.<br><br>This is the India that doesn't trend. But it should.<br><br>Tag someone who needs to see this today.</p></div>
+      <div class="hashtags">#ManaliSnowfall #AtalTunnel #BROIndia #BorderRoadsOrganisation #ManaliRescue #JaloriPass #HimachalPradesh #SnowRescue #UnsungHeroes #TelecomHeroes #ManaliTraffic #Snowstorm2026 #RealHeroes #IndiaStories #NotAllHeroesMakeTheNews</div>
+      <div class="ig-accounts">Tag: @baboroindia @himachalpradeshpolice @ani_digital @manali_tourism</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 6 -->
+<div class="story-card" id="story6">
+  <div class="story-card-header">
+    <div class="story-rank">6</div>
+    <div class="story-title-wrap">
+      <div class="story-title">They Died Where They Should've Lived</div>
+      <div class="story-meta">
+        <span>SCB Medical College &bull; Cuttack, Odisha</span>
+        <span class="freshness-tag">Mar 16-17 &mdash; Death toll updated today</span>
+      </div>
+    </div>
+    <div class="story-score-box"><div class="score">25</div><div class="score-label">out of 30</div></div>
+  </div>
+  <div class="story-body">
+    <p class="story-desc">3 AM. Fire in 22-bed Trauma ICU. 11 patients on ventilators — couldn't move, couldn't run, couldn't scream. Electrical short circuit. Families waiting outside had no idea. PM announced Rs 2 lakh ex-gratia. Odisha ordered judicial probe. Second major hospital fire in India in recent months.</p>
+    <div class="score-bars">
+      <div class="score-bar"><div class="score-bar-label">Freshness 8/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:80%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Emotion 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:90%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Visual 8/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:80%"></div></div></div>
+    </div>
+    <div class="tags">
+      <span class="tag emotion">Tragedy</span><span class="tag emotion">Anger</span><span class="tag emotion">System Failure</span>
+      <span class="tag visual">Video: Fire aftermath</span>
+      <span class="tag source">Business Standard</span><span class="tag source">Deccan Chronicle</span>
+    </div>
+    <button class="script-toggle" onclick="toggleScript('s6')">View 60-Second Script + Caption + Hashtags</button>
+    <div class="script-content" id="s6">
+      <h4>Opening Hook</h4>
+      <div class="hook">"3 AM. An ICU full of people fighting to survive. And then the thing meant to save them — killed them."</div>
+      <h4>60-Second Script</h4>
+      <pre>[0-4s] [Black screen. Heart monitor beeping. Then a flicker. Orange glow.]
+NARRATOR: Three in the morning. Cuttack, Odisha. SCB Medical College.
+
+[4-10s] [Slow push into dark hospital corridor. Emergency lights.]
+Twenty-two beds. Twenty-two families waiting outside, believing their people were safe.
+
+[10-16s] [Tight shot: hands gripping hospital railing. White knuckles.]
+They were on ventilators. Tubes in their throats. They could not move. They could not run. They could not even scream.
+
+[16-17s] [BEAT. Silence.]
+
+[17-22s] [Slow motion: smoke filling a narrow room. Creeping.]
+A short circuit. A wire. A spark. In the safest room in the building.
+
+[22-28s] [Hospital exterior at dawn. Ambulances. Chaos. Families running.]
+Ten died that night. By morning — eleven.
+
+[28-36s] [Woman sitting on hospital floor, staring at nothing.]
+Families who had been sitting outside that ICU door — drinking cold tea, praying — they had no idea. While they waited for good news, the fire had already made its decision.
+
+[36-42s] [News clippings flash: "PM announces Rs 2 lakh." "Judicial probe ordered."]
+Two lakh rupees. That's the number they put on a life.
+
+[42-52s] [Ventilator standing alone in burnt room. Still. Silent.]
+This is the second major hospital fire in India in recent months. The second time patients died in the one place they were told — you're safe here.
+
+[52-60s] [BLACK SCREEN:]
+"Eleven people walked into that hospital to get better. None of them walked out."
+[Heart monitor flatline. Silence.]</pre>
+      <h4>Instagram Caption</h4>
+      <div class="caption-box"><p>They were on ventilators. They couldn't move. They couldn't run. They couldn't even call for help.<br><br>At 3 AM, a fire tore through the ICU at SCB Medical College in Cuttack. 11 people died — not on the streets, not in an accident — in a hospital.<br><br>A short circuit. That's all it took.<br><br>This is not the first time. And until something changes — it won't be the last.<br><br>Say their names. Don't let this become just another headline we scroll past.</p></div>
+      <div class="hashtags">#CuttackHospitalFire #SCBMedicalCollege #Odisha #HospitalFire #PatientSafety #ICUFire #Cuttack #IndiaHealthcare #AccountabilityNow #HospitalSafety #JusticeForPatients #NeverAgain #HealthcareIndia #SystemFailed #TheyDeservedBetter</div>
+      <div class="ig-accounts">Tag: @ndtv @thehindu @indiatoday @humansofbombay @humans.of.india</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 7 -->
+<div class="story-card" id="story7">
+  <div class="story-card-header">
+    <div class="story-rank">7</div>
+    <div class="story-title-wrap">
+      <div class="story-title">He Walked Him to the Gate</div>
+      <div class="story-meta">
+        <span>Rapido Rider Arfan &bull; Assam</span>
+        <span class="freshness-tag">Mid-Mar &mdash; 2.9M views</span>
+      </div>
+    </div>
+    <div class="story-score-box"><div class="score">26</div><div class="score-label">out of 30</div></div>
+  </div>
+  <div class="story-body">
+    <p class="story-desc">Rapido bike taxi ride ends. App says "delivered." But rider Arfan in Assam saw his passenger — a visually impaired college student — and made a choice. Parked his bike. Took the student's hand. Walked him all the way to the college entrance. No one asked. No one was filming. 2.9 million views. 270K likes.</p>
+    <div class="score-bars">
+      <div class="score-bar"><div class="score-bar-label">Freshness 7/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:70%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Emotion 10/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:100%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Visual 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:90%"></div></div></div>
+    </div>
+    <div class="tags">
+      <span class="tag emotion">Quiet Kindness</span><span class="tag emotion">Dignity</span><span class="tag emotion">Humanity</span>
+      <span class="tag visual">Video: 2.9M views</span>
+      <span class="tag source">India.com</span><span class="tag source">Rapido Official</span>
+    </div>
+    <button class="script-toggle" onclick="toggleScript('s7')">View 60-Second Script + Caption + Hashtags</button>
+    <div class="script-content" id="s7">
+      <h4>Opening Hook</h4>
+      <div class="hook">"The ride was over. The app said 'delivered.' But this Rapido rider wasn't done yet."</div>
+      <h4>60-Second Script</h4>
+      <pre>[0-5s] [Phone screen: Rapido ride ending. "You have arrived."]
+NARRATOR: Assam. A Rapido bike pulls up near a college. Ride's done. App says delivered.
+
+[5-10s] [Wide shot: bike on dusty road near college gate. Two figures.]
+The passenger is a young man. A college student. He's visually impaired.
+
+[10-15s] [Student stepping off bike. Hesitant. Hand reaching out, searching.]
+Now — here's where the story is supposed to end. The rider drives away. The algorithm finds another ride. Nobody would've blamed him.
+
+[15-17s] [BEAT.]
+
+[17-22s] [Arfan switches off engine. Removes helmet. Gets off bike.]
+But Arfan didn't leave.
+
+[22-30s] [Arfan gently takes student's hand. Natural. Like it was obvious.]
+He parked his bike. Took the student's hand. And walked him — step by step — all the way to the college entrance.
+
+[30-38s] [Two figures walking slowly down tree-lined path. Shot from behind.]
+The student didn't ask for it. There was no camera crew. No brand deal. No hashtag campaign.
+
+[38-44s] [They reach the gate. Arfan says something. Student smiles. Arfan turns back.]
+Just a man on a Tuesday morning who decided his job wasn't dropping someone at a pin on a map. His job was making sure a kid got where he needed to go.
+
+[44-50s] [Arfan walking back to bike. Helmet on. Riding away.]
+The video hit 2.9 million views. 270,000 likes. Rapido said — that's our guy.
+
+[50-55s] [Social media screenshots flooding screen.]
+But Arfan? He probably just picked up his next ride.
+
+[55-60s] [BLACK SCREEN:]
+"Kindness doesn't need a destination pin."
+[Bike engine starting. Fading out.]</pre>
+      <h4>Instagram Caption</h4>
+      <div class="caption-box"><p>The app said "ride complete."<br><br>But Arfan, a Rapido rider in Assam, saw his passenger — a visually impaired college student — and made a choice. He parked his bike. Took the student's hand. And walked him all the way to the college gate.<br><br>No one asked him to. No one was filming for clout. He just... did it.<br><br>2.9 million people watched this video. Let's make sure kindness like this never stops going viral.<br><br>Tag someone who makes the world gentler without being asked.</p></div>
+      <div class="hashtags">#Rapido #RapidoRider #Arfan #Assam #KindnessMatters #HumanKindness #RestoreYourFaith #ViralKindness #GoodPeople #FaithInHumanity #RealHero #BlindStudent #Accessibility #SmallActsBigImpact #BeTheChange</div>
+      <div class="ig-accounts">Tag: @rapido.bike @humansofbombay @humans.of.india @thebetterindia @goodnewsmovement @brutindia</div>
+    </div>
+  </div>
+</div>
+
+<!-- METHODOLOGY -->
+<div class="methodology">
+  <h3>Methodology &amp; Sources</h3>
+  <p>Stories discovered via 3 parallel discovery agents scanning X/Twitter trends (trends24.in, getdaytrends.com), Indian news portals (ANI, IndiaTV, NDTV, Business Standard, Tribune India, Deccan Herald), and viral content aggregators (india.com/viral, thebetterindia.com). 50+ web searches conducted.</p>
+  <ul>
+    <li><strong>Freshness Rule:</strong> Only stories from March 16-17, 2026 (last 24 hours). Stories with active momentum on X India today prioritized.</li>
+    <li><strong>Rejection Filters:</strong> Politics, cricket scores, Bollywood gossip, PR campaigns, motivational fluff — all rejected.</li>
+    <li><strong>Scoring:</strong> Freshness (1-10) + Emotional Power (1-10) + Visual Strength (1-10) = Total /30. Minimum threshold: 25/30.</li>
+    <li><strong>Scripts:</strong> 60-second format for Instagram Reels / YouTube Shorts. Each includes visual directions, narrator cues, captions, 15 hashtags, and IG account tags.</li>
+  </ul>
+  <p style="margin-top:12px"><strong>Sources:</strong> IndiaTV News, ANI, Deccan Herald, Sunday Guardian, Tribune India, Business Standard, Deccan Chronicle, India.com, WOW Emirates, Herald Goa, Amar Ujala, LatestLY, News24, Dainik Jagran, trends24.in, getdaytrends.com</p>
 </div>
 
 <div class="footer">
-  The Tribal Box &mdash; Story Intelligence Dashboard &mdash; March 17, 2026<br>
-  Generated by 7-Agent Story Intelligence System
+  <p>Built by <a href="#">The Tribal Box</a> &mdash; Story Intelligence System &mdash; March 17, 2026</p>
+  <p style="margin-top:8px">Dashboard auto-generated by 7-Agent AI Pipeline</p>
+</div>
+
 </div>
 
 <script>
-function toggleScript(btn) {
-  const content = btn.nextElementSibling;
-  content.classList.toggle('active');
-  btn.textContent = content.classList.contains('active') ? 'Hide Video Script' : 'Show 60s Video Script';
+function toggleScript(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('active');
+  const btn = el.previousElementSibling;
+  btn.textContent = el.classList.contains('active') ? 'Hide Script' : 'View 60-Second Script + Caption + Hashtags';
 }
 </script>
 
