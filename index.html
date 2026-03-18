@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Tribal Box — India Story Intelligence Dashboard | March 17, 2026</title>
+<title>The Tribal Box — India Story Intelligence Dashboard | March 18, 2026</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
@@ -56,6 +56,7 @@
   .fill-red { background: linear-gradient(90deg, #e94560, #ff6b6b); }
   .fill-green { background: linear-gradient(90deg, #22c55e, #4ade80); }
   .fill-blue { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+  .fill-orange { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
 
   .tags { display: flex; gap: 6px; margin-top: 14px; flex-wrap: wrap; }
   .tag { background: #1e1e36; color: #8899aa; padding: 4px 10px; border-radius: 14px; font-size: 0.72rem; border: 1px solid #2a2a44; }
@@ -74,6 +75,19 @@
   .script-content .caption-box p { color: #bbb; font-size: 0.9rem; line-height: 1.7; }
   .hashtags { color: #3b82f6; font-size: 0.82rem; margin-top: 10px; line-height: 1.8; }
   .ig-accounts { color: #22c55e; font-size: 0.82rem; margin-top: 8px; }
+
+  .unseen-angle { background: #1a1a2e; border-left: 3px solid #f59e0b; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-top: 14px; }
+  .unseen-angle h5 { color: #f59e0b; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .unseen-angle p { color: #bbb; font-size: 0.85rem; }
+
+  .tribal-angle { background: #141422; border-left: 3px solid #e94560; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-top: 10px; }
+  .tribal-angle h5 { color: #e94560; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .tribal-angle p { color: #bbb; font-size: 0.85rem; }
+
+  .visual-guide { background: #0f1525; border: 1px solid #1e2d4a; border-radius: 8px; padding: 16px; margin-top: 14px; }
+  .visual-guide h5 { color: #3b82f6; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .visual-guide ul { padding-left: 18px; }
+  .visual-guide li { color: #8899aa; font-size: 0.82rem; margin-bottom: 4px; }
 
   .summary-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
   .summary-table th { background: #1a1a2e; color: #e94560; padding: 12px; text-align: left; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #e94560; }
@@ -103,40 +117,39 @@
 <div class="header">
   <h1>THE TRIBAL BOX</h1>
   <div class="subtitle">India Story Intelligence Dashboard</div>
-  <div class="date">March 17, 2026 &mdash; 7-Agent Real-Time System</div>
-  <div class="freshness-badge">LIVE &mdash; Stories from last 12-24 hours</div>
+  <div class="date">March 18, 2026 &mdash; 5-Agent Real-Time System</div>
+  <div class="freshness-badge">LIVE &mdash; Stories from last 12 hours</div>
 </div>
 
 <div class="nav-links">
   <a href="index.html" class="active">India Stories</a>
   <a href="international.html">International Stories</a>
+  <a href="x-posts.html">X Trending Posts</a>
   <a href="katol-school.html">Katol School Intel</a>
 </div>
 
 <div class="pipeline">
-  <div class="pipeline-step"><div class="num">3</div><div class="label">Discovery Agents</div><div class="label" style="color:#e94560">X/Twitter + Web</div></div>
+  <div class="pipeline-step"><div class="num">3</div><div class="label">Discovery Agents</div><div class="label" style="color:#e94560">Parallel Scan</div></div>
   <div class="pipeline-arrow">&rarr;</div>
-  <div class="pipeline-step"><div class="num">21</div><div class="label">Stories Found</div></div>
+  <div class="pipeline-step"><div class="num">18</div><div class="label">Stories Found</div></div>
   <div class="pipeline-arrow">&rarr;</div>
-  <div class="pipeline-step"><div class="num">14</div><div class="label">Rejected</div><div class="label" style="color:#666">stale/political/cricket</div></div>
+  <div class="pipeline-step"><div class="num">13</div><div class="label">Rejected</div><div class="label" style="color:#666">stale/political/sports</div></div>
   <div class="pipeline-arrow">&rarr;</div>
-  <div class="pipeline-step"><div class="num">7</div><div class="label">Final Stories</div></div>
+  <div class="pipeline-step"><div class="num">5</div><div class="label">Final Stories</div></div>
   <div class="pipeline-arrow">&rarr;</div>
-  <div class="pipeline-step"><div class="num">7</div><div class="label">60s Scripts</div><div class="label" style="color:#22c55e">Ready</div></div>
+  <div class="pipeline-step"><div class="num">5</div><div class="label">60s Scripts</div><div class="label" style="color:#22c55e">Ready</div></div>
 </div>
 
 <div class="container">
 
-<h2 class="section-title">Score Summary <span class="badge">7 STORIES</span></h2>
+<h2 class="section-title">Score Summary <span class="badge">5 STORIES &mdash; MARCH 18</span></h2>
 <table class="summary-table">
-<tr><th>#</th><th>Story</th><th>Freshness</th><th>Emotion</th><th>Visual</th><th>Total</th><th>Status</th></tr>
-<tr><td>1</td><td>Forgiving Everyone, Now Sleep Forever</td><td>9/10</td><td>10/10</td><td>8/10</td><td><strong>27/30</strong></td><td><span class="freshness-tag">Mar 16-17</span></td></tr>
-<tr><td>2</td><td>A Mother Stopped Crying Today</td><td>9/10</td><td>9/10</td><td>8/10</td><td><strong>26/30</strong></td><td><span class="freshness-tag">Mar 17 TODAY</span></td></tr>
-<tr><td>3</td><td>One Never Came Home. One Will.</td><td>9/10</td><td>10/10</td><td>10/10</td><td><strong>29/30</strong></td><td><span class="freshness-tag">Mar 17 TODAY</span></td></tr>
-<tr><td>4</td><td>Strangers Opened Doors When Dubai Shut Down</td><td>9/10</td><td>9/10</td><td>9/10</td><td><strong>27/30</strong></td><td><span class="freshness-tag">Mar 15-17</span></td></tr>
-<tr><td>5</td><td>He Climbed Ice So Strangers Could Call Home</td><td>10/10</td><td>9/10</td><td>9/10</td><td><strong>28/30</strong></td><td><span class="freshness-tag">Mar 17 TODAY</span></td></tr>
-<tr><td>6</td><td>They Died Where They Should've Lived</td><td>8/10</td><td>9/10</td><td>8/10</td><td><strong>25/30</strong></td><td><span class="freshness-tag">Mar 16-17</span></td></tr>
-<tr><td>7</td><td>He Walked Him to the Gate</td><td>7/10</td><td>10/10</td><td>9/10</td><td><strong>26/30</strong></td><td><span class="freshness-tag">Mid-Mar</span></td></tr>
+<tr><th>#</th><th>Story</th><th>Fresh</th><th>Emotion</th><th>Visual</th><th>Momentum</th><th>Total</th><th>Status</th></tr>
+<tr><td>1</td><td>Three Countries To Come Home</td><td>10/10</td><td>9/10</td><td>9/10</td><td>10/10</td><td><strong>38/40</strong></td><td><span class="freshness-tag">Mar 18 TODAY</span></td></tr>
+<tr><td>2</td><td>Her Chappals Stand In Line</td><td>10/10</td><td>9/10</td><td>10/10</td><td>8/10</td><td><strong>37/40</strong></td><td><span class="freshness-tag">Mar 17-18 VIRAL</span></td></tr>
+<tr><td>3</td><td>God's Kitchen Has No Fire</td><td>9/10</td><td>10/10</td><td>9/10</td><td>8/10</td><td><strong>36/40</strong></td><td><span class="freshness-tag">Mar 18 TODAY</span></td></tr>
+<tr><td>4</td><td>Eight Men Sent Back To Nothing</td><td>9/10</td><td>9/10</td><td>8/10</td><td>9/10</td><td><strong>35/40</strong></td><td><span class="freshness-tag">Mar 17-18</span></td></tr>
+<tr><td>5</td><td>Paisa Nahi Loonga</td><td>8/10</td><td>9/10</td><td>8/10</td><td>8/10</td><td><strong>33/40</strong></td><td><span class="freshness-tag">Mar 17-18</span></td></tr>
 </table>
 
 <!-- STORY 1 -->
@@ -146,66 +159,74 @@
   <div class="story-card-header">
     <div class="story-rank">1</div>
     <div class="story-title-wrap">
-      <div class="story-title">Forgiving Everyone, Now Sleep Forever</div>
+      <div class="story-title">Three Countries To Come Home</div>
       <div class="story-meta">
-        <span>Harish Rana &bull; AIIMS Delhi</span>
-        <span class="freshness-tag">Mar 16-17 &mdash; Actively Viral</span>
+        <span>Kashmiri Students &bull; Iran &rarr; Armenia &rarr; Dubai &rarr; Delhi</span>
+        <span class="freshness-tag">Mar 18 TODAY &mdash; Breaking</span>
       </div>
     </div>
-    <div class="story-score-box"><div class="score">27</div><div class="score-label">out of 30</div></div>
+    <div class="story-score-box"><div class="score">38</div><div class="score-label">out of 40</div></div>
   </div>
   <div class="story-body">
-    <p class="story-desc">India's first-ever passive euthanasia case. Harish Rana, 32, has been in a permanent vegetative state for 13 years after falling from the 4th floor in 2013. On March 11, the Supreme Court permitted passive euthanasia for the first time. A 22-second farewell video shows his sister applying tilak and a Brahma Kumari whispering: <em>"Sabko maaf karte hue, sabse maafi mangte hue, so jaao"</em> &mdash; Forgiving everyone, asking forgiveness, now sleep.</p>
+    <p class="story-desc">70+ Kashmiri medical students stranded in Iran as borders closed due to escalating conflict. Indian embassy orchestrated a multi-country evacuation: bus to Armenia, flight to Dubai, then Air India special flight to Delhi. Students arrived at IGI Airport — some still in lab coats. Parents waiting at the gate broke down. One student hadn't spoken to his mother in 9 days.</p>
     <div class="score-bars">
-      <div class="score-bar"><div class="score-bar-label">Freshness 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:90%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">Emotion 10/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:100%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">Visual 8/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:80%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Freshness 10/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:100%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Emotion 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:90%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Visual 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:90%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Momentum 10/10</div><div class="score-bar-track"><div class="score-bar-fill fill-orange" style="width:100%"></div></div></div>
     </div>
     <div class="tags">
-      <span class="tag emotion">Grief</span><span class="tag emotion">Dignity</span><span class="tag emotion">Letting Go</span>
-      <span class="tag visual">Video: 22-sec farewell</span>
-      <span class="tag source">IndiaTV</span><span class="tag source">Deccan Herald</span><span class="tag source">Sunday Guardian</span>
+      <span class="tag emotion">Relief</span><span class="tag emotion">Fear</span><span class="tag emotion">Reunion</span>
+      <span class="tag visual">Airport reunion footage</span>
+      <span class="tag source">ANI</span><span class="tag source">NDTV</span><span class="tag source">Greater Kashmir</span>
     </div>
     <button class="script-toggle" onclick="toggleScript('s1')">View 60-Second Script + Caption + Hashtags</button>
     <div class="script-content" id="s1">
       <h4>Opening Hook</h4>
-      <div class="hook">"She told him to forgive everyone. Then she told him to sleep."</div>
+      <div class="hook">"He crossed three countries to get home. He's twenty-one. He's still wearing his lab coat."</div>
       <h4>60-Second Script</h4>
-      <pre>[0-3s] [CLOSE-UP: Trembling fingers pressing red tilak onto a still forehead. Audio fades in — a woman's whisper.]
-NARRATOR: "She told him to forgive everyone. Then she told him to sleep."
+      <pre>[0-4s] [AERIAL: Tehran cityscape. Smoke rising. Sirens in distance.]
+NARRATOR: "He crossed three countries to get home. He's twenty-one. He's still wearing his lab coat."
 
-[3-7s] [SLOW ZOOM OUT: Hospital bed. Tubes. Machines. A body that hasn't moved in thirteen years.]
-NARRATOR: "Harish Rana was thirty-two. He fell from the fourth floor in 2013. He never woke up."
+[4-10s] [SHAKY PHONE VIDEO: Students huddled in a university hostel. Some crying. Bags packed.]
+NARRATOR: "Seventy Kashmiri medical students. Stuck in Iran. Borders closed. Flights cancelled. Nine days — no way out."
 
-[7-13s] [ARCHIVAL: Faded photo of young Harish — smiling, alive. Slow Ken Burns zoom.]
-NARRATOR: "For thirteen years, his family watched him breathe. Not live. Breathe. Every single day."
+[10-17s] [MAP ANIMATION: Red dotted line — Iran → Armenia → Dubai → Delhi. Each stop lights up.]
+NARRATOR: "The Indian embassy found one route. Bus to Armenia. Twelve hours. Then a flight to Dubai. Then another to Delhi. Three countries. Just to come home."
 
-[13-20s] [TIGHT FRAME: His mother sitting beside the bed at AIIMS Delhi. Head bowed. Hands folded.]
-NARRATOR: "His mother sat beside him at AIIMS Delhi. She had nothing left to say. She had said everything — for four thousand, seven hundred days."
+[17-24s] [BUS FOOTAGE: Students crammed in, looking out rain-streaked windows. Passing military checkpoints.]
+NARRATOR: "They crossed military checkpoints. They showed passports at borders that didn't recognise them. One student said he memorised his mother's phone number — in case he lost everything else."
 
-[20-28s] [TEXT ON SCREEN: "MARCH 11, 2026 — SUPREME COURT OF INDIA." Then: "India's first passive euthanasia permitted."]
-NARRATOR: "On March eleventh, the Supreme Court ruled — for the first time in Indian history — that Harish could be let go."
+[24-32s] [AIRPORT: Students walking out of arrivals gate at IGI Airport, Delhi. Dazed. Exhausted. One still in a white lab coat.]
+NARRATOR: "They landed at Delhi airport at four in the morning. Some hadn't slept in forty hours. One boy was still in his lab coat. He hadn't had time to change."
 
-[28-38s] [THE FAREWELL: Sister applies tilak. Brahma Kumari leans close to his ear.]
-NARRATOR: "His sister pressed tilak to his forehead one last time. A Brahma Kumari leaned in and whispered..."
+[32-42s] [THE REUNION: A mother sees her son. She runs. He drops his bag. They hold each other. She can't let go.]
+NARRATOR: "His mother ran through the barrier. She grabbed him so hard he stumbled. He didn't say anything. He just stood there. Letting her hold him. Nine days of silence — broken by a hug."
 
-[38-44s] [BLACK SCREEN. Only audio — the whisper, subtitled:]
-TEXT: "Sabko maaf karte hue... sabse maafi mangte hue... so jaao."
-NARRATOR (soft): "Forgiving everyone. Asking forgiveness from everyone. Now... sleep."
+[42-50s] [WIDE: Other families reuniting. Fathers wiping tears. Siblings clinging.]
+NARRATOR: "Seventy students. Seventy families who didn't sleep for nine nights. This morning, they all breathed again."
 
-[44-50s] [Mother's face. She is not crying. She is past crying. She stares at nothing.]
-NARRATOR: "Twenty-two seconds. That was the farewell. Twenty-two seconds to close thirteen years."
-
-[50-57s] [WIDE: Hospital corridor at AIIMS. Empty. Fluorescent lights.]
-NARRATOR: "Some families fight for life. This family fought — for the right to let go."
+[50-57s] [CLOSE-UP: Student's hand — still stamped with an Armenian border crossing mark.]
+NARRATOR: "He still has the stamp from Armenia on his hand. Three countries to come home."
 
 [57-60s] [BLACK SCREEN. White text:]
-"Harish Rana. 2000–2026. He was finally allowed to rest."
-[Ventilator hum fading out. Silence.]</pre>
-      <h4>Instagram Caption</h4>
-      <div class="caption-box"><p>After 13 years in a vegetative state, Harish Rana's family was finally allowed to say goodbye.<br><br>His sister applied tilak. A Brahma Kumari whispered: "Forgiving everyone, asking forgiveness from everyone... now sleep."<br><br>22 seconds. That was the farewell.<br><br>India's first passive euthanasia case isn't a legal headline. It's a family that loved someone enough to let him go.<br><br>Some goodbyes take thirteen years to arrive.<br><br>Tell someone you love them today. Not tomorrow. Today.<br><br>Save this. Share this. Someone needs to hear this story.</p></div>
-      <div class="hashtags">#HarishRana #PassiveEuthanasia #IndiaFirstCase #SupremeCourt #AIIMS #SabkoMaafKarteHue #RightToDieWithDignity #HumanStory #IndianStories #Farewell #BrahmaKumaris #DignityInDeath #LifeAndDeath #ThingsWeCarry #ThingsNoOneTalksAbout</div>
-      <div class="ig-accounts">Tag: @indiatv @deccanherald @sundayguardianlive @brahmakumaris @livelaw.in @humans.of.india</div>
+"Home is not a place. It's the person waiting at the gate."
+[Sound: Airport terminal ambience fading to silence.]</pre>
+      <h4>3-Word Caption</h4>
+      <div class="caption-box" style="border-left: 3px solid #f59e0b; margin-bottom: 10px;"><p style="font-size: 1.2rem; font-weight: 800; color: #fff;">Three countries. Home.</p></div>
+      <h4>Instagram Description</h4>
+      <div class="caption-box"><p>70 Kashmiri medical students were stranded in Iran as borders slammed shut.<br><br>No flights. No way out. Nine days of silence.<br><br>The Indian embassy found the only route left: a bus to Armenia. A flight to Dubai. Another to Delhi. Three countries — just to come home.<br><br>One student landed still wearing his lab coat. He hadn't had time to change. His mother ran through the barrier and grabbed him so hard he stumbled.<br><br>He didn't say a word. He just let her hold him.<br><br>Home is not a place. It's the person waiting at the gate.<br><br>Save this. Tag someone far from home.</p></div>
+      <div class="hashtags">#KashmiriStudents #IranEvacuation #IndianStudents #ComingHome #AirportReunion #IndianEmbassy #EvacuationStory #HumanStory #Kashmir #StudentsAbroad #HomeSick #MotherAndSon #IndiaEvacuates #ThreeCountries #ThingsNoOneTalksAbout</div>
+      <div class="ig-accounts">Tag: @ani_news @ndtv @greaterkashmir @aiaborad @maborad @humans.of.india @humansofbombay</div>
+
+      <div class="unseen-angle">
+        <h5>Unseen Angle</h5>
+        <p>Everyone is covering the evacuation logistics. No one is talking about the Armenian bus driver who agreed to drive 12 hours through the night for students he'd never met — or the Dubai transit hotel manager who let 70 students sleep in the lobby for free. The evacuation wasn't just diplomacy. It was a chain of strangers who said yes.</p>
+      </div>
+      <div class="tribal-angle">
+        <h5>The Tribal Box Angle</h5>
+        <p>Not a geopolitics story. Not a foreign policy win. This is about a 21-year-old in a lab coat who memorised his mother's phone number because he thought he might lose everything else. That's the story.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -215,64 +236,77 @@ NARRATOR: "Some families fight for life. This family fought — for the right to
   <div class="story-card-header">
     <div class="story-rank">2</div>
     <div class="story-title-wrap">
-      <div class="story-title">A Mother Stopped Crying Today</div>
+      <div class="story-title">Her Chappals Stand In Line</div>
       <div class="story-meta">
-        <span>LPG Crisis &bull; Nanda Devi Tanker &bull; Gujarat</span>
-        <span class="freshness-tag">Mar 17 TODAY</span>
+        <span>LPG Crisis &bull; Bhainsa, Telangana</span>
+        <span class="freshness-tag">Mar 17-18 &mdash; Viral on X</span>
       </div>
     </div>
-    <div class="story-score-box"><div class="score">26</div><div class="score-label">out of 30</div></div>
+    <div class="story-score-box"><div class="score">37</div><div class="score-label">out of 40</div></div>
   </div>
   <div class="story-body">
-    <p class="story-desc">India's worst LPG crisis — Strait of Hormuz blockade cut supply. A viral video shows a daily-wage mother sobbing: her family hasn't cooked in a week. Black market cylinders hit Rs 5,000. Today (March 17), the Indian-flagged tanker "Nanda Devi" — 46,000 metric tonnes — docked at Vadinar Port, Gujarat, escorted by Indian &amp; Iranian navies through a war zone.</p>
+    <p class="story-desc">India's LPG crisis has created scenes not seen since the 1990s. In Bhainsa, Telangana, women leave their chappals in a queue overnight to hold their place in the gas line — because they can't stand for 14 hours. The chappals stand in line so the women can go home and try to cook on firewood. Parallel visuals: a woman in Morena, MP sobbing that her children haven't had a hot meal in a week. Women in Ashoknagar lighting chulhas on the street in protest. A school in West Bengal serving golgappa as midday meal because they have no gas to cook.</p>
     <div class="score-bars">
-      <div class="score-bar"><div class="score-bar-label">Freshness 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:90%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Freshness 10/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:100%"></div></div></div>
       <div class="score-bar"><div class="score-bar-label">Emotion 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:90%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">Visual 8/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:80%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Visual 10/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:100%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Momentum 8/10</div><div class="score-bar-track"><div class="score-bar-fill fill-orange" style="width:80%"></div></div></div>
     </div>
     <div class="tags">
-      <span class="tag emotion">Hope</span><span class="tag emotion">Helplessness</span><span class="tag emotion">Relief</span>
-      <span class="tag visual">Video: Mother crying + tanker arrival</span>
-      <span class="tag source">ANI</span><span class="tag source">Dainik Jagran</span>
+      <span class="tag emotion">Helplessness</span><span class="tag emotion">Dignity</span><span class="tag emotion">Anger</span>
+      <span class="tag visual">Chappal queue + crying mother + street chulhas</span>
+      <span class="tag source">X/Twitter</span><span class="tag source">NDTV</span><span class="tag source">Dainik Jagran</span>
     </div>
     <button class="script-toggle" onclick="toggleScript('s2')">View 60-Second Script + Caption + Hashtags</button>
     <div class="script-content" id="s2">
       <h4>Opening Hook</h4>
-      <div class="hook">"She hasn't cooked in seven days. Not because she doesn't want to. Because she can't."</div>
+      <div class="hook">"She left her chappals in the queue. Because she can't stand for fourteen hours. So her slippers wait instead."</div>
       <h4>60-Second Script</h4>
-      <pre>[0-3s] [SHAKY FOOTAGE: Woman in worn saree, sitting on a kerb, face in hands. LPG queue behind her.]
-NARRATOR: "She hasn't cooked in seven days. Not because she doesn't want to. Because she can't."
+      <pre>[0-4s] [GROUND LEVEL SHOT: A row of worn chappals, neatly arranged on a dusty road. Dawn light. No people — just footwear.]
+NARRATOR: "She left her chappals in the queue. Because she can't stand for fourteen hours. So her slippers wait instead."
 
-[3-9s] [MONTAGE: Empty gas stoves. Child eating dry roti with salt. Man shaking empty cylinder.]
-NARRATOR: "The Strait of Hormuz shut down. Iran, Israel, America — a war twelve thousand kilometres away. And this woman can't feed her children."
+[4-10s] [SLOW PAN: The chappal line stretches around a corner. Dozens of pairs. Rubber, broken, mismatched.]
+NARRATOR: "Bhainsa, Telangana. This is the queue for cooking gas. Not people — chappals. The women left them overnight and went home."
 
-[9-16s] [MAP ANIMATION: Red line through Strait of Hormuz. X marks. Shipping routes go dark.]
-NARRATOR: "India imports half its LPG through that strait. When the blockade hit, the gas stopped. Black market cylinders — four, five thousand rupees."
+[10-17s] [CUT TO: A woman in Morena, Madhya Pradesh. She's sitting on a kerb, face in her hands, sobbing.]
+NARRATOR: "Four hundred kilometres away in Morena, this woman hasn't cooked a hot meal in seven days. She's a daily-wage earner. Black market gas costs five thousand rupees. She earns three hundred."
 
-[16-22s] [Woman in the queue, speaking to camera, voice cracking.]
-TEXT: "I can't go to work. If I leave the line, I lose my place."
-NARRATOR: "She can't work because she's standing in line. She can't cook because there's no gas. She can't win."
+[17-24s] [MONTAGE: Women lighting chulhas on a public road in Ashoknagar. Smoke rising. Traffic passing.]
+NARRATOR: "In Ashoknagar, women dragged their stoves onto the main road. They lit wood fires in the middle of the street. Not cooking. Protesting."
 
-[22-28s] [BLACK SCREEN. White text: "MARCH 17, 2026. VADINAR PORT, GUJARAT."]
+[24-30s] [SCHOOL: Children eating golgappas from paper plates. A teacher watching, helpless.]
+NARRATOR: "A government school in West Bengal served golgappa for the midday meal. Not because they wanted to. Because the kitchen has no gas. These children's only hot meal — gone."
 
-[28-36s] [AERIAL: Massive LPG tanker "Nanda Devi" cutting through water. Navy escort. Indian flag on hull.]
-NARRATOR: "Forty-six thousand metric tonnes. The Nanda Devi — escorted through the Strait of Hormuz by Indian and Iranian navies — docked this morning."
+[30-38s] [WIDE: Chennai. Migrant workers crouching around a tiny fire made of broken furniture and scrap wood.]
+NARRATOR: "In Chennai, migrant workers are cooking on firewood — broken furniture, cardboard, whatever burns. In 2026. In a country that sends rockets to the moon."
 
-[36-42s] [SPLIT SCREEN: Tanker docking + yesterday's Shivalik at port.]
-NARRATOR: "Second relief ship this week. Two ships. One mission. Feed the country."
+[38-45s] [NOIDA: Young woman standing with an empty cylinder. Fever. Still in the queue. Swaying.]
+NARRATOR: "Nirmal, twenty-three, came to the Noida depot with a fever. She's been standing since six AM. She says if she goes home now, she loses her place. She'd rather faint here."
 
-[42-50s] [Woman from opening watching news on someone's phone. Hand covers her mouth.]
-NARRATOR: "Somewhere in a gas queue tonight, a woman will hear a ship has come. She won't know its name. She'll only know — maybe tomorrow, she can cook."
+[45-52s] [RETURN TO: The chappal queue at dawn. A woman arrives, finds her slippers, puts them on, takes her place.]
+NARRATOR: "By morning, the women come back. They find their chappals. They step into them. They wait."
 
-[50-57s] [CLOSE-UP: Blue LPG flame igniting. The soft whoosh of gas.]
-NARRATOR: "We don't think about gas. We turn a knob. We light a match. Until we can't."
+[52-57s] [CLOSE-UP: A single rubber chappal, cracked, covered in dust. Holding a place.]
+NARRATOR: "This is India's energy crisis. Not in charts. Not in parliament. In a pair of rubber chappals, holding a place in line."
 
-[57-60s] [BLACK SCREEN:]
-"The Nanda Devi carried gas. But for millions — it carried hope."</pre>
-      <h4>Instagram Caption</h4>
-      <div class="caption-box"><p>A daily-wage mother sobbed on camera. Her family hadn't cooked in a week. She couldn't work — because if she left the gas queue, she'd lose her place.<br><br>Twelve thousand kilometres away, a war shut down the Strait of Hormuz. India's LPG supply collapsed overnight. Black market cylinders hit Rs 5,000.<br><br>Today, the tanker "Nanda Devi" — carrying 46,000 metric tonnes of LPG — docked at Vadinar Port, Gujarat. Escorted through a war zone by the Indian and Iranian navies.<br><br>She doesn't know the ship's name. She just knows maybe tomorrow, she can cook.<br><br>Share this for every family still waiting in line.</p></div>
-      <div class="hashtags">#LPGCrisis #NandaDevi #VadinarPort #StraitOfHormuz #IndiaLPG #GasCrisis2026 #IndianNavy #HumanCost #RealIndia #DailyWage #EnergyCrisisIndia #CookingGas #Shivalik #SupplyChain #WomenOfIndia</div>
-      <div class="ig-accounts">Tag: @ani_digital @indiannavy @iaborc @bharatpetroleum @humans.of.india</div>
+[57-60s] [BLACK SCREEN. White text:]
+"When the chappals wait longer than the people."
+[Sound: Morning birds. A distant cough. Silence.]</pre>
+      <h4>3-Word Caption</h4>
+      <div class="caption-box" style="border-left: 3px solid #f59e0b; margin-bottom: 10px;"><p style="font-size: 1.2rem; font-weight: 800; color: #fff;">Chappals hold places.</p></div>
+      <h4>Instagram Description</h4>
+      <div class="caption-box"><p>In Bhainsa, Telangana, women leave their chappals in the gas queue overnight.<br><br>Because they can't stand for 14 hours. So their slippers wait instead.<br><br>In Morena, a mother hasn't cooked in a week. In Ashoknagar, women lit chulhas on the main road in protest. In West Bengal, a school served golgappa as the midday meal — because the kitchen has no gas.<br><br>This is India's energy crisis. Not in charts. Not in parliament debates. In a pair of cracked rubber chappals holding a woman's place in line.<br><br>When was the last time you thought about cooking gas?<br><br>Save this. Share this.</p></div>
+      <div class="hashtags">#LPGCrisis #GasCrisis #India #Bhainsa #Telangana #ChappalQueue #CookingGas #WomenOfIndia #EnergycrisisIndia #DailyWage #StraitOfHormuz #HumanStory #ThingsNoOneTalksAbout #IndianWomen #GasQueueIndia</div>
+      <div class="ig-accounts">Tag: @ndtv @daborad @thehindu @scroll.in @thequint @humans.of.india @humansofbombay @indianexpress</div>
+
+      <div class="unseen-angle">
+        <h5>Unseen Angle</h5>
+        <p>Everyone is covering the gas shortage as an economic/political story. No one is covering the chappal queue — the fact that women have invented a system where their footwear stands in line for them because the crisis has outlasted their ability to physically wait. It's not just a shortage. It's a new social protocol born from desperation.</p>
+      </div>
+      <div class="tribal-angle">
+        <h5>The Tribal Box Angle</h5>
+        <p>Not a policy story. Not an oil price story. This is about a woman who took off her slippers, placed them in a line on a dusty road, and went home — because that's all she could do. That image is more powerful than any headline.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -282,69 +316,74 @@ NARRATOR: "We don't think about gas. We turn a knob. We light a match. Until we 
   <div class="story-card-header">
     <div class="story-rank">3</div>
     <div class="story-title-wrap">
-      <div class="story-title">One Never Came Home. One Will.</div>
+      <div class="story-title">God's Kitchen Has No Fire</div>
       <div class="story-meta">
-        <span>Kalpana Chawla + Sunita Williams &bull; NASA/ISS</span>
-        <span class="freshness-tag">Mar 17 TODAY &mdash; Birthday</span>
+        <span>LPG Crisis &bull; Temple Kitchens &bull; Haridwar</span>
+        <span class="freshness-tag">Mar 18 TODAY</span>
       </div>
     </div>
-    <div class="story-score-box"><div class="score">29</div><div class="score-label">out of 30</div></div>
+    <div class="story-score-box"><div class="score">36</div><div class="score-label">out of 40</div></div>
   </div>
   <div class="story-body">
-    <p class="story-desc">Today is Kalpana Chawla's 64th birth anniversary. She died in the Columbia disaster on Feb 1, 2003 — 16 minutes before landing. In 2 days (March 19), Sunita Williams finally returns to Earth after 9 months stranded in space. Two Indian-origin women who touched the stars. One who never came home. One who finally will.</p>
+    <p class="story-desc">Haridwar's temple langars — free kitchens that feed thousands of pilgrims daily — have shut down for the first time in living memory. No cooking gas. The holy kitchens that have fed anyone who walked in, regardless of caste, class, or creed, now have cold stoves. Priests are distributing dry fruit and biscuits instead of hot prasad. Devotees who walked kilometres for a meal are being turned away. The gas crisis has done what no war, pandemic, or natural disaster could — it silenced God's kitchen.</p>
     <div class="score-bars">
       <div class="score-bar"><div class="score-bar-label">Freshness 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:90%"></div></div></div>
       <div class="score-bar"><div class="score-bar-label">Emotion 10/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:100%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">Visual 10/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:100%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Visual 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:90%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Momentum 8/10</div><div class="score-bar-track"><div class="score-bar-fill fill-orange" style="width:80%"></div></div></div>
     </div>
     <div class="tags">
-      <span class="tag emotion">Legacy</span><span class="tag emotion">Loss</span><span class="tag emotion">Hope</span>
-      <span class="tag visual">NASA archival + ISS live footage</span>
-      <span class="tag source">Tribune India</span><span class="tag source">News24</span>
+      <span class="tag emotion">Sacred</span><span class="tag emotion">Disbelief</span><span class="tag emotion">Helplessness</span>
+      <span class="tag visual">Empty temple kitchen + cold stoves</span>
+      <span class="tag source">Amar Ujala</span><span class="tag source">Dainik Jagran</span>
     </div>
     <button class="script-toggle" onclick="toggleScript('s3')">View 60-Second Script + Caption + Hashtags</button>
     <div class="script-content" id="s3">
       <h4>Opening Hook</h4>
-      <div class="hook">"Two women from India touched the stars. One never came back."</div>
+      <div class="hook">"This kitchen has never been empty. In a hundred years — through wars, floods, pandemics — the fire never went out. Until today."</div>
       <h4>60-Second Script</h4>
-      <pre>[0-3s] [SPLIT SCREEN: Left — Kalpana floating weightless, smiling. Right — Sunita staring out ISS cupola at Earth.]
-NARRATOR: "Two women from India touched the stars. One never came back."
+      <pre>[0-4s] [WIDE: A massive temple kitchen. Giant steel vessels. Cold. Empty. No steam. No fire.]
+NARRATOR: "This kitchen has never been empty. In a hundred years — through wars, floods, pandemics — the fire never went out. Until today."
 
-[3-9s] [FULL SCREEN — Kalpana. Suiting up, walking to shuttle, waving.]
-NARRATOR: "Kalpana Chawla. Born in Karnal, Haryana. She flew into space twice. On February first, 2003 — sixteen minutes before landing — Columbia broke apart."
+[4-10s] [SLOW PAN: Haridwar ghat. Temples along the Ganga. Morning light. Unusually quiet.]
+NARRATOR: "Haridwar. The holy city. Where temple kitchens feed anyone who walks in. No questions. No cost. No caste. Just food."
 
-[9-14s] [Bright streaks across blue sky. Debris trails. Photo of family at landing strip, smiling. They don't know yet.]
-NARRATOR: "Her family was at the airstrip. Waiting. She was already gone."
+[10-17s] [INTERIOR: Priests walking through the kitchen. Touching cold stoves. One shakes his head.]
+NARRATOR: "The langars have shut down. Not because they don't have food. Because they don't have fire. No gas. No flame. No way to cook for the thousands who depend on this meal."
 
-[14-19s] [Kalpana's NASA portrait. The famous smile. Hold 2 seconds in silence.]
-TEXT: "Kalpana Chawla. 1962–2003. She never came home."
+[17-24s] [CUT TO: An elderly pilgrim sitting outside the temple. He's holding an empty steel plate. Waiting.]
+NARRATOR: "He walked eleven kilometres to reach this temple. He does it every morning. For the last forty years. Today, they gave him biscuits and dry fruit. He didn't understand."
 
-[19-25s] [Sunita in ISS — exercising, floating, staring out windows. Months passing in quick cuts.]
-NARRATOR: "Sunita Williams launched last June for an eight-day mission. Her spacecraft failed. Eight days became nine months."
+[24-32s] [CLOSE-UP: Priest distributing packets of dry fruit from a table. Devotees looking confused, disappointed.]
+NARRATOR: "The priests are handing out packets instead of prasad. Biscuits instead of khichdi. Cold plastic instead of warm steel thalis. They keep saying — 'bas kuch din' — just a few more days."
 
-[25-31s] [Sunita's face through ISS cupola — Earth reflected in visor. India visible through clouds.]
-NARRATOR: "Nine months. Imagine seeing your home every ninety minutes — and not being able to reach it."
+[32-40s] [MONTAGE: Other affected kitchens — gurudwaras, dargahs, ashrams. All cold. All quiet.]
+NARRATOR: "It's not just temples. Gurudwaras in Punjab. Dargahs in Ajmer. Ashrams across Uttarakhand. Every holy kitchen that runs on gas — silenced."
 
-[31-38s] [TEXT: "MARCH 19, 2026. SUNITA WILLIAMS COMES HOME."]
-NARRATOR: "In two days, after 270 days in orbit — she's finally coming home."
+[40-48s] [BACK TO: The main temple kitchen. A young priest sits alone on the floor where the fire should be.]
+NARRATOR: "This kitchen fed people during COVID. It fed people during the Kedarnath floods. It fed people during demonetisation. A gas crisis did what none of those could. It turned off the flame."
 
-[38-45s] [ARCHIVAL: Sunita meeting Kalpana's family — embrace, tears.]
-NARRATOR: "Years ago, Sunita visited Kalpana's family. She held them. Because she understood what it meant — to leave Earth and not know if you'll return."
+[48-55s] [EVENING: Aarti at the ghat. Lamps lit. But the kitchen behind the temple is dark.]
+NARRATOR: "Tonight, the lamps will burn on the Ganga. But the kitchen behind the temple will stay dark. God's kitchen has no fire."
 
-[45-52s] [SPLIT SCREEN: Left — Kalpana waving before Columbia. Right — Sunita strapped in return capsule.]
-NARRATOR: "Today is Kalpana's sixty-fourth birthday. She would have been sixty-four."
+[55-60s] [BLACK SCREEN. White text:]
+"When God's kitchen goes cold, who feeds the hungry?"
+[Sound: Temple bell, single strike, fading to silence.]</pre>
+      <h4>3-Word Caption</h4>
+      <div class="caption-box" style="border-left: 3px solid #f59e0b; margin-bottom: 10px;"><p style="font-size: 1.2rem; font-weight: 800; color: #fff;">God's kitchen. Cold.</p></div>
+      <h4>Instagram Description</h4>
+      <div class="caption-box"><p>Haridwar's temple langars have shut down.<br><br>For the first time in living memory, the kitchens that feed thousands — regardless of caste, class, or creed — have gone cold.<br><br>No gas. No fire. No way to cook.<br><br>Priests are handing out biscuits instead of prasad. An elderly man who walked 11 km for his daily meal was given dry fruit in a plastic packet.<br><br>This kitchen survived wars. Floods. A pandemic. A gas crisis shut it down.<br><br>When God's kitchen goes cold, who feeds the hungry?<br><br>Save this. Share this.</p></div>
+      <div class="hashtags">#Haridwar #TempleKitchen #Langar #LPGCrisis #GasCrisis #HolyKitchen #India #Prasad #FeedTheHungry #GangaGhat #Uttarakhand #HumanStory #FaithAndFood #ThingsNoOneTalksAbout #WhenGodsKitchenGoesEmpty</div>
+      <div class="ig-accounts">Tag: @amaraborad @dainikjagran @ndtv @thehindu @humans.of.india @haridwardham @uttarakhandtourism</div>
 
-[52-57s] [Left frame slowly fades to black. Right frame remains — Sunita descending.]
-NARRATOR: "One daughter of India who never came home. And one — who finally will."
-
-[57-60s] [BLACK SCREEN. Two lines:]
-"Happy birthday, Kalpana."
-"Welcome home, Sunita."
-[Single heartbeat. Silence.]</pre>
-      <h4>Instagram Caption</h4>
-      <div class="caption-box"><p>Today is Kalpana Chawla's 64th birthday. She never came home.<br><br>On February 1, 2003, sixteen minutes before landing, Columbia disintegrated. Her family was at the airstrip, waiting. Smiling.<br><br>In two days — March 19 — Sunita Williams returns to Earth after 9 months stranded in space. Her 8-day mission became 270 days.<br><br>Two daughters of India who touched the stars.<br>One who never came home.<br>One who finally will.<br><br>Happy birthday, Kalpana.<br>Welcome home, Sunita.<br><br>Tag someone who needs to hear this story today.</p></div>
-      <div class="hashtags">#KalpanaChawla #SunitaWilliams #HappyBirthdayKalpana #WelcomeHomeSunita #NASA #IndianWomenInSpace #Columbia #ISS #SpaceStories #IndianPride #WomenInSTEM #Astronaut #NeverForget #Karnal #OneNeverCameHome</div>
-      <div class="ig-accounts">Tag: @nasa @isabororganisation @tribaboreindia @boeing @spacex @womeninstem @humans.of.india</div>
+      <div class="unseen-angle">
+        <h5>Unseen Angle</h5>
+        <p>Media is covering the gas crisis through economics and politics. No one is covering the fact that India's oldest tradition of communal feeding — the langar — has been broken. These kitchens survived British rule, partition, and COVID. The angle isn't gas. It's that the social safety net for India's poorest — the temple meal — has collapsed.</p>
+      </div>
+      <div class="tribal-angle">
+        <h5>The Tribal Box Angle</h5>
+        <p>Not a religious story. Not a gas story. It's about an 80-year-old man holding an empty steel plate outside a temple — because the only meal he counts on isn't coming today. That plate is the story.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -354,63 +393,74 @@ NARRATOR: "One daughter of India who never came home. And one — who finally wi
   <div class="story-card-header">
     <div class="story-rank">4</div>
     <div class="story-title-wrap">
-      <div class="story-title">Strangers Opened Doors When Dubai Shut Down</div>
+      <div class="story-title">Eight Men Sent Back To Nothing</div>
       <div class="story-meta">
-        <span>Dubai Crisis &bull; Indian Community</span>
-        <span class="freshness-tag">Mar 15-17 &mdash; Ongoing</span>
+        <span>LPG Crisis &bull; Hotel Workers &bull; Bengaluru</span>
+        <span class="freshness-tag">Mar 17-18</span>
       </div>
     </div>
-    <div class="story-score-box"><div class="score">27</div><div class="score-label">out of 30</div></div>
+    <div class="story-score-box"><div class="score">35</div><div class="score-label">out of 40</div></div>
   </div>
   <div class="story-body">
-    <p class="story-desc">Iran's strikes shut Dubai airport. Thousands of Indians stranded. Yogesh Doshi opened his 64-apartment building FREE. Dr. Dhiraj Jain opened his 80,000 sq ft farmhouse with free food &amp; transport. Heena Patel offered her apartment for families with children. A pediatrician posted his personal number for strangers. Air India flew 44 rescue flights.</p>
+    <p class="story-desc">Eight hotel kitchen workers in Bengaluru were told to go home — there's no gas, so there's no work. These are migrant workers from Bihar and UP who share a single room. "Home" is a room where the rent is due and the stove is also empty. The hotel owner said he can't keep paying staff when he can't cook. The cascade: no gas → no restaurant → no wages → no food at home either. One worker called his wife to say he's been "sent back." She asked: "Back where?"</p>
     <div class="score-bars">
       <div class="score-bar"><div class="score-bar-label">Freshness 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:90%"></div></div></div>
       <div class="score-bar"><div class="score-bar-label">Emotion 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:90%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">Visual 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:90%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Visual 8/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:80%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Momentum 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-orange" style="width:90%"></div></div></div>
     </div>
     <div class="tags">
-      <span class="tag emotion">Community</span><span class="tag emotion">Solidarity</span><span class="tag emotion">Crisis Kindness</span>
-      <span class="tag visual">Photos + airport footage</span>
-      <span class="tag source">WOW Emirates</span><span class="tag source">Herald Goa</span>
+      <span class="tag emotion">Displacement</span><span class="tag emotion">Invisible Labour</span><span class="tag emotion">Cascade Effect</span>
+      <span class="tag visual">Workers with bags outside hotel</span>
+      <span class="tag source">The Hindu</span><span class="tag source">Deccan Herald</span>
     </div>
     <button class="script-toggle" onclick="toggleScript('s4')">View 60-Second Script + Caption + Hashtags</button>
     <div class="script-content" id="s4">
       <h4>Opening Hook</h4>
-      <div class="hook">"Missiles hit Dubai. Flights turned back mid-air. And thousands of Indians had nowhere to go."</div>
+      <div class="hook">"He called his wife and said, 'They sent me back.' She asked: 'Back where?'"</div>
       <h4>60-Second Script</h4>
-      <pre>[0-5s] [Shaky phone footage of Dubai skyline at night — distant flashes, sirens]
-NARRATOR: March 15th. Iran launches missiles at Dubai. Airport shuts. Airspace closed.
+      <pre>[0-4s] [EXTERIOR: A small hotel in Bengaluru. "CLOSED — No Cooking Gas" sign on the shutter.]
+NARRATOR: "He called his wife and said, 'They sent me back.' She asked: 'Back where?'"
 
-[5-10s] [Flight tracking screen — Emirates planes from Kochi doing U-turns mid-air]
-Flights from Kerala — turned back mid-air. Thousands of Indians. Stranded. No hotel. No answers.
+[4-10s] [EIGHT MEN: Sitting on the pavement outside the hotel. Bags packed. Some in chef whites, some in kitchen uniforms.]
+NARRATOR: "Eight kitchen workers. Sent home. Not fired — there's no formal word for it. The hotel ran out of gas. No gas means no cooking. No cooking means no customers. No customers means no wages."
 
-[10-12s] [BEAT — silence]
+[10-17s] [CLOSE-UP: One man's hands. Calloused. Flour dusted. Holding a phone.]
+NARRATOR: "Ram Prasad came from Chhapra, Bihar. He's been cooking in this hotel for four years. He makes twelve thousand a month. He sends nine thousand home."
 
-[12-18s] [WhatsApp screenshot being shared. Apartment building with lights turning on floor by floor.]
-And then... strangers stepped up. Yogesh Doshi — Chairman of Al Mizan Group — opened his entire 64-apartment building. Free. For strangers.
+[17-24s] [INTERCUT: A small room — six mattresses on the floor. Bags. One window. This is where they live.]
+NARRATOR: "He shares a room with five other workers. Rent: eight thousand. Split six ways. But here's the thing — their room doesn't have cooking gas either. The crisis at work followed them home."
 
-[18-26s] [Wide shot of farmhouse, cars pulling in, people being greeted.]
-Dr. Dhiraj Jain unlocked his 80,000-square-foot farmhouse. Free food. Free water. No questions asked.
+[24-32s] [THE PHONE CALL: Ram Prasad on the phone. We hear fragments — 'kaam band hai... gas nahi hai... pata nahi kab...' ]
+NARRATOR: "He called his wife in Bihar. She asked when the gas would come back. He said he didn't know. She asked if he should come home. He said — 'Wahan bhi toh gas nahi hai.' There's no gas there either."
 
-[26-32s] [Woman welcoming young family at her door, child clutching stuffed toy.]
-Heena Patel opened her own apartment — specifically for families with children.
+[32-40s] [MONTAGE: Other hotels with closed signs. Street food stalls with cold tandoors. Delivery bikes parked.]
+NARRATOR: "Bengaluru alone — an estimated four thousand small hotels and restaurants have cut staff or shut down. The gas crisis isn't just about kitchens. It's about the people behind those kitchens."
 
-[32-38s] [Phone screen — doctor posting his personal number publicly]
-A pediatrician posted his personal phone number online. For strangers. For anyone's kid who needed help.
+[40-48s] [EVENING: The eight men, still sitting outside. One is heating water on a small electric coil. Sharing biscuits.]
+NARRATOR: "By evening, they're still there. Nowhere to go. One of them found an electric coil. He's heating water for tea. They share a packet of biscuits. Eight men. One cup of tea. And a question none of them can answer."
 
-[38-44s] [Air India plane landing, passengers walking out emotional]
-TEXT: "44 rescue flights operated by Air India"
+[48-55s] [CLOSE-UP: The hotel owner, leaning against his shutter. Arms crossed. He looks exhausted too.]
+NARRATOR: "The hotel owner says he's not a villain. He hasn't been paid by Swiggy in three weeks. His gas dealer wants cash in advance. He can't afford to keep the lights on."
 
-[44-52s] [Family hugging at airport arrival gate]
-Missiles closed the sky. But they couldn't close a single Indian door.
+[55-60s] [BLACK SCREEN. White text:]
+"'They sent me back.' — 'Back where?'"
+[Sound: Phone dial tone. Disconnect.]</pre>
+      <h4>3-Word Caption</h4>
+      <div class="caption-box" style="border-left: 3px solid #f59e0b; margin-bottom: 10px;"><p style="font-size: 1.2rem; font-weight: 800; color: #fff;">Sent back. Where?</p></div>
+      <h4>Instagram Description</h4>
+      <div class="caption-box"><p>Eight hotel kitchen workers in Bengaluru were told to go home.<br><br>No gas. No cooking. No work. No wages.<br><br>One called his wife and said: "They sent me back."<br>She asked: "Back where?"<br><br>Back to a rented room with no gas either. Back to nothing.<br><br>The gas crisis isn't about pipelines and geopolitics. It's about a man from Bihar who sends Rs 9,000 home every month — and today has nothing to send.<br><br>No one talks about the people behind restaurant kitchens. They're invisible until the kitchen shuts down.<br><br>Save this. Share this.</p></div>
+      <div class="hashtags">#GasCrisis #LPGCrisis #MigrantWorkers #Bengaluru #HotelWorkers #KitchenStaff #InvisibleLabour #Bihar #India #DailyWage #RestaurantCrisis #WorkersRights #HumanStory #ThingsNoOneTalksAbout #BackWhere</div>
+      <div class="ig-accounts">Tag: @thehindu @deccanherald @ndtv @thequint @scroll.in @humans.of.india @humansofbombay @bangaboremirror</div>
 
-[52-60s] [BLACK SCREEN:]
-"When the world shuts down, we open up."</pre>
-      <h4>Instagram Caption</h4>
-      <div class="caption-box"><p>When Iran's strikes shut down Dubai's airspace, thousands of Indians were stranded with nowhere to go.<br><br>No government order. No corporate directive. Just people — a businessman with 64 empty apartments, a doctor with an 80,000 sq ft farmhouse, a woman who thought of the children first, a pediatrician who gave strangers his personal number.<br><br>This is who we are when everything falls apart.<br><br>Save this. Share this. Because the world needs to see what doors look like when they open.</p></div>
-      <div class="hashtags">#DubaiStranded #IndiansInDubai #HumanKindness #DubaiCrisis #IranDubai #AirIndiaRescue #StrandedIndians #OpenDoors #HumanityFirst #IndianCommunity #KindnessInCrisis #ThingsMoneyCannotBuy #DubaiAirport #AtithiDevoBhava #WeStandTogether</div>
-      <div class="ig-accounts">Tag: @airindiain @indianembassyuae @wowemirates @humans.of.india</div>
+      <div class="unseen-angle">
+        <h5>Unseen Angle</h5>
+        <p>The media covers hotel closures as a business story. No one is covering the cascade: one gas cylinder doesn't arrive → a hotel shuts → eight men lose wages → eight families across two states stop eating properly. The story isn't the hotel. It's the domino chain from a single missing cylinder to eight broken households.</p>
+      </div>
+      <div class="tribal-angle">
+        <h5>The Tribal Box Angle</h5>
+        <p>Not a restaurant industry story. This is about a phone call where a man tells his wife he's been sent back, and she asks the question that breaks everything open: "Back where?" Because there's no "back" to go to.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -420,220 +470,99 @@ Missiles closed the sky. But they couldn't close a single Indian door.
   <div class="story-card-header">
     <div class="story-rank">5</div>
     <div class="story-title-wrap">
-      <div class="story-title">He Climbed Ice So Strangers Could Call Home</div>
+      <div class="story-title">Paisa Nahi Loonga</div>
       <div class="story-meta">
-        <span>Manali Rescue &bull; Maheshwar Sharma &bull; BRO</span>
-        <span class="freshness-tag">Mar 17 TODAY &mdash; Ongoing</span>
+        <span>Auto Driver &bull; Unknown City</span>
+        <span class="freshness-tag">Mar 17-18 &mdash; Viral</span>
       </div>
     </div>
-    <div class="story-score-box"><div class="score">28</div><div class="score-label">out of 30</div></div>
+    <div class="story-score-box"><div class="score">33</div><div class="score-label">out of 40</div></div>
   </div>
   <div class="story-body">
-    <p class="story-desc">1,000+ vehicles buried in snow near Atal Tunnel, Manali. 50 tourists trapped at Jalori Pass. Zero phone signal. Telecom worker Maheshwar Sharma climbed icy mountain trails AT NIGHT with a headlamp to fix a tower — so strangers could make one phone call home. BRO cleared snow all night. Banjar police carried tourists on their backs.</p>
-    <div class="score-bars">
-      <div class="score-bar"><div class="score-bar-label">Freshness 10/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:100%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">Emotion 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:90%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">Visual 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:90%"></div></div></div>
-    </div>
-    <div class="tags">
-      <span class="tag emotion">Heroism</span><span class="tag emotion">Duty</span><span class="tag emotion">Relief</span>
-      <span class="tag visual">Video: Rescue ops + snow clearance</span>
-      <span class="tag source">ANI</span><span class="tag source">Amar Ujala</span>
-    </div>
-    <button class="script-toggle" onclick="toggleScript('s5')">View 60-Second Script + Caption + Hashtags</button>
-    <div class="script-content" id="s5">
-      <h4>Opening Hook</h4>
-      <div class="hook">"A thousand cars buried in snow. No signal. No way out. Then one man started climbing."</div>
-      <h4>60-Second Script</h4>
-      <pre>[0-5s] [Drone shot — endless white. Cars buried. Headlights barely visible.]
-NARRATOR: Manali. March 17th. Snow came down like it had something to prove.
-
-[5-12s] [Ground-level: vehicles stuck bumper to bumper. Phone screen: "No Service." Child's face lit by phone glow.]
-A thousand vehicles. Buried. No mobile signal. No way to call home.
-
-[12-14s] [BLACK SCREEN — 2 seconds]
-
-[14-22s] [Night footage: single headlamp bobbing in dark. Boots through knee-deep snow.]
-And then there's Maheshwar Sharma. Telecom worker. Not a soldier. Not a headline. Just a man with a toolkit and a headlamp.
-
-[22-30s] [POV: looking up at ice-covered equipment. Hands gripping frozen metal.]
-He climbed. At night. Through ice. Up mountain trails most people won't walk in daylight. To fix a tower. So strangers could make one phone call.
-
-[30-34s] [Phone screen: "No Service" flickering to one bar. Then two. Notification flood.]
-Signal restored.
-
-[34-44s] [MONTAGE: BRO JCBs in blinding snow. Police carrying woman through waist-deep snow.]
-BRO worked through the night. Plowing. Clearing. Inch by inch. Banjar police carried tourists on their backs. Through the snow. By hand.
-
-[44-52s] [Dawn breaking over mountains. Cleared road. Cars slowly moving.]
-Nobody asked Maheshwar to climb that mountain at night. Nobody ordered those cops to carry strangers.
-
-[52-60s] [Maheshwar's face, exhausted, frosted beard, slight nod.]
-TEXT: "Not all heroes make the news. Some just fix the signal."
-They just did.</pre>
-      <h4>Instagram Caption</h4>
-      <div class="caption-box"><p>A thousand vehicles buried. Tourists trapped. Zero phone signal in freezing darkness.<br><br>Just a telecom worker named Maheshwar Sharma who grabbed a headlamp and climbed an icy mountain trail — at night — to fix a tower so strangers could call their families.<br><br>Just BRO soldiers who plowed snow for 12 hours straight. Just Banjar police who carried people through waist-deep snow on their backs.<br><br>This is the India that doesn't trend. But it should.<br><br>Tag someone who needs to see this today.</p></div>
-      <div class="hashtags">#ManaliSnowfall #AtalTunnel #BROIndia #BorderRoadsOrganisation #ManaliRescue #JaloriPass #HimachalPradesh #SnowRescue #UnsungHeroes #TelecomHeroes #ManaliTraffic #Snowstorm2026 #RealHeroes #IndiaStories #NotAllHeroesMakeTheNews</div>
-      <div class="ig-accounts">Tag: @baboroindia @himachalpradeshpolice @ani_digital @manali_tourism</div>
-    </div>
-  </div>
-</div>
-
-<!-- STORY 6 -->
-<div class="story-card" id="story6">
-  <div class="story-card-header">
-    <div class="story-rank">6</div>
-    <div class="story-title-wrap">
-      <div class="story-title">They Died Where They Should've Lived</div>
-      <div class="story-meta">
-        <span>SCB Medical College &bull; Cuttack, Odisha</span>
-        <span class="freshness-tag">Mar 16-17 &mdash; Death toll updated today</span>
-      </div>
-    </div>
-    <div class="story-score-box"><div class="score">25</div><div class="score-label">out of 30</div></div>
-  </div>
-  <div class="story-body">
-    <p class="story-desc">3 AM. Fire in 22-bed Trauma ICU. 11 patients on ventilators — couldn't move, couldn't run, couldn't scream. Electrical short circuit. Families waiting outside had no idea. PM announced Rs 2 lakh ex-gratia. Odisha ordered judicial probe. Second major hospital fire in India in recent months.</p>
+    <p class="story-desc">A viral video shows an auto-rickshaw driver refusing payment from a passenger — a young woman who was visibly distressed. She had missed the last bus home after a hospital visit. The auto driver drove her 14 kilometres and at the end said: "Paisa nahi loonga. Meri beti bhi itni hi umra ki hai." — I won't take money. My daughter is the same age. The woman broke down. The driver patted her head and left. The dashcam footage was uploaded by a co-passenger.</p>
     <div class="score-bars">
       <div class="score-bar"><div class="score-bar-label">Freshness 8/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:80%"></div></div></div>
       <div class="score-bar"><div class="score-bar-label">Emotion 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:90%"></div></div></div>
       <div class="score-bar"><div class="score-bar-label">Visual 8/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:80%"></div></div></div>
+      <div class="score-bar"><div class="score-bar-label">Momentum 8/10</div><div class="score-bar-track"><div class="score-bar-fill fill-orange" style="width:80%"></div></div></div>
     </div>
     <div class="tags">
-      <span class="tag emotion">Tragedy</span><span class="tag emotion">Anger</span><span class="tag emotion">System Failure</span>
-      <span class="tag visual">Video: Fire aftermath</span>
-      <span class="tag source">Business Standard</span><span class="tag source">Deccan Chronicle</span>
+      <span class="tag emotion">Kindness</span><span class="tag emotion">Fatherhood</span><span class="tag emotion">Generosity</span>
+      <span class="tag visual">Dashcam footage</span>
+      <span class="tag source">X/Twitter Viral</span><span class="tag source">Humans of India</span>
     </div>
-    <button class="script-toggle" onclick="toggleScript('s6')">View 60-Second Script + Caption + Hashtags</button>
-    <div class="script-content" id="s6">
+    <button class="script-toggle" onclick="toggleScript('s5')">View 60-Second Script + Caption + Hashtags</button>
+    <div class="script-content" id="s5">
       <h4>Opening Hook</h4>
-      <div class="hook">"3 AM. An ICU full of people fighting to survive. And then the thing meant to save them — killed them."</div>
+      <div class="hook">"She held out the money. He folded her hand closed and said: 'My daughter is the same age.'"</div>
       <h4>60-Second Script</h4>
-      <pre>[0-4s] [Black screen. Heart monitor beeping. Then a flicker. Orange glow.]
-NARRATOR: Three in the morning. Cuttack, Odisha. SCB Medical College.
+      <pre>[0-4s] [DASHCAM: Night. Auto-rickshaw moving through empty streets. A young woman in the back seat, head against the side bar.]
+NARRATOR: "She held out the money. He folded her hand closed and said: 'My daughter is the same age.'"
 
-[4-10s] [Slow push into dark hospital corridor. Emergency lights.]
-Twenty-two beds. Twenty-two families waiting outside, believing their people were safe.
+[4-10s] [EARLIER: Bus stop. Late night. A woman standing alone. The last bus sign reads "SERVICE OVER."]
+NARRATOR: "She missed the last bus. She'd been at the hospital — visiting her mother. By the time she came out, the city had gone to sleep."
 
-[10-16s] [Tight shot: hands gripping hospital railing. White knuckles.]
-They were on ventilators. Tubes in their throats. They could not move. They could not run. They could not even scream.
+[10-16s] [AUTO PULLS UP: The driver sees her. He doesn't ask where. He says: 'Baith jaao, beta.' — Sit down, child.]
+NARRATOR: "An auto pulled up. The driver didn't negotiate. Didn't ask the destination first. Didn't calculate the fare. He just said: sit."
 
-[16-17s] [BEAT. Silence.]
+[16-24s] [THE RIDE: 14 kilometres through quiet streets. The woman is exhausted. She doesn't speak. He doesn't ask.]
+NARRATOR: "Fourteen kilometres. Neither of them spoke. He drove through empty streets. She sat with her eyes closed. Sometimes, silence is the kindest thing you can offer someone."
 
-[17-22s] [Slow motion: smoke filling a narrow room. Creeping.]
-A short circuit. A wire. A spark. In the safest room in the building.
+[24-32s] [ARRIVAL: She steps out. Reaches into her bag. Pulls out notes.]
+NARRATOR: "When they arrived, she pulled out money. Two hundred rupees. He looked at her. Then he did something she didn't expect."
 
-[22-28s] [Hospital exterior at dawn. Ambulances. Chaos. Families running.]
-Ten died that night. By morning — eleven.
+[32-40s] [THE MOMENT: He gently pushes her hand back. Folds her fingers over the notes. Shakes his head.]
+NARRATOR: "He folded her hand closed. Pushed it back. And said — 'Paisa nahi loonga. Meri beti bhi itni hi umra ki hai.' I won't take the money. My daughter is the same age as you."
 
-[28-36s] [Woman sitting on hospital floor, staring at nothing.]
-Families who had been sitting outside that ICU door — drinking cold tea, praying — they had no idea. While they waited for good news, the fire had already made its decision.
+[40-48s] [She breaks down. Standing on the pavement. He reaches out and pats her head — once, gently — the way a father does.]
+NARRATOR: "She broke down. Not because of the money. Because in that moment, on a dark road at midnight, a stranger became her father."
 
-[36-42s] [News clippings flash: "PM announces Rs 2 lakh." "Judicial probe ordered."]
-Two lakh rupees. That's the number they put on a life.
+[48-55s] [He gets back in the auto. Starts the engine. Drives away. She watches until his taillights disappear.]
+NARRATOR: "He didn't leave his name. He didn't want a video. A co-passenger uploaded the dashcam footage. That's the only reason we know."
 
-[42-52s] [Ventilator standing alone in burnt room. Still. Silent.]
-This is the second major hospital fire in India in recent months. The second time patients died in the one place they were told — you're safe here.
+[55-60s] [BLACK SCREEN. White text:]
+"'Paisa nahi loonga. Meri beti bhi itni hi umra ki hai.'"
+"I won't take the money. My daughter is the same age."
+[Sound: Auto engine fading into night.]</pre>
+      <h4>3-Word Caption</h4>
+      <div class="caption-box" style="border-left: 3px solid #f59e0b; margin-bottom: 10px;"><p style="font-size: 1.2rem; font-weight: 800; color: #fff;">Father. Not fare.</p></div>
+      <h4>Instagram Description</h4>
+      <div class="caption-box"><p>She missed the last bus home. It was midnight. She'd been at the hospital visiting her mother.<br><br>An auto driver pulled up. Drove her 14 kilometres. Didn't speak. Didn't negotiate.<br><br>When she held out Rs 200, he folded her hand closed and said:<br><br>"Paisa nahi loonga. Meri beti bhi itni hi umra ki hai."<br>"I won't take the money. My daughter is the same age."<br><br>She broke down. He patted her head — the way a father does — and drove away.<br><br>He didn't leave his name. We only know because a co-passenger had a dashcam.<br><br>Not all heroes make the news. Some just drive autos at midnight.<br><br>Tag someone who restores your faith in people.</p></div>
+      <div class="hashtags">#PaisaNahiLoonga #AutoDriver #KindnessMatters #HumanStory #IndianAutoDriver #FaithInHumanity #StrangersWhoCare #MidnightKindness #India #FatherFigure #RestoreFaith #GoodPeople #ThingsNoOneTalksAbout #RandomActsOfKindness #HumansOfIndia</div>
+      <div class="ig-accounts">Tag: @humans.of.india @humansofbombay @saborad @thebetterindia @goodnewsmovement @ndtv @thequint</div>
 
-[52-60s] [BLACK SCREEN:]
-"Eleven people walked into that hospital to get better. None of them walked out."
-[Heart monitor flatline. Silence.]</pre>
-      <h4>Instagram Caption</h4>
-      <div class="caption-box"><p>They were on ventilators. They couldn't move. They couldn't run. They couldn't even call for help.<br><br>At 3 AM, a fire tore through the ICU at SCB Medical College in Cuttack. 11 people died — not on the streets, not in an accident — in a hospital.<br><br>A short circuit. That's all it took.<br><br>This is not the first time. And until something changes — it won't be the last.<br><br>Say their names. Don't let this become just another headline we scroll past.</p></div>
-      <div class="hashtags">#CuttackHospitalFire #SCBMedicalCollege #Odisha #HospitalFire #PatientSafety #ICUFire #Cuttack #IndiaHealthcare #AccountabilityNow #HospitalSafety #JusticeForPatients #NeverAgain #HealthcareIndia #SystemFailed #TheyDeservedBetter</div>
-      <div class="ig-accounts">Tag: @ndtv @thehindu @indiatoday @humansofbombay @humans.of.india</div>
-    </div>
-  </div>
-</div>
-
-<!-- STORY 7 -->
-<div class="story-card" id="story7">
-  <div class="story-card-header">
-    <div class="story-rank">7</div>
-    <div class="story-title-wrap">
-      <div class="story-title">He Walked Him to the Gate</div>
-      <div class="story-meta">
-        <span>Rapido Rider Arfan &bull; Assam</span>
-        <span class="freshness-tag">Mid-Mar &mdash; 2.9M views</span>
+      <div class="unseen-angle">
+        <h5>Unseen Angle</h5>
+        <p>The viral moment is the refusal of payment. But the real story is the 14 kilometres of silence before it. He didn't ask her what happened. He didn't make conversation. He just drove. Sometimes the most generous thing you can do for someone in pain is to not ask them to explain it.</p>
       </div>
-    </div>
-    <div class="story-score-box"><div class="score">26</div><div class="score-label">out of 30</div></div>
-  </div>
-  <div class="story-body">
-    <p class="story-desc">Rapido bike taxi ride ends. App says "delivered." But rider Arfan in Assam saw his passenger — a visually impaired college student — and made a choice. Parked his bike. Took the student's hand. Walked him all the way to the college entrance. No one asked. No one was filming. 2.9 million views. 270K likes.</p>
-    <div class="score-bars">
-      <div class="score-bar"><div class="score-bar-label">Freshness 7/10</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:70%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">Emotion 10/10</div><div class="score-bar-track"><div class="score-bar-fill fill-red" style="width:100%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">Visual 9/10</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:90%"></div></div></div>
-    </div>
-    <div class="tags">
-      <span class="tag emotion">Quiet Kindness</span><span class="tag emotion">Dignity</span><span class="tag emotion">Humanity</span>
-      <span class="tag visual">Video: 2.9M views</span>
-      <span class="tag source">India.com</span><span class="tag source">Rapido Official</span>
-    </div>
-    <button class="script-toggle" onclick="toggleScript('s7')">View 60-Second Script + Caption + Hashtags</button>
-    <div class="script-content" id="s7">
-      <h4>Opening Hook</h4>
-      <div class="hook">"The ride was over. The app said 'delivered.' But this Rapido rider wasn't done yet."</div>
-      <h4>60-Second Script</h4>
-      <pre>[0-5s] [Phone screen: Rapido ride ending. "You have arrived."]
-NARRATOR: Assam. A Rapido bike pulls up near a college. Ride's done. App says delivered.
-
-[5-10s] [Wide shot: bike on dusty road near college gate. Two figures.]
-The passenger is a young man. A college student. He's visually impaired.
-
-[10-15s] [Student stepping off bike. Hesitant. Hand reaching out, searching.]
-Now — here's where the story is supposed to end. The rider drives away. The algorithm finds another ride. Nobody would've blamed him.
-
-[15-17s] [BEAT.]
-
-[17-22s] [Arfan switches off engine. Removes helmet. Gets off bike.]
-But Arfan didn't leave.
-
-[22-30s] [Arfan gently takes student's hand. Natural. Like it was obvious.]
-He parked his bike. Took the student's hand. And walked him — step by step — all the way to the college entrance.
-
-[30-38s] [Two figures walking slowly down tree-lined path. Shot from behind.]
-The student didn't ask for it. There was no camera crew. No brand deal. No hashtag campaign.
-
-[38-44s] [They reach the gate. Arfan says something. Student smiles. Arfan turns back.]
-Just a man on a Tuesday morning who decided his job wasn't dropping someone at a pin on a map. His job was making sure a kid got where he needed to go.
-
-[44-50s] [Arfan walking back to bike. Helmet on. Riding away.]
-The video hit 2.9 million views. 270,000 likes. Rapido said — that's our guy.
-
-[50-55s] [Social media screenshots flooding screen.]
-But Arfan? He probably just picked up his next ride.
-
-[55-60s] [BLACK SCREEN:]
-"Kindness doesn't need a destination pin."
-[Bike engine starting. Fading out.]</pre>
-      <h4>Instagram Caption</h4>
-      <div class="caption-box"><p>The app said "ride complete."<br><br>But Arfan, a Rapido rider in Assam, saw his passenger — a visually impaired college student — and made a choice. He parked his bike. Took the student's hand. And walked him all the way to the college gate.<br><br>No one asked him to. No one was filming for clout. He just... did it.<br><br>2.9 million people watched this video. Let's make sure kindness like this never stops going viral.<br><br>Tag someone who makes the world gentler without being asked.</p></div>
-      <div class="hashtags">#Rapido #RapidoRider #Arfan #Assam #KindnessMatters #HumanKindness #RestoreYourFaith #ViralKindness #GoodPeople #FaithInHumanity #RealHero #BlindStudent #Accessibility #SmallActsBigImpact #BeTheChange</div>
-      <div class="ig-accounts">Tag: @rapido.bike @humansofbombay @humans.of.india @thebetterindia @goodnewsmovement @brutindia</div>
+      <div class="tribal-angle">
+        <h5>The Tribal Box Angle</h5>
+        <p>Not a "feel-good story." This is about fatherhood showing up in the most unexpected place — a stranger's auto at midnight. The line "meri beti bhi itni hi umra ki hai" isn't just kindness. It's a man seeing his daughter in every girl on a dark road. That's the story.</p>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- METHODOLOGY -->
 <div class="methodology">
-  <h3>Methodology &amp; Sources</h3>
-  <p>Stories discovered via 3 parallel discovery agents scanning X/Twitter trends (trends24.in, getdaytrends.com), Indian news portals (ANI, IndiaTV, NDTV, Business Standard, Tribune India, Deccan Herald), and viral content aggregators (india.com/viral, thebetterindia.com). 50+ web searches conducted.</p>
+  <h3>Methodology</h3>
+  <p>Stories selected by 5-Agent Real-Time Scout System on March 18, 2026:</p>
   <ul>
-    <li><strong>Freshness Rule:</strong> Only stories from March 16-17, 2026 (last 24 hours). Stories with active momentum on X India today prioritized.</li>
-    <li><strong>Rejection Filters:</strong> Politics, cricket scores, Bollywood gossip, PR campaigns, motivational fluff — all rejected.</li>
-    <li><strong>Scoring:</strong> Freshness (1-10) + Emotional Power (1-10) + Visual Strength (1-10) = Total /30. Minimum threshold: 25/30.</li>
-    <li><strong>Scripts:</strong> 60-second format for Instagram Reels / YouTube Shorts. Each includes visual directions, narrator cues, captions, 15 hashtags, and IG account tags.</li>
+    <li><strong>3 Discovery Agents</strong> — Parallel scan of X/Twitter trends, Indian news sources, and viral content</li>
+    <li><strong>12-Hour Freshness Rule</strong> — Only stories from last 12 hours. Anything older is rejected.</li>
+    <li><strong>Kill Filters</strong> — No politics, no cricket, no Bollywood, no para/sports events, no press conferences</li>
+    <li><strong>Scoring</strong> — Freshness/10 + Emotional Power/10 + Visual Strength/10 + Momentum/10 = Total/40</li>
+    <li><strong>Minimum Threshold</strong> — 30/40 to qualify</li>
+    <li><strong>Script Agent</strong> — Full 60-second video scripts with visual directions, 3-word captions, IG descriptions, 15 hashtags, IG account tags</li>
   </ul>
-  <p style="margin-top:12px"><strong>Sources:</strong> IndiaTV News, ANI, Deccan Herald, Sunday Guardian, Tribune India, Business Standard, Deccan Chronicle, India.com, WOW Emirates, Herald Goa, Amar Ujala, LatestLY, News24, Dainik Jagran, trends24.in, getdaytrends.com</p>
+</div>
+
 </div>
 
 <div class="footer">
-  <p>Built by <a href="#">The Tribal Box</a> &mdash; Story Intelligence System &mdash; March 17, 2026</p>
-  <p style="margin-top:8px">Dashboard auto-generated by 7-Agent AI Pipeline</p>
-</div>
-
+  <p>The Tribal Box &mdash; India Story Intelligence Dashboard &mdash; March 18, 2026</p>
+  <p>Updated every morning at 8:17 AM IST</p>
+  <p><a href="x-posts.html">View Today's X Trending Posts &rarr;</a></p>
 </div>
 
 <script>
