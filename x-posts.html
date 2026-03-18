@@ -3,33 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Tribal Box — X Posts Ready to Publish | March 17, 2026</title>
+<title>The Tribal Box — X Posts Afternoon Edition | March 18, 2026</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
-  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); padding: 40px 24px; text-align: center; border-bottom: 3px solid #1d9bf0; }
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); padding: 40px 24px; text-align: center; border-bottom: 3px solid #10b981; }
   .header h1 { font-size: 2rem; color: #fff; }
-  .header .subtitle { color: #1d9bf0; font-size: 0.9rem; margin-top: 6px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
+  .header .subtitle { color: #10b981; font-size: 0.9rem; margin-top: 6px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
   .header .date { color: #8899aa; margin-top: 10px; font-size: 0.85rem; }
+  .header .edition { display: inline-block; background: #10b981; color: #000; font-weight: 800; padding: 6px 18px; border-radius: 20px; margin-top: 12px; font-size: 0.85rem; letter-spacing: 1px; }
   .header .instruction { color: #22c55e; margin-top: 14px; font-size: 0.9rem; font-weight: 600; }
+  .nav-links { display: flex; justify-content: center; gap: 14px; padding: 16px; background: #111; flex-wrap: wrap; }
+  .nav-links a { color: #8899aa; text-decoration: none; font-size: 0.82rem; padding: 6px 16px; border-radius: 20px; border: 1px solid #333; transition: all 0.3s; }
+  .nav-links a:hover, .nav-links a.active { background: #10b981; color: #000; border-color: #10b981; }
   .container { max-width: 700px; margin: 0 auto; padding: 20px; }
   .post-card { background: #141422; border-radius: 14px; padding: 24px; margin-bottom: 24px; border: 1px solid #222; position: relative; }
-  .post-card:hover { border-color: #1d9bf0; }
-  .post-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
-  .post-number { background: #1d9bf0; color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; }
-  .trending-tag { background: #1d9bf022; color: #1d9bf0; border: 1px solid #1d9bf044; padding: 4px 12px; border-radius: 14px; font-size: 0.75rem; font-weight: 700; }
+  .post-card:hover { border-color: #10b981; }
+  .post-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+  .post-number { background: #10b981; color: #000; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; }
+  .trending-tag { background: #10b98122; color: #10b981; border: 1px solid #10b98144; padding: 4px 12px; border-radius: 14px; font-size: 0.75rem; font-weight: 700; }
   .post-text { white-space: pre-wrap; font-size: 0.95rem; line-height: 1.7; color: #ddd; padding: 16px; background: #0d0d1a; border-radius: 10px; border: 1px solid #1a1a2e; }
-  .copy-btn { display: block; width: 100%; margin-top: 14px; padding: 12px; background: #1d9bf0; color: #fff; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
-  .copy-btn:hover { background: #1a8cd8; }
+  .copy-btn { display: block; width: 100%; margin-top: 14px; padding: 12px; background: #10b981; color: #000; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+  .copy-btn:hover { background: #34d399; }
   .copy-btn.copied { background: #22c55e; }
-  .post-link { display: block; width: 100%; margin-top: 8px; padding: 12px; background: transparent; color: #1d9bf0; border: 2px solid #1d9bf0; border-radius: 8px; font-size: 0.9rem; font-weight: 700; cursor: pointer; text-decoration: none; text-align: center; transition: all 0.3s; }
-  .post-link:hover { background: #1d9bf022; }
+  .post-link { display: block; width: 100%; margin-top: 8px; padding: 12px; background: transparent; color: #10b981; border: 2px solid #10b981; border-radius: 8px; font-size: 0.9rem; font-weight: 700; cursor: pointer; text-decoration: none; text-align: center; transition: all 0.3s; }
+  .post-link:hover { background: #10b98122; }
   .char-count { text-align: right; font-size: 0.75rem; color: #555; margin-top: 6px; }
-  .footer { text-align: center; padding: 30px; color: #444; font-size: 0.8rem; }
-  .footer a { color: #1d9bf0; text-decoration: none; }
-  .tip { background: #1d9bf011; border: 1px solid #1d9bf033; border-radius: 10px; padding: 16px; margin-bottom: 30px; }
+  .tip { background: #10b98111; border: 1px solid #10b98133; border-radius: 10px; padding: 16px; margin-bottom: 30px; }
   .tip p { color: #8899aa; font-size: 0.85rem; }
-  .tip strong { color: #1d9bf0; }
+  .tip strong { color: #10b981; }
+  .footer { text-align: center; padding: 30px; color: #444; font-size: 0.8rem; }
+  .footer a { color: #10b981; text-decoration: none; }
 </style>
 </head>
 <body>
@@ -37,187 +41,250 @@
 <div class="header">
   <h1>X POSTS — READY TO PUBLISH</h1>
   <div class="subtitle">The Tribal Box &bull; Trending Topic Posts</div>
-  <div class="date">March 17, 2026 &mdash; 6 Posts Targeting Live Trends</div>
+  <div class="date">March 18, 2026</div>
+  <div class="edition">AFTERNOON EDITION &bull; FRESH TRENDS</div>
   <div class="instruction">Click "Copy Post" &rarr; Open X &rarr; Paste &rarr; Post</div>
+</div>
+
+<div class="nav-links">
+  <a href="index.html">India Stories</a>
+  <a href="international.html">International Stories</a>
+  <a href="x-posts.html" class="active">X Trending Posts</a>
+  <a href="katol-school.html">Katol School Intel</a>
 </div>
 
 <div class="container">
 
 <div class="tip">
-  <p><strong>Posting Strategy:</strong> Post in order, 5-10 min gap between each. Start with Post 1 (Kalpana Chawla) — strongest trending hook right now. Each post rides a currently trending topic on Indian X.</p>
+  <p><strong>Posting Strategy:</strong> Post in order, 8-12 min gaps. Post 1 (Venezuela WBC) is PEAK RIGHT NOW — post immediately. Post 2 (Larijani/chappal) is the most powerful. Post 4 (Vinicius Jr) should go out during evening Champions League discussion. Save Post 6 (BTS) for late night when ARMY is most active.</p>
 </div>
 
 <!-- POST 1 -->
 <div class="post-card">
   <div class="post-header">
     <div class="post-number">1</div>
-    <div class="trending-tag">Trending: कल्पना चावला</div>
+    <div class="trending-tag">Trending: Venezuela / #WorldBaseballClassic</div>
   </div>
-  <div class="post-text" id="text1">Today is Kalpana Chawla's 64th birth anniversary.
+  <div class="post-text" id="text1">Venezuela just won the World Baseball Classic.
 
-In 2 days, Sunita Williams returns to Earth after 9 months stranded in space.
+They beat the USA 3-2. Walk-off in the 9th.
 
-One daughter of India who never came home.
-One who finally will.
+A country in economic collapse.
+A country millions have fled.
+A country the world writes off.
 
-"Happy birthday, Kalpana.
-Welcome home, Sunita."
+Tonight, 30 million Venezuelans screamed at the same time.
 
-The stars remember both. 🇮🇳
+Not about politics. Not about Maduro. Not about sanctions.
 
-#KalpanaChawla #SunitaWilliams</div>
+About nine men on a diamond who refused to lose.
+
+Eugenio Suarez hit the go-ahead double. Then he pointed at the sky. His grandmother died last month. She never saw this.
+
+This isn't a baseball story.
+It's a country remembering what it feels like to win.
+
+#Venezuela #WBC</div>
   <div class="char-count" id="count1"></div>
   <button class="copy-btn" onclick="copyPost('text1', this)">Copy Post</button>
-  <a class="post-link" href="https://x.com/intent/tweet?text=Today%20is%20Kalpana%20Chawla%E2%80%99s%2064th%20birth%20anniversary.%0A%0AIn%202%20days%2C%20Sunita%20Williams%20returns%20to%20Earth%20after%209%20months%20stranded%20in%20space.%0A%0AOne%20daughter%20of%20India%20who%20never%20came%20home.%0AOne%20who%20finally%20will.%0A%0A%E2%80%9CHappy%20birthday%2C%20Kalpana.%0AWelcome%20home%2C%20Sunita.%E2%80%9D%0A%0AThe%20stars%20remember%20both.%20%F0%9F%87%AE%F0%9F%87%B3%0A%0A%23KalpanaChawla%20%23SunitaWilliams" target="_blank">Open in X to Post &rarr;</a>
+  <a class="post-link" href="" id="link1" target="_blank">Open in X to Post &rarr;</a>
 </div>
 
 <!-- POST 2 -->
 <div class="post-card">
   <div class="post-header">
     <div class="post-number">2</div>
-    <div class="trending-tag">Trending: नंदा देवी / Vadinar</div>
+    <div class="trending-tag">Trending: #AliLarijani / #NATO</div>
   </div>
-  <div class="post-text" id="text2">A mother in India hasn't cooked in 7 days.
+  <div class="post-text" id="text2">#AliLarijani is trending.
+#NATO is trending.
 
-She can't leave the gas queue — she'll lose her place.
-She can't go to work — so her children don't eat.
+You know what's not trending?
 
-Today, the tanker "Nanda Devi" — 46,000 metric tonnes of LPG — docked at Vadinar, escorted by the Indian Navy through a war zone.
+In Bhainsa, Telangana, women are leaving their chappals in the gas queue overnight.
 
-She doesn't know the ship's name.
-She just knows maybe tomorrow, she can cook.
+Because they can't stand for 14 hours. So their slippers wait instead.
 
-#NandaDevi #Vadinar #LPGCrisis</div>
+The Strait of Hormuz shut down because of the same war that killed Larijani.
+
+That war is 12,000 km away.
+
+But a woman in India can't cook dinner because of it.
+
+She doesn't know who Larijani was.
+She just knows her cylinder is empty.
+
+Geopolitics has a body count nobody tracks — the kitchen.
+
+#LPGCrisis #India</div>
   <div class="char-count" id="count2"></div>
   <button class="copy-btn" onclick="copyPost('text2', this)">Copy Post</button>
-  <a class="post-link" href="https://x.com/intent/tweet?text=A%20mother%20in%20India%20hasn%E2%80%99t%20cooked%20in%207%20days.%0A%0AShe%20can%E2%80%99t%20leave%20the%20gas%20queue%20%E2%80%94%20she%E2%80%99ll%20lose%20her%20place.%0AShe%20can%E2%80%99t%20go%20to%20work%20%E2%80%94%20so%20her%20children%20don%E2%80%99t%20eat.%0A%0AToday%2C%20the%20tanker%20%E2%80%9CNanda%20Devi%E2%80%9D%20%E2%80%94%2046%2C000%20metric%20tonnes%20of%20LPG%20%E2%80%94%20docked%20at%20Vadinar%2C%20escorted%20by%20the%20Indian%20Navy%20through%20a%20war%20zone.%0A%0AShe%20doesn%E2%80%99t%20know%20the%20ship%E2%80%99s%20name.%0AShe%20just%20knows%20maybe%20tomorrow%2C%20she%20can%20cook.%0A%0A%23NandaDevi%20%23Vadinar%20%23LPGCrisis" target="_blank">Open in X to Post &rarr;</a>
+  <a class="post-link" href="" id="link2" target="_blank">Open in X to Post &rarr;</a>
 </div>
 
 <!-- POST 3 -->
 <div class="post-card">
   <div class="post-header">
     <div class="post-number">3</div>
-    <div class="trending-tag">Trending: Afghanistan / काबुल</div>
+    <div class="trending-tag">Trending: #DhurandharTheRevenge</div>
   </div>
-  <div class="post-text" id="text3">While the world debates Afghanistan in headlines, here's a story you won't see on TV:
+  <div class="post-text" id="text3">#DhurandharTheRevenge releases tomorrow with 123 Cr pre-sales.
 
-Indian businessmen in Dubai opened their homes — 64 apartments, an 80,000 sq ft farmhouse, free food, free transport — for thousands of Indians stranded when missiles shut down Dubai's airspace.
+Meanwhile, the real revenge story in India today:
 
-No government order.
-No corporate campaign.
-Just people opening doors.
+A government school in West Bengal served golgappa as the midday meal.
 
-Missiles closed the sky.
-But they couldn't close a single Indian door.
+Because the kitchen has no gas.
 
-#Afghanistan #DubaiCrisis #IndiansInDubai</div>
+For some children, this is their only meal.
+
+Ranveer Singh's character fights enemies on screen.
+
+This school is fighting to feed 8-year-olds off-screen.
+
+One story costs 300 crore to make.
+The other costs ₹50 per cylinder to solve.
+
+Bollywood makes revenge fantasies.
+India's kitchens are living in survival mode.
+
+#LPGCrisis #MidDayMeal</div>
   <div class="char-count" id="count3"></div>
   <button class="copy-btn" onclick="copyPost('text3', this)">Copy Post</button>
-  <a class="post-link" href="https://x.com/intent/tweet?text=While%20the%20world%20debates%20Afghanistan%20in%20headlines%2C%20here%E2%80%99s%20a%20story%20you%20won%E2%80%99t%20see%20on%20TV%3A%0A%0AIndian%20businessmen%20in%20Dubai%20opened%20their%20homes%20%E2%80%94%2064%20apartments%2C%20an%2080%2C000%20sq%20ft%20farmhouse%2C%20free%20food%2C%20free%20transport%20%E2%80%94%20for%20thousands%20of%20Indians%20stranded%20when%20missiles%20shut%20down%20Dubai%E2%80%99s%20airspace.%0A%0ANo%20government%20order.%0ANo%20corporate%20campaign.%0AJust%20people%20opening%20doors.%0A%0AMissiles%20closed%20the%20sky.%0ABut%20they%20couldn%E2%80%99t%20close%20a%20single%20Indian%20door.%0A%0A%23Afghanistan%20%23DubaiCrisis%20%23IndiansInDubai" target="_blank">Open in X to Post &rarr;</a>
+  <a class="post-link" href="" id="link3" target="_blank">Open in X to Post &rarr;</a>
 </div>
 
 <!-- POST 4 -->
 <div class="post-card">
   <div class="post-header">
     <div class="post-number">4</div>
-    <div class="trending-tag">Trending: #Stop_Insulting_Paramilitary</div>
+    <div class="trending-tag">Trending: #ChampionsLeague / Real Madrid</div>
   </div>
-  <div class="post-text" id="text4">While paramilitary trends on X, here's what's NOT trending:
+  <div class="post-text" id="text4">Real Madrid 5-1 Man City. Vinicius Jr with a brace.
 
-In Manali last night, 1,000+ vehicles were buried in snow. No signal. No way out.
+But here's a story from today that hit harder than any goal:
 
-A telecom worker named Maheshwar Sharma climbed icy mountain trails at NIGHT — with a headlamp — to fix a tower so strangers could make one phone call home.
+Japan sent a plane to evacuate people from the Middle East.
+11 South Koreans were on board.
 
-BRO soldiers plowed snow for 12 straight hours.
-Banjar police carried tourists on their backs.
+South Korea sent a military plane.
+2 Japanese nationals were on board.
 
-Not all heroes wear uniforms.
-Some just fix the signal.
+80 years ago, these countries couldn't look at each other.
+Colonial scars. Generational anger.
 
-#ManaliRescue #BROIndia #RealHeroes</div>
+Today, they sent planes to save each other's citizens.
+
+No one scored. No one won.
+Everyone came home.
+
+That's the real Champions League.
+
+#JapanKorea #Evacuation</div>
   <div class="char-count" id="count4"></div>
   <button class="copy-btn" onclick="copyPost('text4', this)">Copy Post</button>
-  <a class="post-link" href="https://x.com/intent/tweet?text=While%20paramilitary%20trends%20on%20X%2C%20here%E2%80%99s%20what%E2%80%99s%20NOT%20trending%3A%0A%0AIn%20Manali%20last%20night%2C%201%2C000%2B%20vehicles%20were%20buried%20in%20snow.%20No%20signal.%20No%20way%20out.%0A%0AA%20telecom%20worker%20named%20Maheshwar%20Sharma%20climbed%20icy%20mountain%20trails%20at%20NIGHT%20%E2%80%94%20with%20a%20headlamp%20%E2%80%94%20to%20fix%20a%20tower%20so%20strangers%20could%20make%20one%20phone%20call%20home.%0A%0ABRO%20soldiers%20plowed%20snow%20for%2012%20straight%20hours.%0ABanjar%20police%20carried%20tourists%20on%20their%20backs.%0A%0ANot%20all%20heroes%20wear%20uniforms.%0ASome%20just%20fix%20the%20signal.%0A%0A%23ManaliRescue%20%23BROIndia%20%23RealHeroes" target="_blank">Open in X to Post &rarr;</a>
+  <a class="post-link" href="" id="link4" target="_blank">Open in X to Post &rarr;</a>
 </div>
 
 <!-- POST 5 -->
 <div class="post-card">
   <div class="post-header">
     <div class="post-number">5</div>
-    <div class="trending-tag">Trending: पद्म भूषण</div>
+    <div class="trending-tag">Trending: Neymar</div>
   </div>
-  <div class="post-text" id="text5">Padma Bhushan trends today.
+  <div class="post-text" id="text5">Neymar left out of Brazil's squad.
 
-But no award was given to that Rapido rider in Assam named Arfan.
+You know who's IN a squad today?
 
-His passenger was a blind college student. The app said "ride complete."
+Arthur Henrique, 24, from Sabará, Brazil.
 
-Arfan parked his bike. Took the student's hand. Walked him all the way to the college gate.
+When floods hit on March 9, everyone ran inside.
+Arthur ran outside. To help neighbours drain water.
 
-No one asked him to.
-No one was watching.
+The ground collapsed. Floodwater pulled him underground.
 
-2.9 million people have seen the video since.
+They found him 5 days later. 92 km away. In a river.
 
-Some people don't need a Padma award. They just need a Tuesday morning.
+His friend said: "He was so good that he died helping people."
 
-#PadmaBhushan #Kindness #Arfan</div>
+Neymar lost a spot in a team.
+Arthur lost his life for one.
+
+Brazil talks about who wears the jersey.
+Sabará remembers who showed up without one.
+
+#Brazil #ArthurHenrique</div>
   <div class="char-count" id="count5"></div>
   <button class="copy-btn" onclick="copyPost('text5', this)">Copy Post</button>
-  <a class="post-link" href="https://x.com/intent/tweet?text=Padma%20Bhushan%20trends%20today.%0A%0ABut%20no%20award%20was%20given%20to%20that%20Rapido%20rider%20in%20Assam%20named%20Arfan.%0A%0AHis%20passenger%20was%20a%20blind%20college%20student.%20The%20app%20said%20%E2%80%9Cride%20complete.%E2%80%9D%0A%0AArfan%20parked%20his%20bike.%20Took%20the%20student%E2%80%99s%20hand.%20Walked%20him%20all%20the%20way%20to%20the%20college%20gate.%0A%0ANo%20one%20asked%20him%20to.%0ANo%20one%20was%20watching.%0A%0A2.9%20million%20people%20have%20seen%20the%20video%20since.%0A%0ASome%20people%20don%E2%80%99t%20need%20a%20Padma%20award.%20They%20just%20need%20a%20Tuesday%20morning.%0A%0A%23PadmaBhushan%20%23Kindness%20%23Arfan" target="_blank">Open in X to Post &rarr;</a>
+  <a class="post-link" href="" id="link5" target="_blank">Open in X to Post &rarr;</a>
 </div>
 
 <!-- POST 6 -->
 <div class="post-card">
   <div class="post-header">
     <div class="post-number">6</div>
-    <div class="trending-tag">Trending: #JalMahotsav2026</div>
+    <div class="trending-tag">Trending: #BTS_ARIRANG / #BTSComeback2026</div>
   </div>
-  <div class="post-text" id="text6">While #JalMahotsav2026 celebrates water, here's a story about fire:
+  <div class="post-text" id="text6">#BTS_ARIRANG drops in 2 days.
 
-3 AM. Cuttack, Odisha. SCB Medical College ICU.
+ARMY is celebrating. As they should.
 
-11 patients on ventilators. Couldn't move. Couldn't run. Couldn't scream.
+But here's a story that sounds like a BTS lyric:
 
-A short circuit. A spark.
-In the one room they were told: "You're safe here."
+70 Kashmiri medical students were stranded in Iran. Borders shut. No flights. 9 days of silence.
 
-11 people walked into that hospital to get better.
-None of them walked out.
+They were evacuated through 3 countries.
+Bus to Armenia. Flight to Dubai. Then Delhi.
 
-#CuttackHospitalFire #PatientSafety #Accountability</div>
+One student landed at 4 AM — still in his lab coat. He hadn't had time to change.
+
+His mother ran through the barrier and grabbed him so hard he stumbled.
+
+He didn't say a word. He just let her hold him.
+
+BTS sings about coming home.
+These students lived it.
+
+#Kashmir #HomeIsAPerson</div>
   <div class="char-count" id="count6"></div>
   <button class="copy-btn" onclick="copyPost('text6', this)">Copy Post</button>
-  <a class="post-link" href="https://x.com/intent/tweet?text=While%20%23JalMahotsav2026%20celebrates%20water%2C%20here%E2%80%99s%20a%20story%20about%20fire%3A%0A%0A3%20AM.%20Cuttack%2C%20Odisha.%20SCB%20Medical%20College%20ICU.%0A%0A11%20patients%20on%20ventilators.%20Couldn%E2%80%99t%20move.%20Couldn%E2%80%99t%20run.%20Couldn%E2%80%99t%20scream.%0A%0AA%20short%20circuit.%20A%20spark.%0AIn%20the%20one%20room%20they%20were%20told%3A%20%E2%80%9CYou%E2%80%99re%20safe%20here.%E2%80%9D%0A%0A11%20people%20walked%20into%20that%20hospital%20to%20get%20better.%0ANone%20of%20them%20walked%20out.%0A%0A%23CuttackHospitalFire%20%23PatientSafety%20%23Accountability" target="_blank">Open in X to Post &rarr;</a>
+  <a class="post-link" href="" id="link6" target="_blank">Open in X to Post &rarr;</a>
+</div>
+
 </div>
 
 <div class="footer">
-  <p>Built by <a href="https://rajeevttb.github.io/story-intelligence-/">The Tribal Box</a> &mdash; March 17, 2026</p>
-  <p style="margin-top:6px; color:#555;">Tip: Click "Open in X to Post" for instant posting. Or use "Copy Post" to paste manually.</p>
-</div>
-
+  <p>The Tribal Box &mdash; X Trending Posts &mdash; March 18, 2026 Afternoon Edition</p>
+  <p><a href="index.html">India Stories &rarr;</a> &nbsp;|&nbsp; <a href="international.html">International Stories &rarr;</a></p>
 </div>
 
 <script>
-// Show character counts
-document.querySelectorAll('[id^="text"]').forEach((el, i) => {
-  const count = el.textContent.length;
-  const countEl = document.getElementById('count' + (i+1));
-  const color = count > 280 ? '#e94560' : '#22c55e';
-  countEl.innerHTML = `<span style="color:${color}">${count}/280 characters</span>`;
-});
-
 function copyPost(id, btn) {
-  const text = document.getElementById(id).textContent;
+  const text = document.getElementById(id).innerText;
   navigator.clipboard.writeText(text).then(() => {
     btn.textContent = 'Copied!';
     btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = 'Copy Post';
-      btn.classList.remove('copied');
-    }, 2000);
+    setTimeout(() => { btn.textContent = 'Copy Post'; btn.classList.remove('copied'); }, 2000);
   });
 }
+
+// Generate intent links and char counts
+document.addEventListener('DOMContentLoaded', () => {
+  for (let i = 1; i <= 6; i++) {
+    const textEl = document.getElementById('text' + i);
+    const countEl = document.getElementById('count' + i);
+    const linkEl = document.getElementById('link' + i);
+    if (textEl && countEl) {
+      const text = textEl.innerText;
+      countEl.textContent = text.length + ' / 280 chars';
+      countEl.style.color = text.length > 280 ? '#ef4444' : '#555';
+    }
+    if (textEl && linkEl) {
+      const encoded = encodeURIComponent(textEl.innerText);
+      linkEl.href = 'https://x.com/intent/tweet?text=' + encoded;
+    }
+  }
+});
 </script>
 
 </body>
