@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOS School of Scholars – Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #f8f9fb;
+    color: #1e293b;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .header-left h1 { font-size: 1.4rem; font-weight: 700; color: #0f172a; }
+  .header-left p { font-size: 0.82rem; color: #64748b; margin-top: 2px; }
+  .header-right { display: flex; gap: 10px; align-items: center; }
+  .btn {
+    padding: 8px 18px; border-radius: 8px; font-size: 0.82rem; font-weight: 600;
+    cursor: pointer; border: 1px solid #e2e8f0; background: #fff; color: #475569; transition: all 0.2s;
+  }
+  .btn:hover { background: #f1f5f9; }
+  .btn-primary { background: #2563eb; color: #fff; border-color: #2563eb; }
+  .btn-primary:hover { background: #1d4ed8; }
+
+  /* ===== LAYOUT ===== */
+  .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+  .section { margin-bottom: 40px; }
+  .section-title {
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+    color: #94a3b8; margin-bottom: 16px; padding-left: 2px;
+  }
+
+  /* ===== KPI CARDS ===== */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .kpi-row-secondary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 50%;
+  }
+  .kpi-card {
+    background: #fff; border-radius: 12px; padding: 22px 24px;
+    border: 1px solid #e2e8f0; transition: box-shadow 0.2s;
+  }
+  .kpi-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+  .kpi-label {
+    font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.8px; color: #94a3b8; margin-bottom: 8px;
+  }
+  .kpi-value { font-size: 2rem; font-weight: 800; color: #0f172a; line-height: 1; }
+  .kpi-sub { font-size: 0.78rem; color: #64748b; margin-top: 6px; }
+  .kpi-card.accent-red { border-left: 4px solid #ef4444; }
+  .kpi-card.accent-green { border-left: 4px solid #22c55e; }
+  .kpi-card.accent-blue { border-left: 4px solid #3b82f6; }
+  .kpi-card.accent-amber { border-left: 4px solid #f59e0b; }
+
+  /* ===== FILTERS ===== */
+  .filters {
+    display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap;
+    background: #fff; border-radius: 12px; padding: 18px 22px;
+    border: 1px solid #e2e8f0;
+  }
+  .filter-group { display: flex; flex-direction: column; gap: 4px; }
+  .filter-group label {
+    font-size: 0.68rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.5px; color: #94a3b8;
+  }
+  .filter-group select, .filter-group input {
+    padding: 8px 14px; border: 1px solid #e2e8f0; border-radius: 8px;
+    font-size: 0.85rem; color: #334155; background: #fff; min-width: 170px; outline: none;
+  }
+  .filter-group select:focus, .filter-group input:focus { border-color: #3b82f6; }
+  .filter-pills { display: flex; gap: 8px; margin-left: auto; }
+  .pill {
+    padding: 8px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 600;
+    cursor: pointer; border: 1px solid #e2e8f0; background: #fff; color: #64748b; transition: all 0.2s;
+  }
+  .pill:hover, .pill.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: #fff; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden;
+  }
+  .card-header {
+    padding: 16px 22px; border-bottom: 1px solid #f1f5f9;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .card-header h3 { font-size: 0.95rem; font-weight: 700; color: #0f172a; }
+  .card-body { padding: 22px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  /* ===== TABLE ===== */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  thead th {
+    background: #f8fafc; padding: 14px 18px; text-align: left;
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.8px; color: #64748b; border-bottom: 2px solid #e2e8f0;
+    cursor: pointer; user-select: none; white-space: nowrap;
+  }
+  thead th:hover { color: #2563eb; }
+  thead th .sort-icon { font-size: 0.6rem; margin-left: 4px; opacity: 0.3; }
+  tbody td { padding: 14px 18px; border-bottom: 1px solid #f1f5f9; }
+  tbody tr:hover { background: #fafbfd; }
+  tbody tr.expanded { background: #f8fafc; }
+  tfoot td { padding: 14px 18px; }
+
+  .status-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 12px;
+    font-size: 0.72rem; font-weight: 700; white-space: nowrap;
+  }
+  .status-excellent { background: #dcfce7; color: #15803d; }
+  .status-good { background: #fef9c3; color: #a16207; }
+  .status-attention { background: #fee2e2; color: #b91c1c; }
+
+  .participation-bar {
+    width: 80px; height: 8px; background: #f1f5f9; border-radius: 4px;
+    overflow: hidden; display: inline-block; vertical-align: middle; margin-right: 8px;
+  }
+  .participation-bar-fill { height: 100%; border-radius: 4px; }
+  .fill-excellent { background: #22c55e; }
+  .fill-good { background: #f59e0b; }
+  .fill-attention { background: #ef4444; }
+
+  /* ===== EXPANDABLE ROWS ===== */
+  .expand-btn {
+    background: none; border: 1px solid #e2e8f0; border-radius: 6px;
+    width: 28px; height: 28px; cursor: pointer; color: #64748b;
+    font-size: 0.75rem; display: inline-flex; align-items: center;
+    justify-content: center; transition: all 0.2s;
+  }
+  .expand-btn:hover { background: #f1f5f9; color: #2563eb; border-color: #93c5fd; }
+  .expand-btn.open { background: #eff6ff; color: #2563eb; border-color: #93c5fd; transform: rotate(90deg); }
+  .student-row { display: none; }
+  .student-row.visible { display: table-row; }
+  .student-row td {
+    padding: 12px 18px 16px 52px; background: #fafbfd;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .student-names-grid {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .student-chip {
+    display: inline-block; padding: 4px 12px; background: #fff;
+    border: 1px solid #e2e8f0; border-radius: 16px; font-size: 0.78rem;
+    color: #475569;
+  }
+  .student-chip.sharp { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; }
+
+  /* ===== CHARTS ===== */
+  .chart-container { position: relative; width: 100%; }
+  .chart-container canvas { max-height: 300px; }
+
+  /* ===== INSIGHT CARDS ===== */
+  .insight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .insight-card {
+    background: #fff; border-radius: 12px; padding: 20px; border: 1px solid #e2e8f0;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .insight-icon {
+    width: 36px; height: 36px; border-radius: 10px; display: flex;
+    align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+  }
+  .insight-icon.red { background: #fef2f2; color: #dc2626; }
+  .insight-icon.green { background: #f0fdf4; color: #16a34a; }
+  .insight-icon.blue { background: #eff6ff; color: #2563eb; }
+  .insight-icon.amber { background: #fffbeb; color: #d97706; }
+  .insight-text h4 { font-size: 0.88rem; font-weight: 600; color: #1e293b; margin-bottom: 2px; }
+  .insight-text p { font-size: 0.78rem; color: #64748b; }
+
+  /* ===== ACTION CARDS ===== */
+  .action-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .action-card {
+    border-radius: 12px; padding: 22px; border: 1px solid;
+  }
+  .action-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 8px; }
+  .action-card p { font-size: 0.82rem; color: #64748b; margin-bottom: 8px; }
+  .action-card ul { padding-left: 18px; }
+  .action-card li { font-size: 0.82rem; color: #475569; margin-bottom: 4px; }
+  .action-green { background: #f0fdf4; border-color: #bbf7d0; }
+  .action-green h4 { color: #15803d; }
+  .action-red { background: #fef2f2; border-color: #fecaca; }
+  .action-red h4 { color: #b91c1c; }
+  .action-blue { background: #eff6ff; border-color: #bfdbfe; }
+  .action-blue h4 { color: #1d4ed8; }
+
+  /* ===== ADMISSIONS ===== */
+  .admissions-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .admission-stat {
+    background: #fff; border-radius: 12px; padding: 22px; border: 1px solid #e2e8f0;
+    text-align: center;
+  }
+  .admission-stat .big-num { font-size: 2.2rem; font-weight: 800; line-height: 1; }
+  .admission-stat .big-label { font-size: 0.82rem; color: #64748b; margin-top: 6px; }
+
+  /* ===== FOOTER ===== */
+  .footer { text-align: center; padding: 20px 0; color: #94a3b8; font-size: 0.75rem; }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .header { position: static; }
+    .filters, .header-right { display: none; }
+    body { background: #fff; }
+    .section { page-break-inside: avoid; }
+  }
+  @media (max-width: 1024px) {
+    .grid-2, .action-grid, .admissions-row { grid-template-columns: 1fr; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .kpi-row-secondary { max-width: 100%; }
+  }
+  @media (max-width: 700px) {
+    .header { padding: 16px; }
+    .container { padding: 20px 14px; }
+    .kpi-row { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .kpi-value { font-size: 1.5rem; }
+    .filters { flex-direction: column; align-items: stretch; }
+    .filter-pills { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== 1. HEADER ===== -->
+<div class="header">
+  <div class="header-left">
+    <h1>SOS School of Scholars</h1>
+    <p>Enrollment & Participation Dashboard &mdash; Academic Year 2025-26</p>
+  </div>
+  <div class="header-right">
+    <button class="btn" onclick="window.print()">Export / Print</button>
+    <button class="btn btn-primary" onclick="resetFilters()">Reset</button>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ===== 2. PRIMARY KPIs (4 cards) ===== -->
+<div class="section">
+  <div class="section-title">School Overview</div>
+  <div class="kpi-row" id="kpiPrimary"></div>
+  <div class="kpi-row-secondary" id="kpiSecondary" style="margin-top:12px;"></div>
+</div>
+
+<!-- ===== 3. FILTERS ===== -->
+<div class="section">
+  <div class="filters">
+    <div class="filter-group">
+      <label>Class</label>
+      <select id="filterClass" onchange="applyFilters()">
+        <option value="all">All Classes</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Search Student</label>
+      <input type="text" id="searchStudent" placeholder="Type a name..." oninput="applyFilters()">
+    </div>
+    <div class="filter-group">
+      <label>Sort</label>
+      <select id="sortBy" onchange="applyFilters()">
+        <option value="class">Class Order</option>
+        <option value="total_desc">Students (High–Low)</option>
+        <option value="total_asc">Students (Low–High)</option>
+        <option value="participation_desc">Participation (High–Low)</option>
+        <option value="participation_asc">Participation (Low–High)</option>
+      </select>
+    </div>
+    <div class="filter-pills">
+      <button class="pill active" data-filter="all" onclick="setQuickFilter('all', this)">All</button>
+      <button class="pill" data-filter="excellent" onclick="setQuickFilter('excellent', this)">Excellent</button>
+      <button class="pill" data-filter="attention" onclick="setQuickFilter('attention', this)">Needs Attention</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 4. CHARTS (2-column) ===== -->
+<div class="section">
+  <div class="section-title">Visual Overview</div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-header"><h3>Student Strength by Class</h3></div>
+      <div class="card-body chart-container"><canvas id="chartStrength"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Participation Rate by Class</h3></div>
+      <div class="card-body chart-container"><canvas id="chartParticipation"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 5. CLASS TABLE (expandable rows) ===== -->
+<div class="section">
+  <div class="section-title">Class-wise Breakdown</div>
+  <div class="card">
+    <div class="card-header">
+      <h3 id="tableTitle">All Classes</h3>
+      <span style="font-size:0.78rem; color:#64748b;" id="tableCount">12 classes</span>
+    </div>
+    <div class="card-body table-wrap" style="padding:0;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:40px;"></th>
+            <th onclick="sortTable('class')">Class <span class="sort-icon">&#x25B2;&#x25BC;</span></th>
+            <th onclick="sortTable('total')">Total <span class="sort-icon">&#x25B2;&#x25BC;</span></th>
+            <th onclick="sortTable('sharp')">Sharp <span class="sort-icon">&#x25B2;&#x25BC;</span></th>
+            <th onclick="sortTable('participation')">Participation <span class="sort-icon">&#x25B2;&#x25BC;</span></th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+        <tfoot id="tableFoot"></tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 6. INSIGHTS (3-4 compact cards) ===== -->
+<div class="section">
+  <div class="section-title">Key Insights</div>
+  <div class="insight-grid" id="insightsPanel"></div>
+</div>
+
+<!-- ===== 7. ACTION PANELS (3 cards) ===== -->
+<div class="section">
+  <div class="section-title">Action Items</div>
+  <div class="action-grid" id="actionPanel"></div>
+</div>
+
+<!-- ===== 8. ADMISSIONS OPPORTUNITY ===== -->
+<div class="section">
+  <div class="section-title">Admissions Opportunity</div>
+  <div class="admissions-row" id="admissionsRow"></div>
+</div>
+
+<!-- ===== 9. FOOTER ===== -->
+<div class="footer">
+  SOS School of Scholars &mdash; Generated <span id="genDate"></span> &mdash; Internal use only
+</div>
+
+</div>
+
+<script>
+/* ===== DATA ===== */
+const SCHOOL = {
+  name: "SOS School of Scholars",
+  capacity: 350,
+  currentStudents: 116,
+  emptySeats: 234,
+  occupancyRate: 33.14,
+  totalSharp: 58,
+  participationRate: 50
+};
+
+const CLASS_DATA = [
+  { id: 1, class: "Nursery", total: 8, sharp: 6, names: ["Mayank Pawar", "Prakhyat Mankawde", "Lakshita Dhawad", "Khushmita Tawade", "Drushti Khandate", "Kartik Yuvante"] },
+  { id: 2, class: "KG-I", total: 4, sharp: 3, names: ["Janvi Wanjari", "Shivanshi Wanjari", "Gouransh Wanjari"] },
+  { id: 3, class: "KG-II", total: 7, sharp: 5, names: ["Vedika Nishane", "Vihan Kamble", "Rishabh Rajput", "Devika Ghatol", "Lavyansh Behaniya"] },
+  { id: 4, class: "Class 1", total: 13, sharp: 6, names: ["Devika Solav", "Vanshika", "Navnit", "Rutvij Raut", "Gokarn", "Revansh"] },
+  { id: 5, class: "Class 2", total: 13, sharp: 6, names: ["Haniya Ali", "Sukena Ali", "Ashara Sheikh", "Vehan Gujwar", "Harshit Parate", "Shravani Kude"] },
+  { id: 6, class: "Class 3", total: 15, sharp: 5, names: ["Hina Kharpuriya", "Vedansh Wanjari", "Advik Gaurkhede", "Samyak Bagde", "Purvi Rahate"] },
+  { id: 7, class: "Class 4", total: 18, sharp: 5, names: ["Krutika Kumeriya", "Dhiraj Wagh", "Kinza Ali", "Hardik Dhawad", "Ishika Tule"] },
+  { id: 8, class: "Class 5", total: 6, sharp: 6, names: ["Yatha Patel", "Farhan Sheikh", "Hardik Bhelkar", "Monit Nagdeve", "Vansh Dhawral", "Soham Hiwarkar"] },
+  { id: 9, class: "Class 6", total: 18, sharp: 5, names: ["Nidhi Dewase", "Mahak Kharpuriya", "Kanak Bhujade", "Dhanshree Bodhale", "Aradhya Tijare"] },
+  { id: 10, class: "Class 7", total: 7, sharp: 4, names: ["Sneha Kharpuriya", "Anushka Somkuwar", "Snehal Paturkar", "Yash Nikose"] },
+  { id: 11, class: "Class 8", total: 4, sharp: 4, names: ["Devanshu Gujwar", "Ankita Nanotkar", "Himanshi Bhelkar", "Gunjan Dhawad"] },
+  { id: 12, class: "Class 9", total: 3, sharp: 3, names: ["Kanal Patel", "Vaishnavi Gujwar", "Saniket Mankar"] }
+];
+
+CLASS_DATA.forEach(c => {
+  c.participation = Math.round((c.sharp / c.total) * 100);
+  c.status = c.participation >= 80 ? "Excellent" : c.participation >= 50 ? "Good" : "Needs Attention";
+});
+
+let currentQuickFilter = 'all';
+
+/* ===== KPIs ===== */
+function renderKPIs() {
+  const primary = [
+    { label: "Total Students", value: SCHOOL.currentStudents, sub: "Currently enrolled", css: "accent-blue" },
+    { label: "School Capacity", value: SCHOOL.capacity, sub: "Maximum seats", css: "" },
+    { label: "Sharp Students", value: SCHOOL.totalSharp, sub: "Actively participating", css: "accent-green" },
+    { label: "Participation Rate", value: SCHOOL.participationRate + "%", sub: "School-wide average", css: "accent-amber" }
+  ];
+  const secondary = [
+    { label: "Empty Seats", value: SCHOOL.emptySeats, sub: "Available for admission", css: "accent-red" },
+    { label: "Occupancy", value: SCHOOL.occupancyRate + "%", sub: "Capacity utilization", css: "accent-amber" }
+  ];
+  document.getElementById('kpiPrimary').innerHTML = primary.map(k => `
+    <div class="kpi-card ${k.css}">
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-value">${k.value}</div>
+      <div class="kpi-sub">${k.sub}</div>
+    </div>
+  `).join('');
+  document.getElementById('kpiSecondary').innerHTML = secondary.map(k => `
+    <div class="kpi-card ${k.css}">
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-value">${k.value}</div>
+      <div class="kpi-sub">${k.sub}</div>
+    </div>
+  `).join('');
+}
+
+/* ===== TABLE ===== */
+function getFilteredData() {
+  let data = [...CLASS_DATA];
+  const classFilter = document.getElementById('filterClass').value;
+  const search = document.getElementById('searchStudent').value.toLowerCase().trim();
+  const sortBy = document.getElementById('sortBy').value;
+
+  if (classFilter !== 'all') data = data.filter(c => c.class === classFilter);
+  if (currentQuickFilter === 'excellent') data = data.filter(c => c.status === 'Excellent');
+  else if (currentQuickFilter === 'attention') data = data.filter(c => c.status === 'Needs Attention');
+  if (search) data = data.filter(c => c.names.some(n => n.toLowerCase().includes(search)));
+
+  switch(sortBy) {
+    case 'total_desc': data.sort((a,b) => b.total - a.total); break;
+    case 'total_asc': data.sort((a,b) => a.total - b.total); break;
+    case 'sharp_desc': data.sort((a,b) => b.sharp - a.sharp); break;
+    case 'participation_desc': data.sort((a,b) => b.participation - a.participation); break;
+    case 'participation_asc': data.sort((a,b) => a.participation - b.participation); break;
+    default: data.sort((a,b) => a.id - b.id);
+  }
+  return data;
+}
+
+function statusClass(s) {
+  if (s === 'Excellent') return 'status-excellent';
+  if (s === 'Good') return 'status-good';
+  return 'status-attention';
+}
+
+function barFillClass(p) {
+  if (p >= 80) return 'fill-excellent';
+  if (p >= 50) return 'fill-good';
+  return 'fill-attention';
+}
+
+function renderTable() {
+  const data = getFilteredData();
+  const search = document.getElementById('searchStudent').value.toLowerCase().trim();
+  const tbody = document.getElementById('tableBody');
+
+  let html = '';
+  data.forEach(c => {
+    html += `
+      <tr>
+        <td><button class="expand-btn" onclick="toggleRow(this, ${c.id})">&#9654;</button></td>
+        <td><strong>${c.class}</strong></td>
+        <td>${c.total}</td>
+        <td>${c.sharp}</td>
+        <td>
+          <div class="participation-bar"><div class="participation-bar-fill ${barFillClass(c.participation)}" style="width:${c.participation}%"></div></div>
+          <strong>${c.participation}%</strong>
+        </td>
+        <td><span class="status-badge ${statusClass(c.status)}">${c.status}</span></td>
+      </tr>
+      <tr class="student-row" id="row-${c.id}">
+        <td colspan="6">
+          <div style="font-size:0.72rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px;">
+            Sharp Students (${c.sharp})
+          </div>
+          <div class="student-names-grid">
+            ${c.names.map(n => {
+              const isMatch = search && n.toLowerCase().includes(search);
+              return `<span class="student-chip sharp${isMatch ? '" style="border-color:#fbbf24; background:#fffbeb;' : ''}">${n}</span>`;
+            }).join('')}
+          </div>
+        </td>
+      </tr>
+    `;
+  });
+  tbody.innerHTML = html;
+
+  const totS = data.reduce((s,c) => s + c.total, 0);
+  const totSh = data.reduce((s,c) => s + c.sharp, 0);
+  const avgP = totS > 0 ? Math.round((totSh / totS) * 100) : 0;
+  document.getElementById('tableFoot').innerHTML = `
+    <tr style="background:#f8fafc; font-weight:700;">
+      <td></td><td>TOTAL</td><td>${totS}</td><td>${totSh}</td><td>${avgP}%</td><td></td>
+    </tr>
+  `;
+  document.getElementById('tableCount').textContent = data.length + ' classes';
+}
+
+function toggleRow(btn, id) {
+  const row = document.getElementById('row-' + id);
+  const isVisible = row.classList.contains('visible');
+  row.classList.toggle('visible');
+  btn.classList.toggle('open');
+  btn.closest('tr').classList.toggle('expanded');
+}
+
+/* ===== CHARTS ===== */
+let charts = {};
+function renderCharts() {
+  const labels = CLASS_DATA.map(c => c.class);
+  const totals = CLASS_DATA.map(c => c.total);
+  const sharps = CLASS_DATA.map(c => c.sharp);
+  const parts = CLASS_DATA.map(c => c.participation);
+
+  Object.values(charts).forEach(c => c.destroy && c.destroy());
+
+  charts.strength = new Chart(document.getElementById('chartStrength'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Sharp', data: sharps, backgroundColor: '#22c55e', borderRadius: 6, maxBarThickness: 36 },
+        { label: 'Other', data: totals.map((t,i) => t - sharps[i]), backgroundColor: '#e2e8f0', borderRadius: 6, maxBarThickness: 36 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { font: { size: 11 }, usePointStyle: true, pointStyle: 'circle' } } },
+      scales: {
+        y: { beginAtZero: true, stacked: true, grid: { color: '#f1f5f9' }, ticks: { font: { size: 11 } } },
+        x: { stacked: true, grid: { display: false }, ticks: { font: { size: 10 } } }
+      }
+    }
+  });
+
+  charts.participation = new Chart(document.getElementById('chartParticipation'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Participation %',
+        data: parts,
+        backgroundColor: parts.map(p => p >= 80 ? '#22c55e' : p >= 50 ? '#f59e0b' : '#ef4444'),
+        borderRadius: 6, maxBarThickness: 36
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.parsed.y + '%' } } },
+      scales: {
+        y: { beginAtZero: true, max: 100, grid: { color: '#f1f5f9' }, ticks: { font: { size: 11 }, callback: v => v + '%' } },
+        x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+      }
+    }
+  });
+}
+
+/* ===== INSIGHTS ===== */
+function renderInsights() {
+  const starClasses = CLASS_DATA.filter(c => c.participation === 100);
+  const attentionClasses = CLASS_DATA.filter(c => c.status === 'Needs Attention');
+
+  const insights = [
+    {
+      icon: 'red', emoji: '&#9888;',
+      title: `Only ${SCHOOL.occupancyRate}% capacity used`,
+      desc: `${SCHOOL.emptySeats} of ${SCHOOL.capacity} seats unfilled — major growth room.`
+    },
+    {
+      icon: 'green', emoji: '&#9733;',
+      title: `${starClasses.length} classes at 100% participation`,
+      desc: `${starClasses.map(c => c.class).join(', ')} — every student is active.`
+    },
+    {
+      icon: 'amber', emoji: '&#128202;',
+      title: `${attentionClasses.length} class${attentionClasses.length !== 1 ? 'es' : ''} need attention`,
+      desc: attentionClasses.length > 0 ? `${attentionClasses.map(c => c.class).join(', ')} — large batch, low participation.` : 'All classes performing well.'
+    },
+    {
+      icon: 'blue', emoji: '&#128170;',
+      title: `${SCHOOL.totalSharp} sharp students — strong base`,
+      desc: 'Leverage for testimonials, open houses, and social proof.'
+    }
+  ];
+
+  document.getElementById('insightsPanel').innerHTML = insights.map(i => `
+    <div class="insight-card">
+      <div class="insight-icon ${i.icon}">${i.emoji}</div>
+      <div class="insight-text">
+        <h4>${i.title}</h4>
+        <p>${i.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ===== ACTION PANELS ===== */
+function renderActionPanels() {
+  const star = CLASS_DATA.filter(c => c.participation === 100);
+  const priority = CLASS_DATA.filter(c => c.total >= 13 && c.participation < 50);
+  const growth = CLASS_DATA.filter(c => c.total <= 7);
+
+  document.getElementById('actionPanel').innerHTML = `
+    <div class="action-card action-green">
+      <h4>&#9733; Star Classes</h4>
+      <p>100% participation — use for marketing:</p>
+      <ul>${star.map(c => `<li><strong>${c.class}</strong> — ${c.sharp}/${c.total} active</li>`).join('')}</ul>
+    </div>
+    <div class="action-card action-red">
+      <h4>&#9888; Priority Classes</h4>
+      <p>Large batch, low participation:</p>
+      <ul>${priority.length > 0 ? priority.map(c => `<li><strong>${c.class}</strong> — ${c.total} students, ${c.participation}% active</li>`).join('') : '<li>No classes currently flagged</li>'}</ul>
+    </div>
+    <div class="action-card action-blue">
+      <h4>&#128200; Growth Potential</h4>
+      <p>Small classes — easy to scale:</p>
+      <ul>${growth.map(c => `<li><strong>${c.class}</strong> — only ${c.total} students</li>`).join('')}</ul>
+    </div>
+  `;
+}
+
+/* ===== ADMISSIONS ===== */
+function renderAdmissions() {
+  document.getElementById('admissionsRow').innerHTML = `
+    <div class="admission-stat">
+      <div class="big-num" style="color:#ef4444;">234</div>
+      <div class="big-label">Seats Available</div>
+    </div>
+    <div class="admission-stat">
+      <div class="big-num" style="color:#2563eb;">~20</div>
+      <div class="big-label">Monthly Target</div>
+    </div>
+    <div class="admission-stat">
+      <div class="big-num" style="color:#22c55e;">5/week</div>
+      <div class="big-label">Weekly Admission Goal</div>
+    </div>
+  `;
+}
+
+/* ===== FILTERS ===== */
+function populateClassFilter() {
+  const sel = document.getElementById('filterClass');
+  CLASS_DATA.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.class; opt.textContent = c.class;
+    sel.appendChild(opt);
+  });
+}
+
+function applyFilters() { renderTable(); }
+
+function setQuickFilter(filter, el) {
+  currentQuickFilter = filter;
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  applyFilters();
+}
+
+function resetFilters() {
+  document.getElementById('filterClass').value = 'all';
+  document.getElementById('searchStudent').value = '';
+  document.getElementById('sortBy').value = 'class';
+  currentQuickFilter = 'all';
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  document.querySelector('.pill[data-filter="all"]').classList.add('active');
+  applyFilters();
+}
+
+function sortTable(col) {
+  const sel = document.getElementById('sortBy');
+  const cur = sel.value;
+  if (col === 'class') sel.value = 'class';
+  else if (col === 'total') sel.value = cur === 'total_desc' ? 'total_asc' : 'total_desc';
+  else if (col === 'sharp') sel.value = 'sharp_desc';
+  else if (col === 'participation') sel.value = cur === 'participation_desc' ? 'participation_asc' : 'participation_desc';
+  applyFilters();
+}
+
+/* ===== INIT ===== */
+function init() {
+  document.getElementById('genDate').textContent = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+  populateClassFilter();
+  renderKPIs();
+  renderTable();
+  renderCharts();
+  renderInsights();
+  renderActionPanels();
+  renderAdmissions();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>
