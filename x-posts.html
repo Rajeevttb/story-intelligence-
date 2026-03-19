@@ -3,37 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Tribal Box — X Posts Afternoon Edition | March 18, 2026</title>
+<title>The Tribal Box — X Posts | March 19, 2026</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
-  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); padding: 40px 24px; text-align: center; border-bottom: 3px solid #10b981; }
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); padding: 40px 24px; text-align: center; border-bottom: 3px solid #f59e0b; }
   .header h1 { font-size: 2rem; color: #fff; }
-  .header .subtitle { color: #10b981; font-size: 0.9rem; margin-top: 6px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
+  .header .subtitle { color: #f59e0b; font-size: 0.9rem; margin-top: 6px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
   .header .date { color: #8899aa; margin-top: 10px; font-size: 0.85rem; }
-  .header .edition { display: inline-block; background: #10b981; color: #000; font-weight: 800; padding: 6px 18px; border-radius: 20px; margin-top: 12px; font-size: 0.85rem; letter-spacing: 1px; }
+  .header .edition { display: inline-block; background: #f59e0b; color: #000; font-weight: 800; padding: 6px 18px; border-radius: 20px; margin-top: 12px; font-size: 0.85rem; letter-spacing: 1px; }
   .header .instruction { color: #22c55e; margin-top: 14px; font-size: 0.9rem; font-weight: 600; }
   .nav-links { display: flex; justify-content: center; gap: 14px; padding: 16px; background: #111; flex-wrap: wrap; }
   .nav-links a { color: #8899aa; text-decoration: none; font-size: 0.82rem; padding: 6px 16px; border-radius: 20px; border: 1px solid #333; transition: all 0.3s; }
-  .nav-links a:hover, .nav-links a.active { background: #10b981; color: #000; border-color: #10b981; }
+  .nav-links a:hover, .nav-links a.active { background: #f59e0b; color: #000; border-color: #f59e0b; }
   .container { max-width: 700px; margin: 0 auto; padding: 20px; }
-  .post-card { background: #141422; border-radius: 14px; padding: 24px; margin-bottom: 24px; border: 1px solid #222; position: relative; }
-  .post-card:hover { border-color: #10b981; }
+  .post-card { background: #141422; border-radius: 14px; padding: 24px; margin-bottom: 24px; border: 1px solid #222; }
+  .post-card:hover { border-color: #f59e0b; }
   .post-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
-  .post-number { background: #10b981; color: #000; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; }
-  .trending-tag { background: #10b98122; color: #10b981; border: 1px solid #10b98144; padding: 4px 12px; border-radius: 14px; font-size: 0.75rem; font-weight: 700; }
+  .post-number { background: #f59e0b; color: #000; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; }
+  .trending-tag { background: #f59e0b22; color: #f59e0b; border: 1px solid #f59e0b44; padding: 4px 12px; border-radius: 14px; font-size: 0.75rem; font-weight: 700; }
   .post-text { white-space: pre-wrap; font-size: 0.95rem; line-height: 1.7; color: #ddd; padding: 16px; background: #0d0d1a; border-radius: 10px; border: 1px solid #1a1a2e; }
-  .copy-btn { display: block; width: 100%; margin-top: 14px; padding: 12px; background: #10b981; color: #000; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
-  .copy-btn:hover { background: #34d399; }
-  .copy-btn.copied { background: #22c55e; }
-  .post-link { display: block; width: 100%; margin-top: 8px; padding: 12px; background: transparent; color: #10b981; border: 2px solid #10b981; border-radius: 8px; font-size: 0.9rem; font-weight: 700; cursor: pointer; text-decoration: none; text-align: center; transition: all 0.3s; }
-  .post-link:hover { background: #10b98122; }
+  .copy-btn { display: block; width: 100%; margin-top: 14px; padding: 12px; background: #f59e0b; color: #000; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+  .copy-btn:hover { background: #fbbf24; }
+  .copy-btn.copied { background: #22c55e; color: #fff; }
+  .post-link { display: block; width: 100%; margin-top: 8px; padding: 12px; background: transparent; color: #f59e0b; border: 2px solid #f59e0b; border-radius: 8px; font-size: 0.9rem; font-weight: 700; cursor: pointer; text-decoration: none; text-align: center; transition: all 0.3s; }
+  .post-link:hover { background: #f59e0b22; }
   .char-count { text-align: right; font-size: 0.75rem; color: #555; margin-top: 6px; }
-  .tip { background: #10b98111; border: 1px solid #10b98133; border-radius: 10px; padding: 16px; margin-bottom: 30px; }
+  .tip { background: #f59e0b11; border: 1px solid #f59e0b33; border-radius: 10px; padding: 16px; margin-bottom: 30px; }
   .tip p { color: #8899aa; font-size: 0.85rem; }
-  .tip strong { color: #10b981; }
+  .tip strong { color: #f59e0b; }
   .footer { text-align: center; padding: 30px; color: #444; font-size: 0.8rem; }
-  .footer a { color: #10b981; text-decoration: none; }
+  .footer a { color: #f59e0b; text-decoration: none; }
 </style>
 </head>
 <body>
@@ -41,8 +41,8 @@
 <div class="header">
   <h1>X POSTS — READY TO PUBLISH</h1>
   <div class="subtitle">The Tribal Box &bull; Trending Topic Posts</div>
-  <div class="date">March 18, 2026</div>
-  <div class="edition">AFTERNOON EDITION &bull; FRESH TRENDS</div>
+  <div class="date">March 19, 2026</div>
+  <div class="edition">FESTIVAL EDITION &bull; Gudi Padwa / Ugadi / Navratri / Eid</div>
   <div class="instruction">Click "Copy Post" &rarr; Open X &rarr; Paste &rarr; Post</div>
 </div>
 
@@ -56,35 +56,34 @@
 <div class="container">
 
 <div class="tip">
-  <p><strong>Posting Strategy:</strong> Post in order, 8-12 min gaps. Post 1 (Venezuela WBC) is PEAK RIGHT NOW — post immediately. Post 2 (Larijani/chappal) is the most powerful. Post 4 (Vinicius Jr) should go out during evening Champions League discussion. Save Post 6 (BTS) for late night when ARMY is most active.</p>
+  <p><strong>Today's Strategy:</strong> India's biggest festival convergence — Gudi Padwa, Ugadi, Navratri, Cheti Chand, AND Eid moon sighting all on one day. Plus Dhurandhar releases today. Post 1 first (festival + gas crisis contrast). Space posts 10 min apart. Save Post 6 (BTS) for late evening.</p>
 </div>
 
 <!-- POST 1 -->
 <div class="post-card">
   <div class="post-header">
     <div class="post-number">1</div>
-    <div class="trending-tag">Trending: Venezuela / #WorldBaseballClassic</div>
+    <div class="trending-tag">Trending: #GudiPadwa / #UgadiSpecial2026</div>
   </div>
-  <div class="post-text" id="text1">Venezuela just won the World Baseball Classic.
+  <div class="post-text" id="text1">#GudiPadwa and #Ugadi today. New Year. New beginnings.
 
-They beat the USA 3-2. Walk-off in the 9th.
+In Maharashtra, families are hoisting gudis.
+In Karnataka, they're making bevu-bella.
 
-A country in economic collapse.
-A country millions have fled.
-A country the world writes off.
+But in Bhadrakali, West Bengal, a government school served golgappa as the midday meal.
 
-Tonight, 30 million Venezuelans screamed at the same time.
+Because the kitchen has no gas.
 
-Not about politics. Not about Maduro. Not about sanctions.
+5-6 panipuris. That's lunch. For children whose only hot meal comes from school.
 
-About nine men on a diamond who refused to lose.
+New Year for some.
+Same hunger for others.
 
-Eugenio Suarez hit the go-ahead double. Then he pointed at the sky. His grandmother died last month. She never saw this.
+The gas crisis doesn't take festival holidays.
 
-This isn't a baseball story.
-It's a country remembering what it feels like to win.
+Source: NewsX, Deccan Herald
 
-#Venezuela #WBC</div>
+#ChaitraNavratri #LPGCrisis #MidDayMeal</div>
   <div class="char-count" id="count1"></div>
   <button class="copy-btn" onclick="copyPost('text1', this)">Copy Post</button>
   <a class="post-link" href="" id="link1" target="_blank">Open in X to Post &rarr;</a>
@@ -94,29 +93,27 @@ It's a country remembering what it feels like to win.
 <div class="post-card">
   <div class="post-header">
     <div class="post-number">2</div>
-    <div class="trending-tag">Trending: #AliLarijani / #NATO</div>
+    <div class="trending-tag">Trending: #dubaiattack / #SaudiArabia</div>
   </div>
-  <div class="post-text" id="text2">#AliLarijani is trending.
-#NATO is trending.
+  <div class="post-text" id="text2">#dubaiattack trends.
 
-You know what's not trending?
+314 ballistic missiles. Dubai Airport hit. PV Sindhu stuck in the chaos.
 
-In Bhainsa, Telangana, women are leaving their chappals in the gas queue overnight.
+But here's what's not trending:
 
-Because they can't stand for 14 hours. So their slippers wait instead.
+9.1 million Indians work in the Gulf.
 
-The Strait of Hormuz shut down because of the same war that killed Larijani.
+One of them told Business Today: "We came here for livelihood. Now we're seeking bomb shelters."
 
-That war is 12,000 km away.
+IndiGo ran 10 special flights from Jeddah. India evacuated 850 from Qatar. 177 from Lebanon.
 
-But a woman in India can't cook dinner because of it.
+But a full evacuation is "practically impossible."
 
-She doesn't know who Larijani was.
-She just knows her cylinder is empty.
+9.1 million people. And a prayer that the runway stays open.
 
-Geopolitics has a body count nobody tracks — the kitchen.
+Source: Business Today, India.com
 
-#LPGCrisis #India</div>
+#MiddleEast #IndiaEvacuation</div>
   <div class="char-count" id="count2"></div>
   <button class="copy-btn" onclick="copyPost('text2', this)">Copy Post</button>
   <a class="post-link" href="" id="link2" target="_blank">Open in X to Post &rarr;</a>
@@ -126,29 +123,26 @@ Geopolitics has a body count nobody tracks — the kitchen.
 <div class="post-card">
   <div class="post-header">
     <div class="post-number">3</div>
-    <div class="trending-tag">Trending: #DhurandharTheRevenge</div>
+    <div class="trending-tag">Trending: #Dhurandhar2 / Ranveer Singh</div>
   </div>
-  <div class="post-text" id="text3">#DhurandharTheRevenge releases tomorrow with 123 Cr pre-sales.
+  <div class="post-text" id="text3">#Dhurandhar2 releases today. Rs 200 crore advance. 4-hour runtime. Ranveer Singh plays a spy saving the nation on screen.
 
-Meanwhile, the real revenge story in India today:
+Meanwhile, in Karauli, Rajasthan:
 
-A government school in West Bengal served golgappa as the midday meal.
+A teacher named Shubham Sherwal asked a student why he wasn't wearing uniform pants.
 
-Because the kitchen has no gas.
+The boy said: "Pants torn. Mummy-Papa are no more. I'll buy new ones when Grandpa's pension comes."
 
-For some children, this is their only meal.
+The teacher went home. Came back with new clothes, books, and a colour box.
 
-Ranveer Singh's character fights enemies on screen.
+No Rs 200 crore budget. No screen. No script.
 
-This school is fighting to feed 8-year-olds off-screen.
+Just a man who saw a child in need and didn't look away.
 
-One story costs 300 crore to make.
-The other costs ₹50 per cylinder to solve.
+Source: Aaj Tak, TV9 Hindi
+IG: @shubham_sherwal
 
-Bollywood makes revenge fantasies.
-India's kitchens are living in survival mode.
-
-#LPGCrisis #MidDayMeal</div>
+#HumanStory #Karauli</div>
   <div class="char-count" id="count3"></div>
   <button class="copy-btn" onclick="copyPost('text3', this)">Copy Post</button>
   <a class="post-link" href="" id="link3" target="_blank">Open in X to Post &rarr;</a>
@@ -158,29 +152,28 @@ India's kitchens are living in survival mode.
 <div class="post-card">
   <div class="post-header">
     <div class="post-number">4</div>
-    <div class="trending-tag">Trending: #ChampionsLeague / Real Madrid</div>
+    <div class="trending-tag">Trending: #ChaitraNavratri / LPG Crisis</div>
   </div>
-  <div class="post-text" id="text4">Real Madrid 5-1 Man City. Vinicius Jr with a brace.
+  <div class="post-text" id="text4">Bloomberg just published a story about India's gas crisis.
 
-But here's a story from today that hit harder than any goal:
+Headline: "Firewood, 3 AM Queues, Fisticuffs."
 
-Japan sent a plane to evacuate people from the Middle East.
-11 South Koreans were on board.
+One line hit different:
 
-South Korea sent a military plane.
-2 Japanese nationals were on board.
+In Vizag, a father-son duo who run an electronics shop read the geopolitical signs early. They bulk-ordered induction cooktops.
 
-80 years ago, these countries couldn't look at each other.
-Colonial scars. Generational anger.
+Sold 100+ in 48 hours. Usual daily sale: 2-3.
 
-Today, they sent planes to save each other's citizens.
+Their shop has been running since the British era.
 
-No one scored. No one won.
-Everyone came home.
+The father said: "When you've survived partition, you know when to stock up."
 
-That's the real Champions League.
+That's not business. That's generational wisdom.
 
-#JapanKorea #Evacuation</div>
+Source: Free Press Journal
+IG: @nasser__saleh
+
+#LPGCrisis #Vizag #Jugaad</div>
   <div class="char-count" id="count4"></div>
   <button class="copy-btn" onclick="copyPost('text4', this)">Copy Post</button>
   <a class="post-link" href="" id="link4" target="_blank">Open in X to Post &rarr;</a>
@@ -190,30 +183,28 @@ That's the real Champions League.
 <div class="post-card">
   <div class="post-header">
     <div class="post-number">5</div>
-    <div class="trending-tag">Trending: Neymar</div>
+    <div class="trending-tag">Trending: #HinduNewYear / Eid Moon Sighting</div>
   </div>
-  <div class="post-text" id="text5">Neymar left out of Brazil's squad.
+  <div class="post-text" id="text5">Today is extraordinary.
 
-You know who's IN a squad today?
+#GudiPadwa. #Ugadi. #ChaitraNavratri. #ChetiChand. Hindu New Year.
 
-Arthur Henrique, 24, from Sabará, Brazil.
+Tonight: Eid crescent moon sighting.
 
-When floods hit on March 9, everyone ran inside.
-Arthur ran outside. To help neighbours drain water.
+One country. Five festivals. One day.
 
-The ground collapsed. Floodwater pulled him underground.
+While we celebrate — a woman in Vadodara fainted in a gas queue yesterday. They poured water on her face. She woke up. Got back in line.
 
-They found him 5 days later. 92 km away. In a river.
+A woman in Morena sat on the floor of a gas agency and cried for 4 days straight.
 
-His friend said: "He was so good that he died helping people."
+New beginnings don't arrive equally.
 
-Neymar lost a spot in a team.
-Arthur lost his life for one.
+For some, today is celebration.
+For some, it's just another day in line.
 
-Brazil talks about who wears the jersey.
-Sabará remembers who showed up without one.
+Happy New Year to everyone. Especially those still waiting.
 
-#Brazil #ArthurHenrique</div>
+#GasCrisis #India</div>
   <div class="char-count" id="count5"></div>
   <button class="copy-btn" onclick="copyPost('text5', this)">Copy Post</button>
   <a class="post-link" href="" id="link5" target="_blank">Open in X to Post &rarr;</a>
@@ -223,29 +214,26 @@ Sabará remembers who showed up without one.
 <div class="post-card">
   <div class="post-header">
     <div class="post-number">6</div>
-    <div class="trending-tag">Trending: #BTS_ARIRANG / #BTSComeback2026</div>
+    <div class="trending-tag">Trending: #BTS_SWIM / #BTS_ARIRANG</div>
   </div>
-  <div class="post-text" id="text6">#BTS_ARIRANG drops in 2 days.
+  <div class="post-text" id="text6">#BTS_ARIRANG drops tomorrow. ARMY is counting hours.
 
-ARMY is celebrating. As they should.
+But here's a story that needs no album:
 
-But here's a story that sounds like a BTS lyric:
+In Rishikesh, a rafting team spotted a monkey drowning in the Ganga's rapids.
 
-70 Kashmiri medical students were stranded in Iran. Borders shut. No flights. 9 days of silence.
+They paddled into dangerous currents. One member reached out and pulled the exhausted animal into the raft.
 
-They were evacuated through 3 countries.
-Bus to Armenia. Flight to Dubai. Then Delhi.
+The monkey sat still. Soaking wet. Alive.
 
-One student landed at 4 AM — still in his lab coat. He hadn't had time to change.
+No concert. No 75,000 fans. No stage.
 
-His mother ran through the barrier and grabbed him so hard he stumbled.
+Just a river, a drowning animal, and humans who chose to paddle toward danger instead of away from it.
 
-He didn't say a word. He just let her hold him.
+Source: Free Press Journal
+IG: @indiawithoutpolitics
 
-BTS sings about coming home.
-These students lived it.
-
-#Kashmir #HomeIsAPerson</div>
+#Rishikesh #HumanityWon</div>
   <div class="char-count" id="count6"></div>
   <button class="copy-btn" onclick="copyPost('text6', this)">Copy Post</button>
   <a class="post-link" href="" id="link6" target="_blank">Open in X to Post &rarr;</a>
@@ -254,7 +242,7 @@ These students lived it.
 </div>
 
 <div class="footer">
-  <p>The Tribal Box &mdash; X Trending Posts &mdash; March 18, 2026 Afternoon Edition</p>
+  <p>The Tribal Box &mdash; X Trending Posts &mdash; March 19, 2026</p>
   <p><a href="index.html">India Stories &rarr;</a> &nbsp;|&nbsp; <a href="international.html">International Stories &rarr;</a></p>
 </div>
 
@@ -267,8 +255,6 @@ function copyPost(id, btn) {
     setTimeout(() => { btn.textContent = 'Copy Post'; btn.classList.remove('copied'); }, 2000);
   });
 }
-
-// Generate intent links and char counts
 document.addEventListener('DOMContentLoaded', () => {
   for (let i = 1; i <= 6; i++) {
     const textEl = document.getElementById('text' + i);
@@ -280,8 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
       countEl.style.color = text.length > 280 ? '#ef4444' : '#555';
     }
     if (textEl && linkEl) {
-      const encoded = encodeURIComponent(textEl.innerText);
-      linkEl.href = 'https://x.com/intent/tweet?text=' + encoded;
+      linkEl.href = 'https://x.com/intent/tweet?text=' + encodeURIComponent(textEl.innerText);
     }
   }
 });
