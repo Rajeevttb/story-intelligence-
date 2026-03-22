@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOS School — 30-Day Admission War Plan</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.7; }
+
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); padding: 50px 24px; text-align: center; border-bottom: 3px solid #e94560; }
+  .header h1 { font-size: 2rem; color: #fff; letter-spacing: 2px; }
+  .header .subtitle { color: #e94560; font-size: 0.95rem; margin-top: 8px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; }
+  .header .meta { color: #8899aa; margin-top: 12px; font-size: 0.85rem; }
+  .header .badge { display: inline-block; background: #e94560; color: #fff; font-weight: 800; padding: 6px 20px; border-radius: 20px; margin-top: 14px; font-size: 0.85rem; letter-spacing: 1px; }
+
+  .nav-links { display: flex; justify-content: center; gap: 14px; padding: 16px; background: #111; flex-wrap: wrap; }
+  .nav-links a { color: #8899aa; text-decoration: none; font-size: 0.82rem; padding: 6px 16px; border-radius: 20px; border: 1px solid #333; transition: all 0.3s; }
+  .nav-links a:hover, .nav-links a.active { background: #e94560; color: #fff; border-color: #e94560; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
+
+  .section { margin-bottom: 50px; }
+  .section-num { display: inline-block; background: #e94560; color: #fff; width: 32px; height: 32px; border-radius: 50%; text-align: center; line-height: 32px; font-weight: 800; font-size: 0.9rem; margin-right: 10px; }
+  .section-title { font-size: 1.4rem; color: #fff; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e94560; }
+
+  .card { background: #141422; border: 1px solid #222; border-radius: 14px; padding: 24px; margin-bottom: 20px; }
+  .card:hover { border-color: #e9456066; }
+  .card h3 { color: #fff; font-size: 1.1rem; margin-bottom: 8px; }
+  .card h4 { color: #e94560; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin: 16px 0 8px; }
+  .card p, .card li { color: #bbb; font-size: 0.9rem; line-height: 1.7; }
+  .card ul, .card ol { padding-left: 20px; margin-top: 6px; }
+  .card li { margin-bottom: 4px; }
+
+  .highlight { background: #e9456015; border-left: 3px solid #e94560; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+  .highlight p { color: #ddd; font-size: 0.9rem; font-style: italic; }
+
+  .insight-box { background: #0f1a0f; border-left: 3px solid #22c55e; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+  .insight-box p { color: #bbb; font-size: 0.88rem; }
+  .insight-box strong { color: #22c55e; }
+
+  .warn-box { background: #1a1510; border-left: 3px solid #f59e0b; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+  .warn-box p { color: #bbb; font-size: 0.88rem; }
+  .warn-box strong { color: #f59e0b; }
+
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.85rem; }
+  th { background: #1a1a2e; color: #e94560; padding: 10px 12px; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #e94560; }
+  td { padding: 10px 12px; border-bottom: 1px solid #1a1a2e; color: #bbb; }
+  tr:hover td { background: #111; }
+
+  .msg-box { background: #0d0d1a; border: 1px solid #222; border-radius: 10px; padding: 18px; margin: 12px 0; font-size: 0.88rem; color: #ddd; white-space: pre-wrap; line-height: 1.7; }
+
+  .script-box { background: #141422; border: 1px solid #222; border-radius: 10px; padding: 18px; margin: 12px 0; }
+  .script-box .speaker { color: #e94560; font-weight: 700; font-size: 0.82rem; text-transform: uppercase; margin-bottom: 4px; }
+  .script-box p { color: #ccc; font-size: 0.88rem; margin-bottom: 10px; }
+
+  .budget-total { background: linear-gradient(135deg, #e94560, #c72c50); color: #fff; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0; }
+  .budget-total .amount { font-size: 2rem; font-weight: 800; }
+  .budget-total .label { font-size: 0.85rem; opacity: 0.9; }
+
+  .toggle-btn { background: #e94560; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 0.82rem; margin-top: 10px; }
+  .toggle-btn:hover { background: #ff6b6b; }
+  .toggle-content { display: none; margin-top: 14px; }
+  .toggle-content.active { display: block; }
+
+  .day-card { background: #141422; border: 1px solid #222; border-radius: 14px; padding: 20px; margin-bottom: 16px; }
+  .day-card .day-label { background: #e94560; color: #fff; display: inline-block; padding: 4px 14px; border-radius: 20px; font-weight: 800; font-size: 0.8rem; margin-bottom: 12px; }
+
+  .penny { background: linear-gradient(135deg, #1a1020, #0f0a1a); border: 1px solid #a855f744; border-radius: 14px; padding: 24px; margin-bottom: 20px; }
+  .penny h3 { color: #a855f7; }
+  .penny p { color: #bbb; }
+
+  .footer { text-align: center; padding: 40px; color: #333; font-size: 0.8rem; border-top: 1px solid #1a1a2e; margin-top: 40px; }
+  .footer a { color: #e94560; text-decoration: none; }
+
+  @media (max-width: 700px) {
+    .header h1 { font-size: 1.4rem; }
+    .container { padding: 20px 14px; }
+    .card { padding: 18px; }
+    table { font-size: 0.78rem; }
+    th, td { padding: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>SOS SCHOOL OF SCHOLARS</h1>
+  <div class="subtitle">30-Day Admission War Plan</div>
+  <div class="meta">Katol, Nagpur Region &mdash; Nursery / LKG / UKG &mdash; March 2026</div>
+  <div class="badge">5-AGENT EXECUTION PLAN</div>
+</div>
+
+<div class="nav-links">
+  <a href="home.html">Command Centre</a>
+  <a href="admission-war-plan.html" class="active">Admission War Plan</a>
+  <a href="sos-dashboard/">School Dashboard</a>
+</div>
+
+<div class="container">
+
+<!-- ============================================ -->
+<!-- SECTION 1: COMPETITOR BREAKDOWN -->
+<!-- ============================================ -->
+<div class="section">
+  <h2 class="section-title"><span class="section-num">1</span> Competitor Breakdown</h2>
+
+  <div class="card">
+    <h3>Top 5 Competing Schools — Katol/Nagpur Corridor</h3>
+    <div style="overflow-x: auto;">
+    <table>
+      <tr><th>Parameter</th><th>DPS (Katol Rd)</th><th>Sandipani</th><th>Ryan Intl</th><th>Podar Jumbo</th><th>Local Convent/SSC</th></tr>
+      <tr><td><strong>Positioning</strong></td><td>National brand, modern campus</td><td>Local trust, established</td><td>English medium, urban</td><td>Pre-school franchise</td><td>Affordable, known teachers</td></tr>
+      <tr><td><strong>Fee Range</strong></td><td>&#8377;45-70K</td><td>&#8377;20-35K</td><td>&#8377;60-90K</td><td>&#8377;40-60K</td><td>&#8377;8-18K</td></tr>
+      <tr><td><strong>Class Size</strong></td><td>35-45</td><td>30-40</td><td>35-45</td><td>20-25</td><td>40-55</td></tr>
+      <tr><td><strong>Marketing</strong></td><td>Bus branding, hoardings</td><td>Word of mouth only</td><td>Digital ads, branded vans</td><td>Mall activations, FB ads</td><td>Zero marketing</td></tr>
+      <tr><td><strong>Strength</strong></td><td>Brand name, AC rooms</td><td>Known locally, teacher trust</td><td>English environment</td><td>Activity-based learning</td><td>Walking distance, cheap</td></tr>
+      <tr><td style="color:#e94560"><strong>Weakness</strong></td><td style="color:#e94560">Impersonal, no principal access</td><td style="color:#e94560">Outdated methods</td><td style="color:#e94560">Too far (30km), expensive</td><td style="color:#e94560">Franchise feel, staff turnover</td><td style="color:#e94560">Overcrowded, zero innovation</td></tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>5 Critical Gaps NO Competitor Is Filling</h3>
+    <ol>
+      <li><strong>No school lets parents EXPERIENCE the classroom before paying.</strong> Every school does guided tours. No school says "sit in our classroom for a full day."</li>
+      <li><strong>No school gives personalized child feedback before admission.</strong> Every school gives a brochure. No school gives an observation about YOUR child.</li>
+      <li><strong>No school goes TO the parent.</strong> Every school says "visit us." No school visits mohallas or living rooms.</li>
+      <li><strong>No school makes class size VISIBLE.</strong> Schools mention "individual attention" but nobody SHOWS what 15 vs 40 looks like.</li>
+      <li><strong>No school creates scarcity that feels real.</strong> Everyone says "limited seats." No one shows the actual chairs.</li>
+    </ol>
+    <div class="highlight">
+      <p>"Woh school jahan teacher aapke bachche ka naam jaanti hai — roll number nahi." This is your weapon. Every competitor sells infrastructure, brand, or price. You sell RECOGNITION.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 2: PARENT PSYCHOLOGY -->
+<!-- ============================================ -->
+<div class="section">
+  <h2 class="section-title"><span class="section-num">2</span> Parent Psychology</h2>
+
+  <div class="card">
+    <h3>What Parents SAY vs What They Actually FEEL</h3>
+    <table>
+      <tr><th>What They Say</th><th>What They Actually Feel</th></tr>
+      <tr><td>"Accha school chahiye"</td><td>"Darr hai ki galat choice kar liya toh saal barbaad"</td></tr>
+      <tr><td>"Fees zyada hai"</td><td>"Fees utni nahi jitni uncertainty hai — value milega kya?"</td></tr>
+      <tr><td>"English medium hona chahiye"</td><td>"Darr hai mera bachcha doosron se peeche reh jayega"</td></tr>
+      <tr><td>"Campus dekhna hai"</td><td>"Main teacher ko dekhna chahti hoon — building se farak nahi padta"</td></tr>
+      <tr><td>"Soch rahe hain"</td><td>"Push chahiye but yeh nahi bolunga"</td></tr>
+      <tr><td>"Husband se poochna padega"</td><td>"Main convince hoon, validation chahiye"</td></tr>
+      <tr><td>"Padosi ka bachcha XYZ mein hai"</td><td>"Agar alag school choose karun toh log judge karenge"</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>5 Deep Fears (In Order of Intensity)</h3>
+    <h4>Fear 1: "Mera bachcha royega aur koi dhyan nahi dega"</h4>
+    <p>Primal fear. A 3-year-old crying in a corner of a 40-kid classroom while the teacher handles 39 others. This image keeps mothers awake.</p>
+
+    <h4>Fear 2: "Teacher achhi nahi nikli toh?"</h4>
+    <p>Parents are renting a human being for 5 hours/day. If the teacher is cold or burned out — the building, the AC, the playground mean nothing. They judge in 30 seconds: does she bend down to talk, or talk standing up?</p>
+
+    <h4>Fear 3: "Sab kehte hain limited seats — but sab ko le lete hain"</h4>
+    <p>Trust in scarcity claims is ZERO. Every school says "only 30 seats" then stuffs 45. You need to PROVE small class size — with photos, names, a visible cap.</p>
+
+    <h4>Fear 4: "Agar school band ho gaya ya quality gir gayi?"</h4>
+    <p>A school that's 2 years old feels risky. Parents need signals of permanence — principal's personal commitment, building ownership, long-term plan.</p>
+
+    <h4>Fear 5: "Log kya kahenge — school suna nahi"</h4>
+    <p>School choice is social performance. Everyone has an opinion. Parents need ammunition: "Iss school mein sirf 15 bachche hain. Principal ghar aayi thi."</p>
+  </div>
+
+  <div class="card">
+    <h3>The Trust Ladder (Small Town)</h3>
+    <table>
+      <tr><th>Level</th><th>Stage</th><th>Trust</th></tr>
+      <tr><td>1</td><td>"Suna hai" (Awareness)</td><td style="color:#ef4444">Near Zero</td></tr>
+      <tr><td>2</td><td>"Dekha hai" (Saw the building)</td><td style="color:#f59e0b">Low</td></tr>
+      <tr><td>3</td><td>"Kisi ne bataya" (Recommendation)</td><td style="color:#f59e0b">Medium</td></tr>
+      <tr><td>4</td><td>"Andar jaake dekha" (Visited)</td><td style="color:#22c55e">High</td></tr>
+      <tr><td>5</td><td>"Teacher ne mere bachche ko samjha" (Personal experience)</td><td style="color:#22c55e">Conversion Ready</td></tr>
+    </table>
+    <div class="insight-box">
+      <p><strong>Goal:</strong> Move every parent from Level 1 to Level 5 in under 7 days.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 3: 5 CAMPAIGNS -->
+<!-- ============================================ -->
+<div class="section">
+  <h2 class="section-title"><span class="section-num">3</span> 5 High-Impact Campaigns</h2>
+
+  <!-- CAMPAIGN 1 -->
+  <div class="card">
+    <h3>Campaign 1: "15 Chairs" — The Scarcity Campaign</h3>
+    <h4>Idea</h4>
+    <p>15 small chairs in a circle. 8 have school bags (enrolled). 7 empty. One photo. Used EVERYWHERE.</p>
+    <h4>Why It Works</h4>
+    <p>Visual scarcity is 100x more powerful than "limited seats available." A parent sees 15 chairs and immediately counts the empty ones. Makes "small batch" tangible, not theoretical.</p>
+    <h4>Execution</h4>
+    <ol>
+      <li>Set up classroom: 15 chairs in a circle, 8 bags on chairs</li>
+      <li>Take 3 photos: wide shot, close-up of empty chair, overhead</li>
+      <li>Print A3 poster for school gate</li>
+      <li>WhatsApp status for ALL staff + existing parents</li>
+      <li>Update weekly: "15 chairs. 10 filled. 5 left."</li>
+      <li>Final push: "Aakhri 3 chairs. Uske baad waitlist."</li>
+    </ol>
+    <h4>Messaging</h4>
+    <div class="highlight"><p>"15 kursiyan. 7 baaki. Aapke bachche ki kaunsi hai?"</p></div>
+    <p><strong>Cost: &#8377;500</strong> | <strong>Expected: 15-20 enquiries in first week</strong></p>
+  </div>
+
+  <!-- CAMPAIGN 2 -->
+  <div class="card">
+    <h3>Campaign 2: "Pehla Report Card" — Free Assessment Drive</h3>
+    <h4>Idea</h4>
+    <p>FREE child readiness assessment for kids aged 2.5-5. Motor skills, language, social readiness — 15 checkpoints. Printed report card with child's name, photo, and specific observations.</p>
+    <h4>Why It Works</h4>
+    <p>No one in Katol offers this. You become the ONLY child development authority. Green scores = parents share proudly. Yellow scores = urgency. The teacher conducting it IS the demo class.</p>
+    <h4>15-Point Assessment Checklist</h4>
+    <table>
+      <tr><th>Area</th><th>Check</th></tr>
+      <tr><td>Motor</td><td>Hold crayon? Stack 4 blocks? Catch a ball?</td></tr>
+      <tr><td>Language</td><td>Say name? Name 5 animals? Follow 2-step instruction?</td></tr>
+      <tr><td>Social</td><td>Separate from parent 5 min? Eye contact? Share a toy?</td></tr>
+      <tr><td>Cognitive</td><td>Identify 3 colours? Match shapes? 4-piece puzzle?</td></tr>
+      <tr><td>Emotional</td><td>React to crying child? Express "I want"? Respond to praise?</td></tr>
+    </table>
+    <h4>Execution</h4>
+    <ol>
+      <li>Design assessment form + report card template</li>
+      <li>Train 2 teachers (1 hour): warm, observational, not clinical</li>
+      <li>Promote: WhatsApp blast, 5 paediatricians, 10 medical stores, anganwadi workers</li>
+      <li>Every Saturday, 10 AM-1 PM, max 8 kids by appointment</li>
+      <li>Mother watches assessment. Gets report card at end.</li>
+      <li>Next day: Teacher calls to discuss findings, suggests trial day</li>
+    </ol>
+    <p><strong>Cost: &#8377;2,000</strong> | <strong>Expected: 8-10/Saturday, 50% convert to trial, 30% to admission</strong></p>
+  </div>
+
+  <!-- CAMPAIGN 3 -->
+  <div class="card">
+    <h3>Campaign 3: "Gali Ki Chai" — Mohalla Meetings</h3>
+    <h4>Idea</h4>
+    <p>Chai sessions in living rooms of trusted mothers across 5 mohallas. Send a TEACHER (not salesperson) to talk about child development for 20 minutes.</p>
+    <h4>Why It Works</h4>
+    <p>Small town trust flows through living rooms. A teacher talking about development (not fees) = expert, not seller. Host mother's endorsement > any testimonial. Group dynamics: 3 interested mothers pull the other 7.</p>
+    <h4>Teacher's Talk Structure (20 min)</h4>
+    <ol>
+      <li>5 min: "3 saal ke bachche ka brain kaise kaam karta hai"</li>
+      <li>10 min: "15 bachche vs 40 — fark kya hota hai" (with examples)</li>
+      <li>5 min: "3 cheezein jo aap ghar pe kar sakte hain" (genuine value)</li>
+      <li>Last 2 min: "Saturday ko assessment hai. Bachche ko laayein."</li>
+    </ol>
+    <p><strong>Cost: &#8377;2,500</strong> (5 sessions) | <strong>Expected: 16-20 new contacts/week</strong></p>
+  </div>
+
+  <!-- CAMPAIGN 4 -->
+  <div class="card">
+    <h3>Campaign 4: "Ek Din Andar" — Full-Day Experience</h3>
+    <h4>Idea</h4>
+    <p>Mothers spend a FULL SCHOOL DAY (9 AM-1 PM) inside the classroom with their child. Not a tour. They sit, watch, observe everything — teaching, meals, crying handled, outdoor play.</p>
+    <h4>Why It Works</h4>
+    <p>Eliminates Fear #1 (separation anxiety). No school does this because they're afraid of exposing reality. Signals supreme confidence. The mother becomes your salesperson — tells 5-10 others.</p>
+    <h4>Execution</h4>
+    <ol>
+      <li>Every Tuesday & Thursday, 9 AM-1 PM</li>
+      <li>Max 4 mothers per session</li>
+      <li>End of day: Teacher writes 3 specific observations (handwritten)</li>
+      <li>Print photo of child smiling in classroom (&#8377;10/photo)</li>
+      <li>NO admission pitch. Just: "Jab mann kare, aa jaiyega."</li>
+      <li>Next day: Teacher calls — "Bachcha kaisa feel kar raha hai?"</li>
+    </ol>
+    <p><strong>Cost: &#8377;3,000/month</strong> | <strong>Expected: 8 families/week, 60% conversion = 5 admissions/week</strong></p>
+  </div>
+
+  <!-- CAMPAIGN 5 -->
+  <div class="card">
+    <h3>Campaign 5: "Principal Ki Chithi" — Personal Letter Campaign</h3>
+    <h4>Idea</h4>
+    <p>Principal HANDWRITES 50 personal letters to specific families with kids aged 2.5-5. Hand-delivered to their door. Not a mass mailer — a personal invitation with the family's name.</p>
+    <h4>Why It Works</h4>
+    <p>No principal in Katol has ever written a personal letter. Reverses power dynamic: school approaches YOU. The envelope gets opened by the whole family. Hand-delivery = someone from school came to YOUR door.</p>
+    <h4>Letter Template</h4>
+    <div class="msg-box">[Family Name] ji,
+
+Namaste. Main [Principal Name], SOS School of Scholars ki principal hoon.
+
+Mujhe pata chala ki aapke ghar mein [age] saal ka bachcha hai. Main aapko personally invite karti hoon ki aap ek baar hamare school mein aayein — bachche ko saath laayein.
+
+Hamare school mein ek class mein sirf 15 bachche hote hain. Teacher har bachche ko naam se jaanti hai.
+
+Main chahti hoon ki aap khud aakar dekhein. Koi fees nahi. Koi form nahi. Sirf ek visit.
+
+Aapka intezaar rahega.
+
+[Principal's signature]
+[Personal mobile number]</div>
+    <p><strong>Cost: &#8377;1,500</strong> | <strong>Expected: 50 letters &rarr; 20 callbacks &rarr; 12 visits &rarr; 6-8 admissions</strong></p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 4: CONTENT PLAN -->
+<!-- ============================================ -->
+<div class="section">
+  <h2 class="section-title"><span class="section-num">4</span> Content & Creative Plan</h2>
+
+  <div class="card">
+    <h3>5 Video Ideas (Phone Camera Only)</h3>
+    <table>
+      <tr><th>#</th><th>Video</th><th>Script</th><th>Duration</th></tr>
+      <tr><td>1</td><td><strong>15 Chairs</strong></td><td>Camera pans across 15 chairs. 8 have bags. Teacher: "In 15 kursiyon mein se 7 khaali hain. Sirf 15 bachche honge. 40 nahi."</td><td>30s</td></tr>
+      <tr><td>2</td><td><strong>Teacher Ka Test</strong></td><td>Teacher bends to child's level, wipes tears, makes them laugh in 30 seconds. Text: "Yeh test koi exam nahi le sakta."</td><td>20s</td></tr>
+      <tr><td>3</td><td><strong>Principal Ka Sawaal</strong></td><td>Principal to camera: "Aapke bachche ki teacher ka naam kya hai? Agar nahi jaante — class mein bahut zyada bachche hain."</td><td>25s</td></tr>
+      <tr><td>4</td><td><strong>Ek Minute Mein</strong></td><td>Split screen: 40 chairs crammed vs 15 chairs with space. "Left mein roll number. Right mein naam."</td><td>15s</td></tr>
+      <tr><td>5</td><td><strong>Maa Ka Ek Din</strong></td><td>Real mother: "Main poora din class mein baithi. Teacher ne [name] ko 3 baar naam se pukaara. Bass. Decision ho gaya."</td><td>40s</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>5 WhatsApp Messages (Copy-Paste Ready)</h3>
+
+    <h4>Message 1: Assessment Invite</h4>
+    <div class="msg-box">&#127919; Aapke bachche ka PEHLA REPORT CARD — Bilkul FREE
+
+Kya aapka bachcha 2.5 se 5 saal ka hai?
+
+Is Saturday SOS School mein FREE Child Readiness Assessment hai.
+
+&#9989; Motor skills check
+&#9989; Language check
+&#9989; Social readiness check
+&#9989; Printed report card milega
+
+Koi admission ka pressure nahi. Sirf jaankari.
+
+&#128205; SOS School of Scholars, Katol
+&#128222; [Number]
+&#9200; Saturday 10 AM - 1 PM | Sirf 8 slots
+
+Appoint karwa lijiye — pehle aao, pehle paao &#128591;</div>
+
+    <h4>Message 2: Trial Day Invite</h4>
+    <div class="msg-box">&#127979; Ek alag tarah ka invitation...
+
+Hum aapko aur aapke bachche ko POORE DIN ke liye hamare classroom mein bula rahe hain.
+
+Aap baithiye. Dekhiye. Teacher ko observe kijiye.
+
+&#10060; Koi fees nahi
+&#10060; Koi form nahi
+&#10060; Koi commitment nahi
+
+&#9989; Sirf ek din — dekhiye, samjhiye, decide kijiye.
+
+Kyunki school choosna dekhke hona chahiye. Sunke nahi.
+
+Har Tuesday & Thursday | Sirf 4 seats
+&#128222; [Number]</div>
+
+    <h4>Message 3: Seat Update (Scarcity)</h4>
+    <div class="msg-box">&#128226; SOS School — Seat Update
+
+Nursery: 15 mein se 9 bhar chuki &#9989;
+LKG: 15 mein se 7 bhar chuki &#9989;
+UKG: 15 mein se 11 bhar chuki &#9989;
+
+Hum 40 nahi bharte. 15 bharte hain.
+
+Kyunki 15 mein teacher naam jaanti hai. 40 mein sirf roll number.
+
+Agar visit karna hai toh is hafte aa jaayein. Uske baad waitlist shuru.
+
+&#128222; [Number]</div>
+
+    <h4>Message 4: Parent Testimonial</h4>
+    <div class="msg-box">&#128172; "Main poora din class mein baithi thi. Kisi ne mujhe nahi roka. Teacher ne mere bachche ko 4 baar naam se pukaara. Ek baar roti tod ke di jab haath nahi pahunch raha tha."
+
+— [Mother's Name], Nursery Parent
+
+SOS School mein aap bhi ek din baith sakte hain.
+&#128222; [Number]</div>
+
+    <h4>Message 5: Urgency Close</h4>
+    <div class="msg-box">&#9888;&#65039; Nursery mein sirf 4 seats baaki hain.
+
+Yeh last week hai trial day ka. Uske baad waitlist se bharenge.
+
+Agar soch rahe hain — ek baar aakar dekhiye. Poora din. Free.
+
+Pasand nahi aaya — koi baat nahi. Koi pressure nahi.
+
+Lekin pasand aaya aur seat khatam — toh wait karna padega.
+
+&#128222; [Number] | Kal ka slot abhi book karein</div>
+  </div>
+
+  <div class="card">
+    <h3>5 Poster Ideas</h3>
+    <table>
+      <tr><th>#</th><th>Visual</th><th>Headline</th></tr>
+      <tr><td>1</td><td>Photo of 15 chairs, 7 empty</td><td>"15 kursiyan. 7 baaki. Aapke bachche ki kaunsi hai?"</td></tr>
+      <tr><td>2</td><td>Split: register numbers vs teacher saying name</td><td>"40 bachche = roll number. 15 bachche = naam."</td></tr>
+      <tr><td>3</td><td>Child solving puzzle</td><td>"Aapke bachche ka PEHLA REPORT CARD — Free. Har Saturday."</td></tr>
+      <tr><td>4</td><td>Mother sitting in classroom</td><td>"Poora din class mein baithiye. Dekhiye. Fir decide kijiye."</td></tr>
+      <tr><td>5</td><td>Teacher holding child's hand</td><td>"Main promise karti hoon — naam yaad rakhoongi. Sirf 15 bachche hain."</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 5: CONVERSION SYSTEM -->
+<!-- ============================================ -->
+<div class="section">
+  <h2 class="section-title"><span class="section-num">5</span> Conversion System</h2>
+
+  <div class="card">
+    <h3>Walk-In to Admission Funnel</h3>
+    <table>
+      <tr><th>Stage</th><th>Action</th><th>Conversion Target</th></tr>
+      <tr><td>Enquiry</td><td>Phone / Walk-in / WhatsApp</td><td>100%</td></tr>
+      <tr><td>Assessment or Trial Day</td><td>Saturday assessment or Tue/Thu trial</td><td>60% of enquiries</td></tr>
+      <tr><td>Teacher's Diary Note Given</td><td>Handwritten observations</td><td>100% of visitors</td></tr>
+      <tr><td>Follow-up Call (Day 1)</td><td>Teacher calls, not reception</td><td>80% pick up</td></tr>
+      <tr><td>Second Visit</td><td>"Ek aur din aa jaayein"</td><td>40% return</td></tr>
+      <tr><td>Principal Meeting</td><td>10 min, personal, one-on-one</td><td>70% of 2nd visits</td></tr>
+      <tr><td>Admission</td><td>Form + fee + welcome kit</td><td>50% overall</td></tr>
+      <tr><td>Referral</td><td>3 Golden Passes per parent</td><td>2 referrals per admit</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Parent Handling Script — First 5 Minutes</h3>
+    <div class="script-box">
+      <div class="speaker">Receptionist (within 30 seconds)</div>
+      <p>"Namaste! Aapka naam kya hai? Aur bachche ka naam?" <em>(Write it down. Use child's name in every sentence from now.)</em></p>
+      <p>"[Child name] ki umar kitni hai? Achha, toh [child name] ke liye Nursery dekh rahe hain?"</p>
+      <p>"Chaliye, main aapko [Teacher name] se milwati hoon."</p>
+      <p><em>Hand over to teacher within 2 minutes. NEVER let parent sit in reception and wait.</em></p>
+    </div>
+    <div class="script-box">
+      <div class="speaker">Teacher (15-20 minutes)</div>
+      <p><em>(Bends down to child's level)</em> "[Child name]! Aao, mere paas ek puzzle hai. Dekhoge?"</p>
+      <p><em>(Plays with child 15 min while parent WATCHES. Parent is not talked to — they observe.)</em></p>
+      <p><em>(After, to parent)</em> "[Child name] bahut curious hai. Puzzle 3 minute mein solve kar diya. Aur ek cheez notice ki — jab doosre bachche ne block liya, [child name] ne roya nahi, doosra block uthaya. Bahut mature behaviour hai."</p>
+    </div>
+    <div class="script-box">
+      <div class="speaker">Principal (5-10 minutes — only if parent shows interest)</div>
+      <p>"[Child name] bahut accha laga. [Teacher name] ne bataya ki [specific observation]."</p>
+      <p>"Hamare Nursery mein sirf 15 seats hain. [X] bhar chuki hain. Isse zyada nahi bharte — kyunki 40 ho jayein toh [teacher name] [child name] ko woh attention nahi de paayegi."</p>
+      <p>"Aap sochiye. Koi jaldi nahi. Lekin main chahti hoon ki [child name] hamare school mein aaye."</p>
+      <p><em>(PAUSE. Don't fill the silence. Let parent think.)</em></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Objection Handling — Ready Scripts</h3>
+    <table>
+      <tr><th>Objection</th><th>Response</th></tr>
+      <tr><td><strong>"Fees zyada hai"</strong></td><td>"&#8377;[X] ko 12 mahine mein divide karein = &#8377;[Y]/month. Iske badle 15 bachche ki class, teacher naam se jaanti hai. Bade school mein same fees mein 40 bachche. Aap decide kijiye."</td></tr>
+      <tr><td><strong>"Sochna padega"</strong></td><td>"Bilkul. [Child name] ka Teacher's Diary note le jaayiye. Husband ko dikhaaiyein. Usme likha hai teacher ne kya notice kiya. Yeh mera personal number hai."</td></tr>
+      <tr><td><strong>"XYZ school bhi dekh rahe hain"</strong></td><td>"Zaroor dekhiye. Ek cheez poochiye wahan — ek class mein kitne bachche? Aur kya poora din class mein baithke dekh sakte hain? Agar haan — bahut accha. Agar naa — soochiye kyun."</td></tr>
+      <tr><td><strong>"School naya hai / suna nahi"</strong></td><td>"Sahi keh rahe hain. Isliye kuch alag kar rahe hain — poora din class mein baithne de rahe hain. Bada school yeh nahi karta. Kyunki unke paas chhupane ko hai. Hamare paas dikhane ko hai."</td></tr>
+      <tr><td><strong>"Transport nahi hai"</strong></td><td>"[X area] tak van jaati hai. Aapke mohalle se 3-4 bachche mil jayein toh route extend ho sakta hai."</td></tr>
+      <tr><td><strong>"Bachcha chhota hai"</strong></td><td>"Assessment karwa lijiye — free hai. Teacher dekhegi readiness. Agar ready nahi toh hum khud kahenge. Lekin ready hai toh 6 mahina late karna nuksan hai."</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Follow-Up System</h3>
+    <table>
+      <tr><th>Day</th><th>Action</th><th>Who</th><th>Script</th></tr>
+      <tr><td><strong>Day 1</strong></td><td>WhatsApp: child's classroom photo</td><td>Teacher</td><td>"[Child name] ka photo — kal classroom mein. Bahut enjoy kiya!"</td></tr>
+      <tr><td><strong>Day 2</strong></td><td>Phone call</td><td>Teacher</td><td>"[Child name] kaisa hai? Kal usne [specific thing] kiya — bahut accha laga."</td></tr>
+      <tr><td><strong>Day 4</strong></td><td>Seat update</td><td>Reception</td><td>"Nursery mein [X] seats baaki. Inform kar rahi thi."</td></tr>
+      <tr><td><strong>Day 7</strong></td><td>Principal calls</td><td>Principal</td><td>"[Child name] bahut accha laga. Kya socha? Koi concern ho toh bataiye."</td></tr>
+      <tr><td><strong>Day 10</strong></td><td>Final nudge</td><td>Teacher</td><td>"[X] seats baaki. Is hafte aa jaayiye. Uske baad waitlist."</td></tr>
+      <tr><td><strong>Day 14</strong></td><td>STOP. Move to warm list.</td><td>—</td><td>Send Diwali greeting. Stay in touch for next year.</td></tr>
+    </table>
+    <div class="warn-box">
+      <p><strong>Rule: NEVER call more than 4 times.</strong> After 4 touches, stop. Desperation kills trust.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 6: 7-DAY EXECUTION -->
+<!-- ============================================ -->
+<div class="section">
+  <h2 class="section-title"><span class="section-num">6</span> 7-Day Execution Plan</h2>
+
+  <div class="day-card">
+    <div class="day-label">DAY 1 — TOMORROW</div>
+    <table>
+      <tr><th>Time</th><th>Task</th><th>Owner</th></tr>
+      <tr><td>8 AM</td><td>Set up "15 Chairs" photo — take 3 photos</td><td>Teacher + Principal</td></tr>
+      <tr><td>9 AM</td><td>Print: Teacher Diary (50), Assessment cards (30), Golden Passes (60)</td><td>Admin</td></tr>
+      <tr><td>10 AM</td><td>Principal writes first 15 handwritten letters</td><td>Principal</td></tr>
+      <tr><td>11 AM</td><td>Train 2 teachers: assessment + observation writing (1 hr)</td><td>Principal</td></tr>
+      <tr><td>12 PM</td><td>Create WhatsApp broadcast list</td><td>Admin</td></tr>
+      <tr><td>2 PM</td><td>Send "15 Chairs" photo to all staff WhatsApp status</td><td>All staff</td></tr>
+      <tr><td>4 PM</td><td>Visit 3 paediatricians + 5 medical stores with posters</td><td>Admin + Peon</td></tr>
+    </table>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">DAY 2</div>
+    <table>
+      <tr><th>Time</th><th>Task</th><th>Owner</th></tr>
+      <tr><td>8 AM</td><td>Principal writes 15 more letters (total: 30)</td><td>Principal</td></tr>
+      <tr><td>9 AM</td><td>Identify 5 connector mothers across 5 mohallas</td><td>Teacher</td></tr>
+      <tr><td>10 AM</td><td>Visit first 2 connector mothers — invite to host chai</td><td>Teacher</td></tr>
+      <tr><td>12 PM</td><td>Send WhatsApp #1 (Assessment invite) to broadcast</td><td>Admin</td></tr>
+      <tr><td>2 PM</td><td>Hand-deliver first 15 letters</td><td>Peon</td></tr>
+      <tr><td>4 PM</td><td>Distribute Golden Passes to existing parents</td><td>Principal</td></tr>
+    </table>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">DAY 3 — FIRST TRIAL DAY</div>
+    <table>
+      <tr><th>Time</th><th>Task</th><th>Owner</th></tr>
+      <tr><td>8 AM</td><td>Principal writes remaining 20 letters (total: 50)</td><td>Principal</td></tr>
+      <tr><td>9 AM-1 PM</td><td><strong>First "Ek Din Andar" trial — 4 mothers</strong></td><td>Lead Teacher</td></tr>
+      <tr><td>1 PM</td><td>Print photos + write Teacher Diary notes</td><td>Teacher + Admin</td></tr>
+      <tr><td>2 PM</td><td>Deliver remaining 35 letters</td><td>Peon</td></tr>
+      <tr><td>4 PM</td><td>Visit remaining 3 connector mothers</td><td>Teacher</td></tr>
+      <tr><td>6 PM</td><td><strong>First Mohalla Meeting — Mohalla 1</strong></td><td>Teacher</td></tr>
+    </table>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">DAY 4</div>
+    <table>
+      <tr><th>Time</th><th>Task</th><th>Owner</th></tr>
+      <tr><td>9 AM</td><td>Follow-up calls to Day 3 trial mothers</td><td>Teacher</td></tr>
+      <tr><td>10 AM</td><td>Send WhatsApp #2 (Trial Day invite)</td><td>Admin</td></tr>
+      <tr><td>12 PM</td><td>Record Video #1 ("15 Chairs") on phone</td><td>Teacher</td></tr>
+      <tr><td>2 PM</td><td>Share video on all WhatsApp statuses</td><td>All staff</td></tr>
+      <tr><td>4 PM</td><td>Principal calls first 15 letter recipients</td><td>Principal</td></tr>
+      <tr><td>6 PM</td><td><strong>Mohalla Meeting — Mohalla 2</strong></td><td>Teacher</td></tr>
+    </table>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">DAY 5 (SATURDAY) — ASSESSMENT DAY</div>
+    <table>
+      <tr><th>Time</th><th>Task</th><th>Owner</th></tr>
+      <tr><td>9:30 AM</td><td>Set up assessment room: puzzles, crayons, blocks</td><td>Teacher</td></tr>
+      <tr><td>10 AM-1 PM</td><td><strong>FIRST ASSESSMENT SESSION — 8 children</strong></td><td>2 Teachers</td></tr>
+      <tr><td>1 PM</td><td>Print & distribute report cards</td><td>Admin</td></tr>
+      <tr><td>2 PM</td><td>Record Video #2 during assessment</td><td>Admin</td></tr>
+      <tr><td>3 PM</td><td>Share photos on WhatsApp (with parent permission)</td><td>All staff</td></tr>
+      <tr><td>4 PM</td><td>Debrief: how many showed strong interest?</td><td>Principal + Teachers</td></tr>
+    </table>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">DAY 6</div>
+    <table>
+      <tr><th>Time</th><th>Task</th><th>Owner</th></tr>
+      <tr><td>9 AM-1 PM</td><td>Second trial day — 4 new mothers</td><td>Lead Teacher</td></tr>
+      <tr><td>11 AM</td><td>Follow-up calls to Saturday families</td><td>Teacher</td></tr>
+      <tr><td>12 PM</td><td>Send WhatsApp #3 (Seat Update)</td><td>Admin</td></tr>
+      <tr><td>2 PM</td><td>Record Video #3 ("Principal Ka Sawaal")</td><td>Principal</td></tr>
+      <tr><td>4 PM</td><td>Principal calls remaining letter recipients</td><td>Principal</td></tr>
+      <tr><td>6 PM</td><td><strong>Mohalla Meeting — Mohalla 3</strong></td><td>Teacher</td></tr>
+    </table>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">DAY 7 — WAR ROOM REVIEW</div>
+    <table>
+      <tr><th>Time</th><th>Task</th><th>Owner</th></tr>
+      <tr><td>9 AM</td><td><strong>WAR ROOM:</strong> Total enquiries, visits, assessments, conversions</td><td>All</td></tr>
+      <tr><td>10 AM</td><td>Adjust: which mohalla converted best? Which message worked?</td><td>Principal</td></tr>
+      <tr><td>11 AM</td><td>Plan Week 2: double down on best areas</td><td>All</td></tr>
+      <tr><td>12 PM</td><td>Send parent testimonial video to all channels</td><td>Admin</td></tr>
+      <tr><td>2 PM</td><td>Write personal follow-up notes to undecided parents</td><td>Teacher</td></tr>
+      <tr><td>4 PM</td><td>Update "15 Chairs" — remove filled, update gate poster</td><td>Admin</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- BOLD IDEAS -->
+<!-- ============================================ -->
+<div class="section">
+  <h2 class="section-title"><span class="section-num">&#9889;</span> 3 Penny-Drop Ideas</h2>
+
+  <div class="penny">
+    <h3>1. "The Empty Chair Photo"</h3>
+    <p style="margin-top:8px">15 chairs. 8 have bags. 7 empty. One photo. Caption: <strong>"15 kursiyan. 8 bhar chuki. 7 baaki. Aapke bachche ki chair kaunsi hai?"</strong></p>
+    <p style="margin-top:8px">Makes scarcity VISUAL. Loss aversion is the most powerful motivator in a parent's brain. A chair with no child creates more urgency than any "admission open" banner.</p>
+    <p style="margin-top:8px; color:#22c55e"><strong>Cost: &#8377;0</strong> (phone camera + WhatsApp)</p>
+  </div>
+
+  <div class="penny">
+    <h3>2. "The Principal's Home Visit"</h3>
+    <p style="margin-top:8px">Principal visits homes of 10 high-potential families. Sits on their sofa. Drinks their chai. Says: <strong>"Main aapke ghar isliye aayi kyunki mujhe lagta hai aapka bachcha hamare school mein accha karega. Hum sirf 15 lete hain — hum chahte hain ki woh 15 families sahi hon."</strong></p>
+    <p style="margin-top:8px">Reverses the power dynamic completely. The school is choosing the parent. Parent will tell EVERYONE: "Principal ghar aayi thi. Chai pi."</p>
+    <p style="margin-top:8px; color:#22c55e"><strong>Cost: &#8377;0</strong> (time + petrol)</p>
+  </div>
+
+  <div class="penny">
+    <h3>3. "The Follow-Up Letter"</h3>
+    <p style="margin-top:8px">After trial days, send handwritten note to parents who visited but didn't enroll: <strong>"[Child name] ne trial day mein bahut accha kiya. Teacher ne notice kiya ki [specific observation]. Hum chahte hain ki [child name] aaye. Sirf 4 seats baaki. 5 din mein bataiyega — uske baad waitlist."</strong></p>
+    <p style="margin-top:8px">Creates deadline without being pushy. Uses child's name + specific observation. No school in Katol sends a personal follow-up with the child's name.</p>
+    <p style="margin-top:8px; color:#22c55e"><strong>Cost: &#8377;500</strong></p>
+  </div>
+</div>
+
+<!-- BUDGET -->
+<div class="section">
+  <h2 class="section-title"><span class="section-num">&#8377;</span> Total Budget</h2>
+  <div class="budget-total">
+    <div class="amount">&#8377;7,600</div>
+    <div class="label">Total cost for all 5 campaigns + 7-day execution</div>
+  </div>
+  <div class="insight-box">
+    <p><strong>The One Metric That Matters:</strong> "Kitne parents ne aaj teacher ka naam seekha?" Not enquiries. Not walk-ins. Once a parent knows the teacher BY NAME, they're 80% converted. The teacher IS the product.</p>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>SOS School of Scholars &mdash; Admission War Plan &mdash; March 2026</p>
+  <p><a href="home.html">&larr; Back to Command Centre</a></p>
+</div>
+
+</body>
+</html>
