@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Tribal Box — Command Centre</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a0a; color: #e0e0e0; min-height: 100vh; }
+
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); padding: 50px 24px; text-align: center; border-bottom: 3px solid #f59e0b; }
+  .header h1 { font-size: 2.4rem; color: #fff; letter-spacing: 3px; font-weight: 800; }
+  .header .subtitle { color: #f59e0b; font-size: 1rem; margin-top: 8px; font-weight: 600; letter-spacing: 5px; text-transform: uppercase; }
+  .header .date { color: #8899aa; margin-top: 12px; font-size: 0.9rem; }
+
+  .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+
+  .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: #f59e0b; margin-bottom: 16px; margin-top: 40px; }
+  .section-label:first-of-type { margin-top: 0; }
+
+  .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .card { background: #141422; border: 1px solid #222; border-radius: 14px; padding: 28px; text-decoration: none; transition: all 0.3s; display: block; }
+  .card:hover { border-color: #f59e0b; transform: translateY(-2px); }
+  .card .icon { font-size: 2rem; margin-bottom: 12px; }
+  .card .title { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .card .desc { font-size: 0.82rem; color: #8899aa; line-height: 1.5; }
+  .card .badge { display: inline-block; margin-top: 12px; background: #22c55e22; color: #22c55e; border: 1px solid #22c55e44; padding: 3px 10px; border-radius: 10px; font-size: 0.7rem; font-weight: 700; }
+  .card .badge.orange { background: #f59e0b22; color: #f59e0b; border-color: #f59e0b44; }
+  .card .badge.blue { background: #3b82f622; color: #3b82f6; border-color: #3b82f644; }
+
+  .card.full { grid-column: 1 / -1; }
+
+  .footer { text-align: center; padding: 40px; color: #333; font-size: 0.8rem; margin-top: 40px; }
+
+  @media (max-width: 600px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>THE TRIBAL BOX</h1>
+  <div class="subtitle">Command Centre</div>
+  <div class="date">All dashboards in one place</div>
+</div>
+
+<div class="container">
+
+  <div class="section-label">Daily Content</div>
+  <div class="card-grid">
+    <a class="card" href="index.html">
+      <div class="icon">🇮🇳</div>
+      <div class="title">India Stories</div>
+      <div class="desc">5 verified human stories with 60-second video scripts, IG captions, hashtags, and source links.</div>
+      <div class="badge">Updated Daily</div>
+    </a>
+    <a class="card" href="international.html">
+      <div class="icon">🌍</div>
+      <div class="title">International Stories</div>
+      <div class="desc">7 global stories across 5+ continents with full scripts, trust scores, and IG handles.</div>
+      <div class="badge">Updated Daily</div>
+    </a>
+    <a class="card" href="x-posts.html">
+      <div class="icon">𝕏</div>
+      <div class="title">X Trending Posts</div>
+      <div class="desc">6 ready-to-post tweets riding today's trending topics. Copy button + direct post link included.</div>
+      <div class="badge orange">Copy & Post</div>
+    </a>
+  </div>
+
+  <div class="section-label">School Operations</div>
+  <div class="card-grid">
+    <a class="card" href="sos-dashboard/">
+      <div class="icon">🏫</div>
+      <div class="title">SOS School Dashboard</div>
+      <div class="desc">Class-wise enrollment, participation rates, admission tracker, lead CRM, and weekly progress.</div>
+      <div class="badge blue">Live Dashboard</div>
+    </a>
+    <a class="card" href="katol-school.html">
+      <div class="icon">📊</div>
+      <div class="title">Katol School Intel</div>
+      <div class="desc">Market intelligence, competitor analysis, and strategic insights for Katol region.</div>
+      <div class="badge blue">Research</div>
+    </a>
+  </div>
+
+</div>
+
+<div class="footer">
+  The Tribal Box &mdash; Command Centre
+</div>
+
+</body>
+</html>
