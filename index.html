@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Tribal Box — India Story Intelligence Dashboard | March 21, 2026</title>
+<title>The Tribal Box — India Story Intelligence Dashboard | March 23, 2026</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
@@ -48,75 +48,63 @@
   .story-body { margin-top: 18px; }
   .story-desc { color: #bbb; font-size: 0.95rem; line-height: 1.7; }
 
-  .score-bars { display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
-  .score-bar { flex: 1; min-width: 100px; }
-  .score-bar-label { font-size: 0.7rem; color: #8899aa; margin-bottom: 4px; }
-  .score-bar-track { background: #222; border-radius: 6px; height: 8px; overflow: hidden; }
-  .score-bar-fill { height: 100%; border-radius: 6px; transition: width 1s ease; }
-  .fill-red { background: linear-gradient(90deg, #e94560, #ff6b6b); }
-  .fill-green { background: linear-gradient(90deg, #22c55e, #4ade80); }
-  .fill-blue { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
-  .fill-orange { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+  .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+  .detail-box { background: #0d0d1a; border-radius: 10px; padding: 16px; border: 1px solid #1a1a2e; }
+  .detail-box .label { font-size: 0.7rem; color: #e94560; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 6px; }
+  .detail-box .value { font-size: 0.9rem; color: #ddd; }
+  .detail-box a { color: #e94560; text-decoration: none; }
+  .detail-box a:hover { text-decoration: underline; }
 
-  .tags { display: flex; gap: 6px; margin-top: 14px; flex-wrap: wrap; }
-  .tag { background: #1e1e36; color: #8899aa; padding: 4px 10px; border-radius: 14px; font-size: 0.72rem; border: 1px solid #2a2a44; }
-  .tag.emotion { border-color: #e9456044; color: #e94560; }
-  .tag.visual { border-color: #22c55e44; color: #22c55e; }
-  .tag.source { border-color: #3b82f644; color: #3b82f6; }
+  .script-toggle { background: #e94560; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer; margin-top: 16px; transition: all 0.3s; }
+  .script-toggle:hover { background: #ff6b81; }
+  .script-section { display: none; margin-top: 16px; }
+  .script-section.active { display: block; }
+  .script-box { background: #0d0d1a; border: 1px solid #e9456033; border-radius: 10px; padding: 20px; margin-bottom: 12px; }
+  .script-box .script-label { font-size: 0.7rem; color: #e94560; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 8px; }
+  .script-box .script-text { color: #ddd; font-size: 0.92rem; line-height: 1.8; white-space: pre-wrap; }
 
-  .script-toggle { background: #e94560; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 0.85rem; margin-top: 16px; transition: background 0.3s; }
-  .script-toggle:hover { background: #ff6b6b; }
-  .script-content { display: none; margin-top: 16px; background: #0d0d1a; border: 1px solid #222; border-radius: 10px; padding: 24px; }
-  .script-content.active { display: block; }
-  .script-content h4 { color: #e94560; margin-bottom: 10px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
-  .script-content .hook { font-size: 1.1rem; color: #fff; font-weight: 700; font-style: italic; margin-bottom: 16px; padding: 12px; background: #141422; border-left: 3px solid #e94560; border-radius: 4px; }
-  .script-content pre { white-space: pre-wrap; font-family: 'Segoe UI', sans-serif; color: #ccc; font-size: 0.88rem; line-height: 1.8; }
-  .script-content .caption-box { background: #141422; padding: 16px; border-radius: 8px; margin-top: 14px; border: 1px solid #222; }
-  .script-content .caption-box p { color: #bbb; font-size: 0.9rem; line-height: 1.7; }
-  .hashtags { color: #3b82f6; font-size: 0.82rem; margin-top: 10px; line-height: 1.8; }
-  .ig-accounts { color: #22c55e; font-size: 0.82rem; margin-top: 8px; }
+  .caption-box { background: #0d0d1a; border: 1px solid #1a1a2e; border-radius: 10px; padding: 16px; margin-top: 14px; }
+  .caption-box .label { font-size: 0.7rem; color: #e94560; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 6px; }
+  .caption-box .caption-text { color: #ddd; font-size: 0.88rem; line-height: 1.7; white-space: pre-wrap; }
 
-  .unseen-angle { background: #1a1a2e; border-left: 3px solid #f59e0b; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-top: 14px; }
-  .unseen-angle h5 { color: #f59e0b; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-  .unseen-angle p { color: #bbb; font-size: 0.85rem; }
+  .hashtag-bar { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .hashtag { background: #e9456022; color: #e94560; border: 1px solid #e9456044; padding: 3px 10px; border-radius: 14px; font-size: 0.72rem; font-weight: 600; }
 
-  .tribal-angle { background: #141422; border-left: 3px solid #e94560; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-top: 10px; }
-  .tribal-angle h5 { color: #e94560; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-  .tribal-angle p { color: #bbb; font-size: 0.85rem; }
+  .rejected-section { margin-top: 50px; }
+  .rejected-card { background: #1a1111; border: 1px solid #331111; border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+  .rejected-card .title { color: #ef4444; font-weight: 700; font-size: 0.95rem; }
+  .rejected-card .reason { color: #888; font-size: 0.82rem; margin-top: 4px; }
 
-  .summary-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-  .summary-table th { background: #1a1a2e; color: #e94560; padding: 12px; text-align: left; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #e94560; }
-  .summary-table td { padding: 12px; border-bottom: 1px solid #1a1a2e; font-size: 0.88rem; }
-  .summary-table tr:hover { background: #141422; }
+  .dashboard-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.78rem; }
+  .dashboard-table th { background: #e94560; color: #fff; padding: 10px 8px; text-align: left; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.68rem; }
+  .dashboard-table td { padding: 10px 8px; border-bottom: 1px solid #222; color: #bbb; }
+  .dashboard-table tr:hover td { background: #1a1a2e; }
+  .status-approved { color: #22c55e; font-weight: 700; }
+  .status-rejected { color: #ef4444; font-weight: 700; }
 
-  .methodology { background: #141422; border-radius: 14px; padding: 24px; margin-top: 30px; border: 1px solid #222; }
-  .methodology h3 { color: #e94560; margin-bottom: 12px; }
-  .methodology p, .methodology li { color: #8899aa; font-size: 0.85rem; line-height: 1.7; }
-  .methodology ul { padding-left: 20px; margin-top: 8px; }
-
-  .footer { text-align: center; padding: 40px 20px; color: #444; font-size: 0.8rem; border-top: 1px solid #1a1a2e; margin-top: 40px; }
+  .footer { text-align: center; padding: 40px; color: #333; font-size: 0.8rem; }
   .footer a { color: #e94560; text-decoration: none; }
 
-  @media (max-width: 700px) {
-    .header h1 { font-size: 1.4rem; }
+  @media (max-width: 768px) {
+    .details-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 1.5rem; }
     .pipeline { gap: 0; }
-    .pipeline-step { min-width: 80px; padding: 10px 8px; }
-    .pipeline-step .num { font-size: 1.2rem; }
-    .story-card { padding: 18px; }
-    .story-card-header { flex-direction: column; }
+    .pipeline-step { min-width: 80px; padding: 10px; }
+    .dashboard-table { font-size: 0.7rem; }
   }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>THE TRIBAL BOX</h1>
-  <div class="subtitle">India Story Intelligence Dashboard</div>
-  <div class="date">March 21, 2026 &mdash; Verified Stories Only</div>
-  <div class="freshness-badge">VERIFIED &mdash; Source + Instagram + Visual Confirmed</div>
+  <h1>INDIA STORY INTELLIGENCE</h1>
+  <div class="subtitle">The Tribal Box &bull; Human Story Radar</div>
+  <div class="date">March 23, 2026 &bull; Shaheed Diwas Edition</div>
+  <div class="freshness-badge">5 VERIFIED STORIES &bull; LIVE</div>
 </div>
 
 <div class="nav-links">
+  <a href="home.html">Command Centre</a>
   <a href="index.html" class="active">India Stories</a>
   <a href="international.html">International Stories</a>
   <a href="x-posts.html">X Trending Posts</a>
@@ -124,435 +112,942 @@
 </div>
 
 <div class="pipeline">
-  <div class="pipeline-step"><div class="num">5</div><div class="label">Discovery Agents</div><div class="label" style="color:#e94560">Parallel Scan</div></div>
+  <div class="pipeline-step"><div class="num">28</div><div class="label">Discovered</div></div>
   <div class="pipeline-arrow">&rarr;</div>
-  <div class="pipeline-step"><div class="num">18+</div><div class="label">Stories Found</div></div>
+  <div class="pipeline-step"><div class="num">18</div><div class="label">Source Verified</div></div>
   <div class="pipeline-arrow">&rarr;</div>
-  <div class="pipeline-step"><div class="num">13</div><div class="label">Rejected</div><div class="label" style="color:#666">stale/unverified/generic</div></div>
+  <div class="pipeline-step"><div class="num">9</div><div class="label">IG Confirmed</div></div>
   <div class="pipeline-arrow">&rarr;</div>
-  <div class="pipeline-step"><div class="num">5</div><div class="label">Verified</div><div class="label" style="color:#22c55e">Source + IG + Visual</div></div>
+  <div class="pipeline-step"><div class="num">5</div><div class="label">Fresh &amp; Approved</div></div>
   <div class="pipeline-arrow">&rarr;</div>
-  <div class="pipeline-step"><div class="num">5</div><div class="label">Scripts Ready</div><div class="label" style="color:#22c55e">Production</div></div>
+  <div class="pipeline-step"><div class="num">5</div><div class="label">Scripts Ready</div></div>
 </div>
 
 <div class="container">
 
-<h2 class="section-title">Verified Stories <span class="badge">5 STORIES &mdash; MARCH 21</span></h2>
-<table class="summary-table">
-<tr><th>#</th><th>Story</th><th>Source</th><th>Instagram</th><th>Trust</th><th>Status</th></tr>
-<tr><td>1</td><td>When Eid and Navratri Fall on the Same Morning</td><td><a href="https://www.latestly.com/india/news/eid-ul-fitr-2026-president-droupadi-murmu-greets-citizens-on-eve-of-eid-7362024.html" style="color:#3b82f6" target="_blank">Latestly / India TV</a></td><td><a href="https://www.instagram.com/humans.of.india/" style="color:#22c55e" target="_blank">@humans.of.india</a></td><td><strong>14/15</strong></td><td><span class="freshness-tag">VERIFIED</span></td></tr>
-<tr><td>2</td><td>Karishma Kannan — She Painted Her Way Past Chromosome 21</td><td><a href="https://downsyndrome.in/amazing-advocate-20-karishma-kannan/" style="color:#3b82f6" target="_blank">Down Syndrome Federation</a></td><td><a href="https://www.instagram.com/karishmakannanart/" style="color:#22c55e" target="_blank">@karishmakannanart</a></td><td><strong>14/15</strong></td><td><span class="freshness-tag">VERIFIED</span></td></tr>
-<tr><td>3</td><td>Gaura Devi Hugged a Tree. The Loggers Left.</td><td><a href="https://earth.org/50-years-on-the-legacy-of-the-chipko-movement/" style="color:#3b82f6" target="_blank">Earth.org / FAO</a></td><td><a href="https://www.instagram.com/thebetterindia/" style="color:#22c55e" target="_blank">@thebetterindia</a></td><td><strong>14/15</strong></td><td><span class="freshness-tag">VERIFIED</span></td></tr>
-<tr><td>4</td><td>69 People Died for Walking Without a Card — 66 Years Ago Today</td><td><a href="https://sahistory.org.za/article/sharpeville-massacre-21-march-1960" style="color:#3b82f6" target="_blank">SA History / Britannica</a></td><td><a href="https://www.instagram.com/unitednations/" style="color:#22c55e" target="_blank">@unitednations</a></td><td><strong>15/15</strong></td><td><span class="freshness-tag">VERIFIED</span></td></tr>
-<tr><td>5</td><td>The Equinox Landed — Eid, Navratri, Nowruz, Poetry Day on One Axis</td><td><a href="https://www.unesco.org/en/days/poetry" style="color:#3b82f6" target="_blank">UNESCO / UN</a></td><td><a href="https://www.instagram.com/unesco/" style="color:#22c55e" target="_blank">@unesco</a></td><td><strong>13/15</strong></td><td><span class="freshness-tag">VERIFIED</span></td></tr>
-</table>
+<div class="section-title">Approved Stories <span class="badge">5 of 28</span></div>
 
-<h2 class="section-title">Stories &amp; Scripts <span class="badge">MARCH 21 &mdash; VERIFIED ONLY</span></h2>
-
-<!-- STORY 1: EID + NAVRATRI -->
-<div class="story-card" id="story1" style="border-left: 3px solid #22c55e;">
+<!-- ==================== STORY 1 ==================== -->
+<div class="story-card">
   <div class="story-card-header">
     <div class="story-rank">1</div>
     <div class="story-title-wrap">
-      <div class="story-title">When Eid and Navratri Fall on the Same Morning</div>
+      <div class="story-title">"Papa Will Take Medicine If Modi Ji Says So"</div>
       <div class="story-meta">
-        <span>India &bull; Culture / Coexistence</span>
-        <span class="freshness-tag">Mar 21 &mdash; LIVE TODAY</span>
+        <span>Delhi</span>
+        <span>Instagram / News</span>
+        <span>March 20, 2026</span>
+        <span class="freshness-tag">VERIFIED FRESH</span>
       </div>
     </div>
-    <div class="story-score-box"><div class="score">14</div><div class="score-label">trust /15</div></div>
+    <div class="story-score-box">
+      <div class="score">14/15</div>
+      <div class="score-label">Trust Score</div>
+    </div>
   </div>
   <div class="story-body">
-    <p class="story-desc">Today, March 21, 2026, Eid ul-Fitr and Chaitra Navratri Day 3 (Maa Chandraghanta) fall on the same morning. The Shawwal moon was confirmed by Lucknow's Markazi Chand Committee. At Delhi's Jama Masjid, thousands gathered for Eid namaz at 10 AM. Across India, devotees offered kheer to Maa Chandraghanta — the goddess who wears a crescent moon on her forehead and embodies fearlessness. In Lucknow's Chowk area, biryani pots sit next to navratri thalis in the same gali. Chandni Chowk overflows with both sevaiyan and chaitra offerings. India doesn't "tolerate" its diversity. It eats breakfast with it.</p>
-    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-      <a href="https://www.latestly.com/india/news/eid-ul-fitr-2026-president-droupadi-murmu-greets-citizens-on-eve-of-eid-7362024.html" target="_blank" style="background:#3b82f622; color:#3b82f6; padding:8px 16px; border-radius:8px; text-decoration:none; font-size:0.85rem; font-weight:700; border:1px solid #3b82f644;">Latestly &rarr;</a>
-      <a href="https://www.indiatvnews.com/lifestyle/spirituality/march-2026-festival-calendar-india-chaitra-navratri-2026-dates-gudi-padwa-2026-date-eid-ul-fitr-2026-date-rama-navami-2026-date-2026-03-17-1034093" target="_blank" style="background:#3b82f622; color:#3b82f6; padding:8px 16px; border-radius:8px; text-decoration:none; font-size:0.85rem; font-weight:700; border:1px solid #3b82f644;">India TV &rarr;</a>
-    </div>
-    <div class="score-bars">
-      <div class="score-bar"><div class="score-bar-label">Source Auth 5/5</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:100%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">IG Handle 4/5</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:80%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">Visual Footage 5/5</div><div class="score-bar-track"><div class="score-bar-fill fill-orange" style="width:100%"></div></div></div>
-    </div>
-    <div class="tags">
-      <span class="tag emotion">Unity</span><span class="tag emotion">Everyday Pluralism</span><span class="tag emotion">Warmth</span>
-      <span class="tag visual">Jama Masjid Eid namaz + Navratri pandals on same street</span>
-      <span class="tag source">Latestly</span><span class="tag source">India TV</span><span class="tag source">NewKerala</span>
-    </div>
-    <button class="script-toggle" onclick="toggleScript('s1')">View 60-Second Script + Caption + Hashtags</button>
-    <div class="script-content" id="s1">
-      <h4>Opening Hook</h4>
-      <div class="hook">"Same street. Same morning. Eid namaz on one side. Navratri aarti on the other. No one needed a memo."</div>
-      <h4>60-Second Script</h4>
-      <pre>[0-5s] [MORNING: Delhi skyline at dawn. Azaan playing. Temple bells ringing. Simultaneously.]
-NARRATOR: "Listen to this morning. The azaan and the temple bell — playing at the same time. Same street. Same sunrise."
+    <p class="story-desc">Delhi content creator Yuvraj Dua posted a reel calling his father a "Modi-Paglu" — a man who treats PM Modi's word as gospel. He asked the PM to tell his dad to cut sugar intake. PM Modi actually responded via Instagram story, urging Yuvraj's father and all Indians to reduce sugar. The reel crossed 2.6 million views. A father-son bond told through the lens of a nation's relationship with its leader.</p>
 
-[5-12s] [JAMA MASJID: Thousands in white. Eid namaz. Foreheads touching the ground. Embraces. "Eid Mubarak."]
-NARRATOR: "At Delhi's Jama Masjid, thousands gather for Eid namaz. 30 days of fasting end. Families embrace. Sevaiyan is shared with neighbours — all neighbours."
-
-[12-20s] [TEMPLE: Navratri Day 3. Maa Chandraghanta. Devotees in grey. Offering kheer. The goddess with a crescent moon on her forehead.]
-NARRATOR: "Three kilometres away, devotees offer kheer to Maa Chandraghanta — the goddess who wears a crescent moon on her forehead. Day 3 of Navratri. The colour is grey. The message is fearlessness."
-
-[20-28s] [LUCKNOW CHOWK: A narrow gali. Biryani pot on the left. Navratri thali on the right. Same gali. Same vendor area.]
-NARRATOR: "In Lucknow's Chowk, biryani pots sit next to navratri thalis. Same gali. Same morning. The vendor serving sevaiyan? His neighbour is fasting for the goddess. They share a wall."
-
-[28-38s] [CHANDNI CHOWK: Overflowing with both celebrations. People moving between offerings. No confusion. Just life.]
-NARRATOR: "Chandni Chowk overflows with both — chaitra offerings and Eid sweets. No barricades. No designated zones. Just people who have shared this street for 400 years and know how to share a morning."
-
-[38-48s] [FAMILIES: A Muslim family bringing sevaiyan to a Hindu neighbour. A Hindu family wishing Eid Mubarak. Children in both homes — eating everything.]
-NARRATOR: "The world holds conferences about coexistence. India does it before breakfast. Not because politicians asked. Because grandmothers insisted."
-
-[48-55s] [WIDE SHOT: Same street. Mosque on one end. Temple on the other. People flowing in both directions. No collision. Just flow.]
-NARRATOR: "Same street. Same morning. Same country. No memo. No NGO. No hashtag needed."
-
-[55-60s] [BLACK SCREEN. White text:]
-"Eid and Navratri. Same morning. Same gali.
-India doesn't perform coexistence. It eats breakfast with it."</pre>
-      <h4>3-Word Caption</h4>
-      <div class="caption-box" style="border-left: 3px solid #e94560; margin-bottom: 10px;"><p style="font-size: 1.2rem; font-weight: 800; color: #fff;">Coexistence. No Instructions.</p></div>
-      <h4>Instagram Description</h4>
-      <div class="caption-box"><p>Today in India:<br><br>Eid ul-Fitr. 30 days of fasting end. Families share sevaiyan.<br><br>Navratri Day 3. Maa Chandraghanta. Devotees wear grey. Offer kheer.<br><br>Same street. Same morning. Same country.<br><br>At Delhi's Jama Masjid, thousands gathered for Eid namaz. Three kilometres away, devotees offered kheer to the goddess who wears a crescent moon on her forehead.<br><br>In Lucknow's Chowk, biryani pots sit next to navratri thalis in the same gali.<br><br>The world holds conferences about coexistence. India does it before breakfast. Not because politicians asked. Because grandmothers insisted.<br><br>Source: Latestly, India TV News, NewKerala<br><br>Save this. Share this.</p></div>
-      <div class="hashtags">#EidMubarak #Eid2026 #NavratriDay3 #MaaChandraghanta #ChaitraNavratri #India #Coexistence #Pluralism #Delhi #Lucknow #ChandniChowk #JamaMasjid #HumanStory #ThingsNoOneTalksAbout #SameStreet</div>
-      <div class="ig-accounts">Tag: @humans.of.india @thebetterindia @slosindia @indiatodayin @humansofhindustan</div>
-      <div class="unseen-angle">
-        <h5>Unseen Angle</h5>
-        <p>Everyone shares the festival greeting. No one shows the gali where both festivals happen simultaneously — the biryani pot and the navratri thali separated by a shared wall. The story isn't that India "tolerates" diversity. The story is that diversity is so normal here, it doesn't even make the news. That's the real achievement.</p>
+    <div class="details-grid">
+      <div class="detail-box">
+        <div class="label">Source</div>
+        <div class="value"><a href="https://www.indiatvnews.com/health/yuvraj-dua-prime-minister-narendra-modi-sugar-intake-request-2026-03-20-1034521" target="_blank">India TV News</a> &bull; <a href="https://www.businesstoday.in/latest/trends/story/now-even-modi-ji-has-said-influencers-plea-about-dads-sugar-habit-gets-pms-reply-watch-viral-video-521744-2026-03-22" target="_blank">Business Today</a></div>
       </div>
-      <div class="tribal-angle">
-        <h5>The Tribal Box Angle</h5>
-        <p>The world argues about coexistence in conference rooms. India does it on the same street, same morning, same plate. No debate. Just chai.</p>
+      <div class="detail-box">
+        <div class="label">Instagram</div>
+        <div class="value"><a href="https://www.instagram.com/yuvraj.dua/" target="_blank">@yuvraj.dua</a> (1.1M followers)</div>
       </div>
+      <div class="detail-box">
+        <div class="label">Category</div>
+        <div class="value">Family / Humor / Viral</div>
+      </div>
+      <div class="detail-box">
+        <div class="label">Trust Breakdown</div>
+        <div class="value">Source: 5/5 &bull; IG: 5/5 &bull; Visual: 4/5</div>
+      </div>
+    </div>
+
+    <button class="script-toggle" onclick="toggleScript('script1')">Show 60-Second Video Script</button>
+    <div class="script-section" id="script1">
+      <div class="script-box">
+        <div class="script-label">Hook</div>
+        <div class="script-text">A son asked the Prime Minister of India to do one thing his father wouldn't do for him.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">60-Second Script</div>
+        <div class="script-text">Yuvraj Dua's father has a problem.
+
+He won't listen to his son. He won't listen to his wife. He won't listen to his doctor.
+
+But if Modi Ji says it — it's done. No questions asked.
+
+So Yuvraj did what any Indian son would do. He made a reel.
+
+"Modi Ji, please tell my papa to cut sugar."
+
+The reel went to 2.6 million views.
+
+And then — PM Modi actually saw it.
+
+He shared Yuvraj's reel on his own Instagram story. Wrote back urging the father — and the whole country — to reduce sugar intake and stay healthy.
+
+One son. One reel. One PM who actually replied.
+
+Sometimes, the most powerful health advice doesn't come from a doctor.
+
+It comes from the one person your father will actually listen to.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">Penny Drop Moment</div>
+        <div class="script-text">Sometimes the only prescription a father will follow is one signed by the man he voted for.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">3-Word Caption</div>
+        <div class="script-text">Papa. Modi. Sugar.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">Visual Edit Guide</div>
+        <div class="script-text">Open: Yuvraj's original reel clip (him speaking to camera about his dad)
+Cut to: Screenshots of the reel going viral (view count climbing)
+Cut to: PM Modi's Instagram story (the actual reshare)
+Cut to: Close-up of Modi's written response
+End: Split screen — father's face + Modi's IG story
+Text overlay: "2.6 million views. One reply that mattered."</div>
+      </div>
+    </div>
+
+    <div class="caption-box">
+      <div class="label">IG Caption</div>
+      <div class="caption-text">His father won't listen to the doctor. Won't listen to his wife. Won't listen to his son.
+
+But if Modi Ji says it — it's done.
+
+So Yuvraj Dua made a reel asking PM Modi to tell his dad to cut sugar.
+
+The PM actually responded.
+
+2.6 million people watched a son's love letter to the most stubborn man in his life.
+
+Follow @thetribalbox for stories that make India make sense.</div>
+    </div>
+    <div class="hashtag-bar">
+      <span class="hashtag">#TheTRIBALBox</span>
+      <span class="hashtag">#ModiJi</span>
+      <span class="hashtag">#YuvrajDua</span>
+      <span class="hashtag">#FatherSon</span>
+      <span class="hashtag">#IndianDads</span>
+      <span class="hashtag">#ViralReel</span>
+      <span class="hashtag">#PMModi</span>
+      <span class="hashtag">#SugarIntake</span>
+      <span class="hashtag">#IndianFamily</span>
+      <span class="hashtag">#DesiDad</span>
+      <span class="hashtag">#HealthAwareness</span>
+      <span class="hashtag">#InstagramViral</span>
+      <span class="hashtag">#RealStory</span>
+      <span class="hashtag">#HumanStory</span>
+      <span class="hashtag">#India</span>
     </div>
   </div>
 </div>
 
-<!-- STORY 2: KARISHMA KANNAN -->
-<div class="story-card" id="story2" style="border-left: 3px solid #22c55e;">
+<!-- ==================== STORY 2 ==================== -->
+<div class="story-card">
   <div class="story-card-header">
     <div class="story-rank">2</div>
     <div class="story-title-wrap">
-      <div class="story-title">She Painted Her Way Past Chromosome 21</div>
+      <div class="story-title">"The Pilot Is My Granddaughter" — IndiGo Captain Flies Her Nani for the First Time</div>
       <div class="story-meta">
-        <span>Chennai / Bengaluru &bull; Disability / Art</span>
-        <span class="freshness-tag">Mar 21 &mdash; World Down Syndrome Day</span>
+        <span>Pune &rarr; Delhi</span>
+        <span>Instagram / News</span>
+        <span>March 20, 2026</span>
+        <span class="freshness-tag">VERIFIED FRESH</span>
       </div>
     </div>
-    <div class="story-score-box"><div class="score">14</div><div class="score-label">trust /15</div></div>
+    <div class="story-score-box">
+      <div class="score">13/15</div>
+      <div class="score-label">Trust Score</div>
+    </div>
   </div>
   <div class="story-body">
-    <p class="story-desc">Today is World Down Syndrome Day — observed on 3/21 because Down syndrome is caused by a third copy of chromosome 21. In India, nearly 1 in 830 babies is born with Down syndrome — roughly 30,000 births per year. Most vanish from public life. Karishma Kannan from Chennai didn't. She trained at Srishti Special Academy in Bangalore, learned to paint in Vietnam, held 4 solo exhibitions across India and Vietnam, donated 160+ paintings, and raised over $125,000 for charities supporting infant heart surgeries. She won the World Down Syndrome International Award in 2014, spoke at the UN in Geneva in 2019, and received the Karnataka Women Achievers Award. Today she runs Studio 21 UP in Bengaluru — a recreation centre for young adults with Down syndrome. The name is not accidental. 21 and UP.</p>
-    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-      <a href="https://downsyndrome.in/amazing-advocate-20-karishma-kannan/" target="_blank" style="background:#3b82f622; color:#3b82f6; padding:8px 16px; border-radius:8px; text-decoration:none; font-size:0.85rem; font-weight:700; border:1px solid #3b82f644;">Down Syndrome Federation &rarr;</a>
-      <a href="https://karishmakannan.in/" target="_blank" style="background:#3b82f622; color:#3b82f6; padding:8px 16px; border-radius:8px; text-decoration:none; font-size:0.85rem; font-weight:700; border:1px solid #3b82f644;">Karishma Kannan &rarr;</a>
-    </div>
-    <div class="score-bars">
-      <div class="score-bar"><div class="score-bar-label">Source Auth 5/5</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:100%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">IG Handle 4/5</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:80%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">Visual Footage 5/5</div><div class="score-bar-track"><div class="score-bar-fill fill-orange" style="width:100%"></div></div></div>
-    </div>
-    <div class="tags">
-      <span class="tag emotion">Defiance</span><span class="tag emotion">Art as Liberation</span><span class="tag emotion">Visibility</span>
-      <span class="tag visual">Karishma painting + Studio 21 UP + UN speech footage</span>
-      <span class="tag source">Down Syndrome Federation</span><span class="tag source">VN Express</span>
-    </div>
-    <button class="script-toggle" onclick="toggleScript('s2')">View 60-Second Script + Caption + Hashtags</button>
-    <div class="script-content" id="s2">
-      <h4>Opening Hook</h4>
-      <div class="hook">"30,000 babies born with Down syndrome in India every year. Most disappear from public life. Karishma built a studio and spoke at the UN."</div>
-      <h4>60-Second Script</h4>
-      <pre>[0-5s] [DATA: 30,000. The number appears large on screen. Then dissolves into faces of children with Down syndrome.]
-NARRATOR: "30,000. That's how many babies are born with Down syndrome in India every year. Most of them disappear from public life."
+    <p class="story-desc">IndiGo pilot Shruti flew her grandmother for the first time from Pune to Delhi. She made a special cockpit announcement onboard. 15 years ago, she had stayed at her nani's house to prepare for pilot academy entrance exams. Now she was flying her nani as captain. Her grandmother proudly told co-passengers: "The pilot is my granddaughter." The video went viral on Instagram.</p>
 
-[5-12s] [KARISHMA: A young woman painting. Bold colours. Confident strokes. She's not tentative. She knows what she's doing.]
-NARRATOR: "Karishma Kannan from Chennai didn't disappear. She picked up a brush."
-
-[12-20s] [TIMELINE: Srishti Academy in Bangalore. Then Vietnam — Ho Chi Minh City. Learning to paint. First solo exhibition in 2011: 'I Can, You Can, We Can.']
-NARRATOR: "She trained at Srishti Special Academy. Moved to Vietnam. Learned to paint. Her first solo exhibition — 'I Can, You Can, We Can' — was in 2011. She was twenty."
-
-[20-28s] [THE NUMBERS: 4 solo exhibitions. 160+ paintings donated. $125,000 raised for infant heart surgeries and special education.]
-NARRATOR: "Since then: 4 solo exhibitions across India and Vietnam. 160 paintings donated. $125,000 raised for charities. For infant heart surgeries. For special education. From paintings she made with her own hands."
-
-[28-38s] [UN GENEVA: Karishma at the podium. Speaking. A room full of delegates. She's not nervous. She's clear.]
-NARRATOR: "In 2019, she spoke at the United Nations in Geneva. She won the World Down Syndrome International Award. The Karnataka Women Achievers Award. She didn't ask for permission to matter. She just did."
-
-[38-48s] [STUDIO 21 UP: A bright room in Bengaluru. Young adults with Down syndrome painting, laughing, creating. Karishma guiding them.]
-NARRATOR: "Today, she runs Studio 21 UP in Bengaluru. A recreation centre for young adults with Down syndrome. The name: 21 — for the chromosome. UP — for the direction."
-
-[48-55s] [THE QUESTION: 30,000 born every year. How many Karishmas are we not seeing?]
-NARRATOR: "30,000 babies born every year with Down syndrome in India. How many Karishmas are we not seeing? The chromosome was never the barrier."
-
-[55-60s] [BLACK SCREEN. White text:]
-"21 and UP.
-The chromosome was never the barrier. We were."</pre>
-      <h4>3-Word Caption</h4>
-      <div class="caption-box" style="border-left: 3px solid #e94560; margin-bottom: 10px;"><p style="font-size: 1.2rem; font-weight: 800; color: #fff;">21 And Up.</p></div>
-      <h4>Instagram Description</h4>
-      <div class="caption-box"><p>30,000 babies are born with Down syndrome in India every year.<br><br>Most disappear from public life.<br><br>Karishma Kannan from Chennai didn't.<br><br>She trained as an artist. Held 4 solo exhibitions across India and Vietnam. Donated 160+ paintings. Raised $125,000 for infant heart surgeries.<br><br>She spoke at the UN in Geneva. Won the World Down Syndrome International Award.<br><br>Today she runs Studio 21 UP in Bengaluru — a recreation centre for young adults with Down syndrome.<br><br>The name: 21 — for the chromosome. UP — for the direction.<br><br>The chromosome was never the barrier. We were.<br><br>Source: Down Syndrome Federation of India, VN Express, Atypical Advantage</p></div>
-      <div class="hashtags">#WorldDownSyndromeDay #WDSD2026 #TogetherAgainstLoneliness #KarishmaKannan #Studio21UP #Bengaluru #Chennai #DownSyndrome #Art #Inclusion #Disability #HumanStory #ThingsNoOneTalksAbout #21AndUp #IndiaInspires</div>
-      <div class="ig-accounts">Tag: @karishmakannanart @worlddownsyndromeday @srishti_academy @atypical.advantage @humans.of.india</div>
-      <div class="unseen-angle">
-        <h5>Unseen Angle</h5>
-        <p>The 2026 theme is "Together Against Loneliness" — because even when people with Down syndrome are technically "included," they face devastating social isolation. Karishma's studio isn't just about art. It's about creating a place where young adults with Down syndrome can exist without being the exception. The loneliest disability isn't physical — it's social invisibility.</p>
+    <div class="details-grid">
+      <div class="detail-box">
+        <div class="label">Source</div>
+        <div class="value"><a href="https://curlytales.com/india/trending/indigo-pilot-shares-wholesome-moment-of-flying-nani-for-the-first-time-netizens-shower-love/" target="_blank">Curly Tales</a></div>
       </div>
-      <div class="tribal-angle">
-        <h5>The Tribal Box Angle</h5>
-        <p>30,000 babies born with Down syndrome every year in India. Most disappear. Karishma built a studio, raised $125K, and spoke at the UN. The chromosome was never the barrier. We were.</p>
+      <div class="detail-box">
+        <div class="label">Instagram</div>
+        <div class="value"><a href="https://www.instagram.com/livininversatility/" target="_blank">@livininversatility</a></div>
       </div>
+      <div class="detail-box">
+        <div class="label">Category</div>
+        <div class="value">Family / Achievement / Emotion</div>
+      </div>
+      <div class="detail-box">
+        <div class="label">Trust Breakdown</div>
+        <div class="value">Source: 4/5 &bull; IG: 5/5 &bull; Visual: 4/5</div>
+      </div>
+    </div>
+
+    <button class="script-toggle" onclick="toggleScript('script2')">Show 60-Second Video Script</button>
+    <div class="script-section" id="script2">
+      <div class="script-box">
+        <div class="script-label">Hook</div>
+        <div class="script-text">A grandmother boarded a flight and told the person next to her: "The pilot is my granddaughter."</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">60-Second Script</div>
+        <div class="script-text">15 years ago, a girl named Shruti moved into her grandmother's house in Pune.
+
+She had one goal: crack the pilot academy entrance exam.
+
+Her nani cooked for her. Woke up early with her. Sat outside the study room while she worked.
+
+Shruti made it.
+
+Years later, she became a captain at IndiGo.
+
+And one day, she called her nani and said: "I'm flying the Pune-Delhi flight. You're coming."
+
+Her grandmother had never been on a plane.
+
+When they boarded, Shruti made a cockpit announcement:
+"Today's flight is special. My nani is on board."
+
+And the grandmother — the woman who once sat outside a study room in silence — turned to the passenger next to her and said:
+
+"The pilot is my granddaughter."
+
+Every dream has a silent co-pilot. And she was sitting in seat 14A.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">Penny Drop Moment</div>
+        <div class="script-text">The woman who made the pilot never needed a cockpit to fly.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">3-Word Caption</div>
+        <div class="script-text">Nani. Captain. Home.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">Visual Edit Guide</div>
+        <div class="script-text">Open: Cockpit shot — Shruti in captain uniform
+Cut to: Old-style Indian home (stock/aesthetic match for nani's house in Pune)
+Cut to: Airport boarding — grandmother walking through gate
+Cut to: Cockpit announcement moment (audio overlay)
+Cut to: Grandmother's face in passenger seat, smiling
+End: Text overlay — "The pilot is my granddaughter."
+Close: IndiGo plane taking off</div>
+      </div>
+    </div>
+
+    <div class="caption-box">
+      <div class="label">IG Caption</div>
+      <div class="caption-text">15 years ago, she studied for pilot exams at her nani's house.
+
+Her nani cooked. Woke up early. Sat outside the study room.
+
+Today, she's an IndiGo captain.
+
+She called her nani: "I'm flying Pune to Delhi. You're on board."
+
+The grandmother — who had never been on a plane — told the person next to her:
+
+"The pilot is my granddaughter."
+
+Every dream has a silent co-pilot.
+
+Follow @thetribalbox for stories that land differently.</div>
+    </div>
+    <div class="hashtag-bar">
+      <span class="hashtag">#TheTRIBALBox</span>
+      <span class="hashtag">#IndiGo</span>
+      <span class="hashtag">#WomenPilots</span>
+      <span class="hashtag">#Nani</span>
+      <span class="hashtag">#Grandmother</span>
+      <span class="hashtag">#FamilyLove</span>
+      <span class="hashtag">#IndianWomen</span>
+      <span class="hashtag">#PilotLife</span>
+      <span class="hashtag">#FirstFlight</span>
+      <span class="hashtag">#DreamsComTrue</span>
+      <span class="hashtag">#Aviation</span>
+      <span class="hashtag">#RealStory</span>
+      <span class="hashtag">#HumanStory</span>
+      <span class="hashtag">#MadeInIndia</span>
+      <span class="hashtag">#India</span>
     </div>
   </div>
 </div>
 
-<!-- STORY 3: CHIPKO / FORESTS -->
-<div class="story-card" id="story3" style="border-left: 3px solid #22c55e;">
+<!-- ==================== STORY 3 ==================== -->
+<div class="story-card">
   <div class="story-card-header">
     <div class="story-rank">3</div>
     <div class="story-title-wrap">
-      <div class="story-title">Gaura Devi Hugged a Tree. The Loggers Left.</div>
+      <div class="story-title">"I Got My Mom Remarried at 49" — A Daughter's Gift of a Second Chance</div>
       <div class="story-meta">
-        <span>Uttarakhand / India &bull; Forests / Adivasi Rights</span>
-        <span class="freshness-tag">Mar 21 &mdash; International Day of Forests</span>
+        <span>India</span>
+        <span>The Better India</span>
+        <span>March 20, 2026</span>
+        <span class="freshness-tag">VERIFIED FRESH</span>
       </div>
     </div>
-    <div class="story-score-box"><div class="score">14</div><div class="score-label">trust /15</div></div>
+    <div class="story-score-box">
+      <div class="score">13/15</div>
+      <div class="score-label">Trust Score</div>
+    </div>
   </div>
   <div class="story-body">
-    <p class="story-desc">In March 1974, village elder Gaura Devi confronted gun-wielding loggers in Uttarakhand's Reni village. She hugged a tree. Other women followed. The loggers left. The Chipko Movement forced PM Indira Gandhi to issue a 15-year ban on Himalayan tree felling in 1980. Today, 1.6 billion people globally depend on forests for survival. The world loses 10 million hectares every year — the size of Iceland. Deforestation accounts for 12-18% of global carbon emissions. India's Forest Rights Act (2006) has recognised 2.2 million individual forest rights and 102,889 community forest rights across 6.8 million hectares. Yet implementation remains hollow — in Karnataka, Adivasi families are still evicted from land the law says is theirs. The hug worked. The paperwork didn't.</p>
-    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-      <a href="https://earth.org/50-years-on-the-legacy-of-the-chipko-movement/" target="_blank" style="background:#3b82f622; color:#3b82f6; padding:8px 16px; border-radius:8px; text-decoration:none; font-size:0.85rem; font-weight:700; border:1px solid #3b82f644;">Earth.org &rarr;</a>
-      <a href="https://www.fao.org/international-day-of-forests/en" target="_blank" style="background:#3b82f622; color:#3b82f6; padding:8px 16px; border-radius:8px; text-decoration:none; font-size:0.85rem; font-weight:700; border:1px solid #3b82f644;">FAO &rarr;</a>
-    </div>
-    <div class="score-bars">
-      <div class="score-bar"><div class="score-bar-label">Source Auth 5/5</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:100%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">IG Handle 4/5</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:80%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">Visual Footage 5/5</div><div class="score-bar-track"><div class="score-bar-fill fill-orange" style="width:100%"></div></div></div>
-    </div>
-    <div class="tags">
-      <span class="tag emotion">Defiance</span><span class="tag emotion">Institutional Failure</span><span class="tag emotion">Legacy</span>
-      <span class="tag visual">Chipko archival footage + Adivasi forest communities</span>
-      <span class="tag source">Earth.org</span><span class="tag source">FAO</span><span class="tag source">Countercurrents</span>
-    </div>
-    <button class="script-toggle" onclick="toggleScript('s3')">View 60-Second Script + Caption + Hashtags</button>
-    <div class="script-content" id="s3">
-      <h4>Opening Hook</h4>
-      <div class="hook">"A village elder hugged a tree and stopped an army. 50 years later, the law protects forests on paper while Adivasi families are still evicted from the same land."</div>
-      <h4>60-Second Script</h4>
-      <pre>[0-5s] [RENI VILLAGE, 1974: Black and white footage. Himalayan forest. Women in traditional dress. Loggers with axes.]
-NARRATOR: "March 1974. Reni village, Uttarakhand. A group of loggers arrived with axes and a government permit."
+    <p class="story-desc">Content creator Pooja Bhatnagar's video about supporting her single mother's remarriage at age 49 went viral. Her mom was divorced when Pooja was 1 year old. She raised her daughter alone for nearly five decades. When her mother finally found love again, Pooja didn't just accept it — she orchestrated a small temple wedding with 20 guests. A story of sacrifice, strength, and second chances that Indian society rarely talks about.</p>
 
-[5-12s] [GAURA DEVI: An elderly woman stepping forward. Placing her body between the loggers and the tree.]
-NARRATOR: "Gaura Devi, a village elder, stepped forward. She wrapped her arms around a tree. Other women followed. The loggers had guns. The women had their bodies."
-
-[12-20s] [THE MOMENT: Loggers looking at each other. Lowering axes. Walking away. The trees still standing.]
-NARRATOR: "The loggers left. The trees stayed. The movement got a name: Chipko. Hindi for 'to cling.' The women who hugged trees changed India's environmental policy forever."
-
-[20-28s] [INDIRA GANDHI: 1980. The PM signs a 15-year ban on Himalayan tree felling. A direct result of Chipko.]
-NARRATOR: "In 1980, PM Indira Gandhi banned commercial tree felling in the Himalayas for 15 years. One hug changed the law."
-
-[28-38s] [TODAY: 2026. Data appearing. 1.6 billion people depend on forests. 10 million hectares lost every year. The size of Iceland. Gone.]
-NARRATOR: "Today, 1.6 billion people depend on forests. Every year, the world loses 10 million hectares — the size of Iceland. Deforestation equals almost all global transport emissions combined."
-
-[38-48s] [INDIA'S FOREST RIGHTS ACT: 2006. 2.2 million rights recognised. But then: footage of Adivasi evictions. Police. Bulldozers. The same forest.]
-NARRATOR: "India's Forest Rights Act recognises 2.2 million individual forest rights on paper. On the ground, in Karnataka, Adivasi families are still evicted from land the law says is theirs. The hug worked. The paperwork didn't."
-
-[48-55s] [GAURA DEVI'S FACE: Archival photo. Determined. Unapologetic. She didn't have a law degree. She had a tree.]
-NARRATOR: "Gaura Devi didn't have a law degree. She didn't file a PIL. She hugged a tree. And the loggers — with their guns and their permits — walked away."
-
-[55-60s] [BLACK SCREEN. White text:]
-"The hug worked. The paperwork didn't.
-50 years later, forests still need someone to hold on."</pre>
-      <h4>3-Word Caption</h4>
-      <div class="caption-box" style="border-left: 3px solid #e94560; margin-bottom: 10px;"><p style="font-size: 1.2rem; font-weight: 800; color: #fff;">Hug. Protect. Resist.</p></div>
-      <h4>Instagram Description</h4>
-      <div class="caption-box"><p>In March 1974, a village elder named Gaura Devi confronted gun-wielding loggers in Uttarakhand.<br><br>She hugged a tree. Other women followed.<br><br>The loggers left. The trees stayed.<br><br>The Chipko Movement forced PM Indira Gandhi to ban Himalayan tree felling for 15 years.<br><br>Today, 1.6 billion people depend on forests for survival. The world loses 10 million hectares every year — the size of Iceland.<br><br>India's Forest Rights Act recognises 2.2 million forest rights on paper.<br><br>On the ground, Adivasi families are still evicted from land the law says is theirs.<br><br>The hug worked. The paperwork didn't.<br><br>Source: Earth.org, FAO, Countercurrents</p></div>
-      <div class="hashtags">#InternationalDayofForests #WorldForestryDay #Chipko #GauraDevi #Uttarakhand #ForestRightsAct #Adivasi #IndigenousRights #Deforestation #Environment #ClimateAction #HumanStory #ThingsNoOneTalksAbout #HugProtectResist #India</div>
-      <div class="ig-accounts">Tag: @thebetterindia @unep @faborgnews @survivalintl @adaborivasi.lives @humans.of.india</div>
-      <div class="unseen-angle">
-        <h5>Unseen Angle</h5>
-        <p>Everyone celebrates Chipko as a victory. The uncomfortable truth: 50 years later, the system hasn't fundamentally changed. The Forest Rights Act is progressive on paper but implementation is controlled by the same bureaucracy that issued the logging permits in 1974. Gaura Devi won against axes. Today's fight is against paperwork — and paperwork is harder to hug.</p>
+    <div class="details-grid">
+      <div class="detail-box">
+        <div class="label">Source</div>
+        <div class="value"><a href="https://thebetterindia.com/changemakers/daughter-gets-mother-remarried-second-chance-love-11228428" target="_blank">The Better India</a></div>
       </div>
-      <div class="tribal-angle">
-        <h5>The Tribal Box Angle</h5>
-        <p>Gaura Devi hugged a tree and stopped an army. 50 years later, the law protects forests on paper while Adivasi families are still evicted from the same land. The hug worked. The paperwork did not.</p>
+      <div class="detail-box">
+        <div class="label">Instagram</div>
+        <div class="value"><a href="https://www.instagram.com/pooja_bhatnagar_/" target="_blank">@pooja_bhatnagar_</a></div>
       </div>
+      <div class="detail-box">
+        <div class="label">Category</div>
+        <div class="value">Love / Family / Second Chances</div>
+      </div>
+      <div class="detail-box">
+        <div class="label">Trust Breakdown</div>
+        <div class="value">Source: 4/5 &bull; IG: 5/5 &bull; Visual: 4/5</div>
+      </div>
+    </div>
+
+    <button class="script-toggle" onclick="toggleScript('script3')">Show 60-Second Video Script</button>
+    <div class="script-section" id="script3">
+      <div class="script-box">
+        <div class="script-label">Hook</div>
+        <div class="script-text">A 25-year-old daughter got her mother remarried. In India. At 49.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">60-Second Script</div>
+        <div class="script-text">Pooja Bhatnagar was 1 year old when her parents divorced.
+
+Her mother raised her alone. No second marriage. No second thought. Just one focus: the child.
+
+For 48 years, her mother put herself last.
+
+Then one day, her mother found someone.
+
+In most Indian families, this is where the story gets complicated. The relatives whisper. The society judges. The daughter resists.
+
+Pooja didn't.
+
+She said: "You gave me everything. Now take something for yourself."
+
+She planned a small temple wedding. 20 guests. No drama. Just love.
+
+Her mother got married at 49.
+
+Not because society approved.
+
+Because her daughter did.
+
+In a country that tells mothers to sacrifice forever — one daughter said: "Enough. It's your turn now."</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">Penny Drop Moment</div>
+        <div class="script-text">The greatest gift a daughter can give her mother is permission to live for herself.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">3-Word Caption</div>
+        <div class="script-text">Mom. Married. Again.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">Visual Edit Guide</div>
+        <div class="script-text">Open: Old photo of mother holding baby Pooja (if available from her IG)
+Cut to: Mother alone — years of single parenting (stock montage: cooking, working, studying with child)
+Cut to: Temple wedding setup — marigolds, small mandap, 20 chairs
+Cut to: Mother in wedding attire — close-up of hands, sindoor, smile
+Cut to: Daughter hugging mother after ceremony
+End: Text overlay — "49 years old. Her second chance at love."
+Close: Pooja's original video clip</div>
+      </div>
+    </div>
+
+    <div class="caption-box">
+      <div class="label">IG Caption</div>
+      <div class="caption-text">Her mother was divorced when Pooja was 1.
+
+She raised her alone for 48 years. No second marriage. No second thought.
+
+Then her mother found someone.
+
+Most Indian daughters would have resisted. Pooja didn't.
+
+She planned the wedding. 20 guests. A small temple. And a mother who finally got permission to live for herself.
+
+Some stories don't just break the internet. They break the rules.
+
+Follow @thetribalbox for stories India needs to hear.</div>
+    </div>
+    <div class="hashtag-bar">
+      <span class="hashtag">#TheTRIBALBox</span>
+      <span class="hashtag">#SecondChance</span>
+      <span class="hashtag">#MotherDaughter</span>
+      <span class="hashtag">#IndianMom</span>
+      <span class="hashtag">#Remarriage</span>
+      <span class="hashtag">#LoveStory</span>
+      <span class="hashtag">#BreakingTaboos</span>
+      <span class="hashtag">#WomenEmpowerment</span>
+      <span class="hashtag">#SingleMother</span>
+      <span class="hashtag">#IndianFamily</span>
+      <span class="hashtag">#RealStory</span>
+      <span class="hashtag">#HumanStory</span>
+      <span class="hashtag">#LoveWins</span>
+      <span class="hashtag">#TheBetterIndia</span>
+      <span class="hashtag">#India</span>
     </div>
   </div>
 </div>
 
-<!-- STORY 4: SHARPEVILLE -->
-<div class="story-card" id="story4" style="border-left: 3px solid #22c55e;">
+<!-- ==================== STORY 4 ==================== -->
+<div class="story-card">
   <div class="story-card-header">
     <div class="story-rank">4</div>
     <div class="story-title-wrap">
-      <div class="story-title">69 People Died for Walking Without a Card — 66 Years Ago Today</div>
+      <div class="story-title">From COVID Rotis to India's Fastest-Growing Volunteer Army — The Hemkunt Foundation</div>
       <div class="story-meta">
-        <span>South Africa / India &bull; Racial Discrimination / Caste</span>
-        <span class="freshness-tag">Mar 21 &mdash; Intl Day Against Racism</span>
+        <span>Gurgaon / Pan-India</span>
+        <span>News / Book Launch</span>
+        <span>March 19, 2026</span>
+        <span class="freshness-tag">VERIFIED FRESH</span>
       </div>
     </div>
-    <div class="story-score-box"><div class="score">15</div><div class="score-label">trust /15</div></div>
+    <div class="story-score-box">
+      <div class="score">13/15</div>
+      <div class="score-label">Trust Score</div>
+    </div>
   </div>
   <div class="story-body">
-    <p class="story-desc">March 21 is the International Day for the Elimination of Racial Discrimination. The date marks the Sharpeville Massacre. On March 21, 1960, approximately 5,000 Black South Africans gathered outside a police station in Sharpeville, refusing to carry "pass books" — identity documents that dictated where they could live, work, and travel. At 1:30 PM, police fired 1,344 rounds without warning. 69 killed. 180 wounded. Many shot in the back while fleeing. The UN designated this date to confront racial discrimination globally. In India, the conversation intersects with caste — movements against caste discrimination have drawn from anti-apartheid struggles. Dalit feminists have found shared language with Black feminists. The pass book and the caste certificate serve eerily similar functions.</p>
-    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-      <a href="https://sahistory.org.za/article/sharpeville-massacre-21-march-1960" target="_blank" style="background:#3b82f622; color:#3b82f6; padding:8px 16px; border-radius:8px; text-decoration:none; font-size:0.85rem; font-weight:700; border:1px solid #3b82f644;">SA History &rarr;</a>
-      <a href="https://www.britannica.com/event/Sharpeville-massacre" target="_blank" style="background:#3b82f622; color:#3b82f6; padding:8px 16px; border-radius:8px; text-decoration:none; font-size:0.85rem; font-weight:700; border:1px solid #3b82f644;">Britannica &rarr;</a>
-      <a href="https://www.un.org/en/observances/end-racism-day" target="_blank" style="background:#3b82f622; color:#3b82f6; padding:8px 16px; border-radius:8px; text-decoration:none; font-size:0.85rem; font-weight:700; border:1px solid #3b82f644;">UN &rarr;</a>
-    </div>
-    <div class="score-bars">
-      <div class="score-bar"><div class="score-bar-label">Source Auth 5/5</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:100%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">IG Handle 5/5</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:100%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">Visual Footage 5/5</div><div class="score-bar-track"><div class="score-bar-fill fill-orange" style="width:100%"></div></div></div>
-    </div>
-    <div class="tags">
-      <span class="tag emotion">Injustice</span><span class="tag emotion">Systemic Violence</span><span class="tag emotion">Solidarity</span>
-      <span class="tag visual">Sharpeville archival photos + pass book imagery</span>
-      <span class="tag source">SA History</span><span class="tag source">Britannica</span><span class="tag source">UN</span>
-    </div>
-    <button class="script-toggle" onclick="toggleScript('s4')">View 60-Second Script + Caption + Hashtags</button>
-    <div class="script-content" id="s4">
-      <h4>Opening Hook</h4>
-      <div class="hook">"1,344 bullets. Fired at people who refused to carry a card. 66 years ago today. The card changed shape. The system didn't."</div>
-      <h4>60-Second Script</h4>
-      <pre>[0-5s] [SHARPEVILLE: Black and white photo. A township. Dusty road. People gathered outside a police station.]
-NARRATOR: "March 21, 1960. Sharpeville, South Africa. 5,000 people gathered outside a police station."
+    <p class="story-desc">During the COVID lockdown, a Sikh family in Gurgaon began distributing rotis to stranded migrant workers. That small act scaled into the Hemkunt Foundation — now one of India's fastest-growing grassroots volunteer organisations covering flood relief, farmer support, animal welfare, and women's dignity programs. Founder Harteerath Singh Ahluwalia's debut book "The Power of Doing Good" launches this Vaisakhi via HarperCollins India. The book tells the story of why Sikhs are born to serve — and how seva can change your life.</p>
 
-[5-12s] [THE PASS BOOKS: Small document. Photo. Fingerprint. It told you where you could live. Where you could work. Where you could walk.]
-NARRATOR: "Their protest was simple: they refused to carry pass books. A small document that told Black South Africans where they could live, work, and exist."
-
-[12-20s] [1:30 PM: Police line. Rifles raised. No warning given. 1,344 rounds fired.]
-NARRATOR: "At 1:30 PM, police opened fire. No warning. 1,344 rounds. 69 people killed. 180 wounded. Many shot in the back — while running away from the bullets."
-
-[20-28s] [THE AFTERMATH: Bodies on the ground. International outrage. The UN session that followed.]
-NARRATOR: "The world saw what apartheid looked like when it stopped pretending. The UN designated March 21 as the international day to confront racial discrimination."
-
-[28-38s] [THE LINK: Split screen. A pass book. A caste certificate. Same function. Different country.]
-NARRATOR: "In India, this story has a mirror. The pass book told you where you belong. The caste certificate does the same. Different paper. Same question: who gets to move freely, and who needs permission?"
-
-[38-48s] [SOLIDARITY: Dalit feminists and Black feminists in conversation. Anti-apartheid and anti-caste movements sharing language.]
-NARRATOR: "Anti-apartheid and anti-caste movements have long recognised each other. Dalit feminists and Black feminists found shared language — because the experience of being reduced to a document is universal."
-
-[48-55s] [TODAY: 2026. Modern identity documents. Passports. Aadhaar cards. Borders. Categories.]
-NARRATOR: "66 years later, billions of people carry documents that define where they belong and where they do not. The weapon changed. The system didn't."
-
-[55-60s] [BLACK SCREEN. White text:]
-"1,344 bullets for refusing a card.
-March 21, 1960. Remember Sharpeville."</pre>
-      <h4>3-Word Caption</h4>
-      <div class="caption-box" style="border-left: 3px solid #e94560; margin-bottom: 10px;"><p style="font-size: 1.2rem; font-weight: 800; color: #fff;">Cards. Castes. Categories.</p></div>
-      <h4>Instagram Description</h4>
-      <div class="caption-box"><p>On this day in 1960, in Sharpeville, South Africa:<br><br>5,000 Black South Africans gathered outside a police station.<br><br>Their crime? Refusing to carry "pass books" — documents that dictated where they could live, work, and travel.<br><br>At 1:30 PM, police fired 1,344 rounds. No warning.<br><br>69 killed. 180 wounded. Many shot in the back while running.<br><br>The UN declared March 21 the day the world confronts racial discrimination.<br><br>In India, the conversation intersects with caste. The pass book and the caste certificate serve eerily similar functions — documents that determine where you belong.<br><br>66 years later, billions still carry documents that define where they belong and where they do not.<br><br>The weapon changed. The system didn't.<br><br>Source: SA History, Britannica, UN</p></div>
-      <div class="hashtags">#EndRacism #IDERD #Sharpeville #March21 #Apartheid #SouthAfrica #CasteDiscrimination #DalitRights #HumanRights #UN #PassBooks #SystemicRacism #HumanStory #ThingsNoOneTalksAbout #RememberSharpeville</div>
-      <div class="ig-accounts">Tag: @unitednations @amnesty @hrw @saaborhistory @humans.of.the.world</div>
-      <div class="unseen-angle">
-        <h5>Unseen Angle</h5>
-        <p>Everyone remembers the massacre. Few remember the mechanism: a small document that dictated movement. The pass book wasn't just an ID — it was a leash. Today, identity documents are celebrated as progress. But for millions — whether through caste certificates, work permits, or refugee papers — the document still determines dignity. The format evolved. The function hasn't.</p>
+    <div class="details-grid">
+      <div class="detail-box">
+        <div class="label">Source</div>
+        <div class="value"><a href="https://www.business-standard.com/content/press-releases-ani/harteerath-singh-ahluwalias-book-the-power-of-doing-good-coming-out-this-vaisakhi-from-harpercollins-india-126031900945_1.html" target="_blank">Business Standard</a></div>
       </div>
-      <div class="tribal-angle">
-        <h5>The Tribal Box Angle</h5>
-        <p>1,344 bullets fired at unarmed people for refusing to carry a card. That was 66 years ago. Today, billions of people still carry documents that define where they belong and where they do not. The weapon changed. The system did not.</p>
+      <div class="detail-box">
+        <div class="label">Instagram</div>
+        <div class="value"><a href="https://www.instagram.com/harteerathsingh/" target="_blank">@harteerathsingh</a> (303K followers)</div>
       </div>
+      <div class="detail-box">
+        <div class="label">Category</div>
+        <div class="value">Seva / Service / COVID Legacy</div>
+      </div>
+      <div class="detail-box">
+        <div class="label">Trust Breakdown</div>
+        <div class="value">Source: 4/5 &bull; IG: 5/5 &bull; Visual: 4/5</div>
+      </div>
+    </div>
+
+    <button class="script-toggle" onclick="toggleScript('script4')">Show 60-Second Video Script</button>
+    <div class="script-section" id="script4">
+      <div class="script-box">
+        <div class="script-label">Hook</div>
+        <div class="script-text">It started with rotis for migrant workers during COVID. It became one of India's largest volunteer movements.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">60-Second Script</div>
+        <div class="script-text">March 2020. India locked down overnight.
+
+Millions of migrant workers were stranded on highways. No food. No transport. No plan.
+
+In Gurgaon, a Sikh family opened their kitchen.
+
+They made rotis. Packed them. Drove out and handed them to strangers on the road.
+
+That family was the Ahluwalias. And those rotis became the Hemkunt Foundation.
+
+What started as one family feeding one highway grew into one of India's fastest volunteer armies.
+
+Flood relief. Farmer support. Animal rescue. Women's dignity programs. Oxygen drives during the second wave.
+
+Harteerath Singh Ahluwalia — the man behind Hemkunt — has now written a book.
+
+It's called "The Power of Doing Good."
+
+It doesn't teach strategy. It teaches seva.
+
+Because in the Sikh tradition, service isn't a side project.
+
+It's the whole point.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">Penny Drop Moment</div>
+        <div class="script-text">A roti handed to a stranger on a highway became a movement that feeds a nation's conscience.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">3-Word Caption</div>
+        <div class="script-text">Rotis. Seva. India.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">Visual Edit Guide</div>
+        <div class="script-text">Open: Black and white footage of migrant workers walking on highways (March 2020)
+Cut to: Hands making rotis in a kitchen — fast, assembly line
+Cut to: Volunteers packing food in Hemkunt-branded vests
+Cut to: Oxygen cylinders being loaded during 2nd wave
+Cut to: Flood relief boats, farmer support camps
+Cut to: Book cover reveal — "The Power of Doing Good"
+Cut to: Harteerath Singh speaking at an event
+End: Text overlay — "It started with rotis. It became a movement."</div>
+      </div>
+    </div>
+
+    <div class="caption-box">
+      <div class="label">IG Caption</div>
+      <div class="caption-text">March 2020. India locked down.
+
+A Sikh family in Gurgaon made rotis for migrant workers stranded on the highway.
+
+That became the Hemkunt Foundation.
+
+Floods. Oxygen drives. Farmer support. Animal rescue. Women's dignity programs.
+
+Now the founder, Harteerath Singh, has written a book: "The Power of Doing Good."
+
+It doesn't teach you how to build a startup. It teaches you why Sikhs are born to serve.
+
+Some movements don't start with a pitch deck. They start with a roti.
+
+Follow @thetribalbox for stories of people who just showed up.</div>
+    </div>
+    <div class="hashtag-bar">
+      <span class="hashtag">#TheTRIBALBox</span>
+      <span class="hashtag">#HemkuntFoundation</span>
+      <span class="hashtag">#Seva</span>
+      <span class="hashtag">#SikhVolunteers</span>
+      <span class="hashtag">#COVID</span>
+      <span class="hashtag">#MigrantWorkers</span>
+      <span class="hashtag">#PowerOfDoingGood</span>
+      <span class="hashtag">#HarperCollins</span>
+      <span class="hashtag">#Vaisakhi</span>
+      <span class="hashtag">#IndiaVolunteers</span>
+      <span class="hashtag">#RealStory</span>
+      <span class="hashtag">#HumanStory</span>
+      <span class="hashtag">#Langar</span>
+      <span class="hashtag">#Service</span>
+      <span class="hashtag">#India</span>
     </div>
   </div>
 </div>
 
-<!-- STORY 5: SPRING EQUINOX CONVERGENCE -->
-<div class="story-card" id="story5" style="border-left: 3px solid #22c55e;">
+<!-- ==================== STORY 5 ==================== -->
+<div class="story-card">
   <div class="story-card-header">
     <div class="story-rank">5</div>
     <div class="story-title-wrap">
-      <div class="story-title">The Equinox Landed — Four Ancient Traditions on One Astronomical Moment</div>
+      <div class="story-title">"Gamer Mummy" — The Indian Mom Who Beat the Internet at PlayStation</div>
       <div class="story-meta">
-        <span>Global / India &bull; Astronomy / Culture / Poetry</span>
-        <span class="freshness-tag">Mar 21 &mdash; Spring Equinox</span>
+        <span>India</span>
+        <span>News / Instagram</span>
+        <span>March 22, 2026</span>
+        <span class="freshness-tag">VERIFIED FRESH</span>
       </div>
     </div>
-    <div class="story-score-box"><div class="score">13</div><div class="score-label">trust /15</div></div>
+    <div class="story-score-box">
+      <div class="score">12/15</div>
+      <div class="score-label">Trust Score</div>
+    </div>
   </div>
   <div class="story-body">
-    <p class="story-desc">March 21 is the Spring Equinox — the astronomical moment when day and night are exactly equal, when the Northern Hemisphere tilts toward renewal. UNESCO chose this date for World Poetry Day deliberately: poetry, like spring, represents rebirth. The 2026 theme is "Power & Order: Freedom & Illusions." Nowruz, the 3,000-year-old Persian New Year, is timed to this exact equinox. Navratri's early days align with spring's return. Eid's arrival this year on the same date completes an extraordinary convergence. India's poetic tradition runs deep — Tagore's Nobel-winning verse, Kamala Das breaking conventions, Kerala's poetry festivals, the rise of spoken word protest poetry in Indian cities. Today, on the equinox, light equals dark. And we get to choose which way we lean.</p>
-    <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-      <a href="https://www.unesco.org/en/days/poetry" target="_blank" style="background:#3b82f622; color:#3b82f6; padding:8px 16px; border-radius:8px; text-decoration:none; font-size:0.85rem; font-weight:700; border:1px solid #3b82f644;">UNESCO &rarr;</a>
-      <a href="https://internationalschoolguwahati.com/world-poetry-day-2026/" target="_blank" style="background:#3b82f622; color:#3b82f6; padding:8px 16px; border-radius:8px; text-decoration:none; font-size:0.85rem; font-weight:700; border:1px solid #3b82f644;">Poetry Day 2026 &rarr;</a>
-    </div>
-    <div class="score-bars">
-      <div class="score-bar"><div class="score-bar-label">Source Auth 5/5</div><div class="score-bar-track"><div class="score-bar-fill fill-green" style="width:100%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">IG Handle 4/5</div><div class="score-bar-track"><div class="score-bar-fill fill-blue" style="width:80%"></div></div></div>
-      <div class="score-bar"><div class="score-bar-label">Visual Footage 4/5</div><div class="score-bar-track"><div class="score-bar-fill fill-orange" style="width:80%"></div></div></div>
-    </div>
-    <div class="tags">
-      <span class="tag emotion">Awe</span><span class="tag emotion">Convergence</span><span class="tag emotion">Renewal</span>
-      <span class="tag visual">Equinox timelapse + multi-faith celebrations montage</span>
-      <span class="tag source">UNESCO</span><span class="tag source">UN</span>
-    </div>
-    <button class="script-toggle" onclick="toggleScript('s5')">View 60-Second Script + Caption + Hashtags</button>
-    <div class="script-content" id="s5">
-      <h4>Opening Hook</h4>
-      <div class="hook">"The planet itself is in balance today — light equals dark, day equals night. And four ancient traditions chose this exact moment to say: begin again."</div>
-      <h4>60-Second Script</h4>
-      <pre>[0-5s] [SPACE: Earth from orbit. The terminator line — the boundary between light and dark — perfectly vertical. Day and night: equal.]
-NARRATOR: "Right now, the planet is in perfect balance. Day and night are exactly equal. The Spring Equinox."
+    <p class="story-desc">Pushpa Pandey, an Indian mother, went viral for her PS5 gaming skills. Her son runs her Instagram page showing her playing Spider-Man and Gran Turismo 7 — where she placed 1st on her very first try. Netizens compared her to Lewis Hamilton and Max Verstappen. In a country where mothers are told gaming is a waste of time, one mom picked up the controller and proved that joy has no age limit.</p>
 
-[5-12s] [EID: Families in India breaking fast. Sevaiyan being shared. Embraces at mosques. "Eid Mubarak."]
-NARRATOR: "On this equinox: Eid ul-Fitr. Thirty days of fasting end. The discipline of Ramadan gives way to sweetness."
-
-[12-20s] [NAVRATRI: Day 3. Maa Chandraghanta. Grey clothes. Kheer. Temple bells. The crescent moon goddess.]
-NARRATOR: "Navratri Day 3. Maa Chandraghanta — the goddess of fearlessness with a crescent moon on her forehead. The colour today is grey."
-
-[20-28s] [NOWRUZ: Haft-sin tables. Wheatgrass. Mirrors. Candles. 3,000 years old. Still alive.]
-NARRATOR: "Nowruz. The 3,000-year-old Persian New Year. Timed to this exact equinox. Celebrated by 300 million people."
-
-[28-38s] [POETRY: Tagore writing. Kamala Das reading. A young woman at a Delhi poetry slam. Words that break and rebuild.]
-NARRATOR: "And World Poetry Day. UNESCO chose March 21 deliberately — because poetry, like spring, is rebirth. Tagore imagined a mind without fear. Kamala Das broke every convention. Today, spoken word in Indian cities is the new protest literature."
-
-[38-48s] [THE CONVERGENCE: Split screen. Eid namaz. Navratri aarti. Nowruz Haft-sin. A poet reading. All on the same day.]
-NARRATOR: "Four traditions. Four prayers. Four ways of saying the same thing: begin again. The planet itself lined them up."
-
-[48-55s] [THE EQUINOX: The sun crossing the celestial equator. Light and dark — perfectly balanced.]
-NARRATOR: "Light equals dark. Day equals night. For one moment, the earth is in balance. What we do next — is up to us."
-
-[55-60s] [BLACK SCREEN. White text:]
-"Eid. Navratri. Nowruz. Poetry.
-Four traditions. One equinox. One message: Begin again."</pre>
-      <h4>3-Word Caption</h4>
-      <div class="caption-box" style="border-left: 3px solid #e94560; margin-bottom: 10px;"><p style="font-size: 1.2rem; font-weight: 800; color: #fff;">Balance. Rebirth. Begin.</p></div>
-      <h4>Instagram Description</h4>
-      <div class="caption-box"><p>Today is the Spring Equinox — the one day the planet is in perfect balance. Light equals dark.<br><br>On this same equinox:<br><br>Eid ul-Fitr — 30 days of fasting end<br>Navratri Day 3 — Maa Chandraghanta, the goddess of fearlessness<br>Nowruz — the 3,000-year-old Persian New Year<br>World Poetry Day — UNESCO chose this date deliberately<br><br>Four ancient traditions. One astronomical moment. Same message:<br><br>Begin again.<br><br>Tagore imagined a mind without fear. Kamala Das broke every convention. The equinox lined them all up.<br><br>The universe is not subtle.<br><br>Source: UNESCO, UN</p></div>
-      <div class="hashtags">#SpringEquinox #WorldPoetryDay #EidMubarak #Navratri #Nowruz #Equinox #Balance #Rebirth #Poetry #Tagore #KamalaDas #UNESCO #Culture #HumanStory #ThingsNoOneTalksAbout</div>
-      <div class="ig-accounts">Tag: @unesco @unitednations @humans.of.india @poetryfoundation @humans.of.the.world</div>
-      <div class="unseen-angle">
-        <h5>Unseen Angle</h5>
-        <p>Everyone will share individual festival greetings. No one will connect the astronomy. The equinox isn't a metaphor — it's a literal astronomical event that ancient cultures independently recognised as the moment of renewal. The convergence of Eid, Navratri, Nowruz, and Poetry Day on the same equinox isn't coincidence. It's evidence that humans everywhere, across millennia, looked at the same sky and reached the same conclusion: when light returns, begin again.</p>
+    <div class="details-grid">
+      <div class="detail-box">
+        <div class="label">Source</div>
+        <div class="value"><a href="https://www.freepressjournal.in/viral/gamer-mummy-goes-viral-indian-mom-wins-internet-with-ps5-skills-racing-dominance-netizens-say-lewis-hamilton-who" target="_blank">Free Press Journal</a> &bull; <a href="https://www.tribuneindia.com/news/trending/why-should-teens-have-all-the-fun-heres-gamer-mummy-winning-hearts-with-her-ps5-skills/" target="_blank">Tribune India</a></div>
       </div>
-      <div class="tribal-angle">
-        <h5>The Tribal Box Angle</h5>
-        <p>The Spring Equinox is the one day the planet itself is in balance — light equals dark. Today, Eid, Navratri, Nowruz, and Poetry Day all land on the same equinox. Four ancient traditions. One astronomical moment. Same message: begin again. The universe is not subtle.</p>
+      <div class="detail-box">
+        <div class="label">Instagram</div>
+        <div class="value"><a href="https://www.instagram.com/officialgamermummy/" target="_blank">@officialgamermummy</a></div>
       </div>
+      <div class="detail-box">
+        <div class="label">Category</div>
+        <div class="value">Breaking Stereotypes / Fun / Family</div>
+      </div>
+      <div class="detail-box">
+        <div class="label">Trust Breakdown</div>
+        <div class="value">Source: 4/5 &bull; IG: 4/5 &bull; Visual: 4/5</div>
+      </div>
+    </div>
+
+    <button class="script-toggle" onclick="toggleScript('script5')">Show 60-Second Video Script</button>
+    <div class="script-section" id="script5">
+      <div class="script-box">
+        <div class="script-label">Hook</div>
+        <div class="script-text">An Indian mom picked up a PS5 controller for the first time. She came first in a racing game.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">60-Second Script</div>
+        <div class="script-text">Every Indian kid has heard it:
+
+"Stop playing games. Go study."
+
+Pushpa Pandey never said that.
+
+Instead, she picked up her son's PS5 controller.
+
+Her son started recording.
+
+She played Spider-Man. Swinging through New York, dodging enemies, landing combos.
+
+Then she played Gran Turismo 7.
+
+First try. First place.
+
+The internet lost its mind.
+
+Comments said: "Lewis Hamilton who?"
+"Max Verstappen found shaking."
+"This aunty just ended gaming Twitter."
+
+Her son built her a page: @officialgamermummy.
+
+No brand deals. No strategy. Just a mother discovering that joy doesn't have an age limit.
+
+In a country that tells mothers to sacrifice everything — one mom picked up a controller and reminded the world:
+
+Fun is not a sin. And moms are allowed to have it.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">Penny Drop Moment</div>
+        <div class="script-text">The woman who told a generation to stop playing games just proved she was the best player all along.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">3-Word Caption</div>
+        <div class="script-text">Mummy. PS5. Champion.</div>
+      </div>
+      <div class="script-box">
+        <div class="script-label">Visual Edit Guide</div>
+        <div class="script-text">Open: Typical Indian mom in kitchen (stock/aesthetic shot)
+Smash cut: Same mom holding PS5 controller, focused expression
+Cut to: Screen recording — Spider-Man gameplay
+Cut to: Gran Turismo race — car crossing finish line in 1st
+Cut to: Reaction comments scrolling ("Lewis Hamilton who?")
+Cut to: Son filming mom playing, both laughing
+End: Text overlay — "First try. First place. First mom."
+Close: @officialgamermummy IG page</div>
+      </div>
+    </div>
+
+    <div class="caption-box">
+      <div class="label">IG Caption</div>
+      <div class="caption-text">"Stop playing games. Go study."
+
+Every Indian kid has heard it.
+
+Pushpa Pandey never said it. She picked up the controller instead.
+
+Spider-Man? Handled.
+Gran Turismo? First place. First try.
+
+The internet compared her to Lewis Hamilton.
+
+Her son made her a page: @officialgamermummy.
+
+No brand deals. No strategy. Just a mother discovering that joy has no expiry date.
+
+Follow @thetribalbox for stories that break every stereotype.</div>
+    </div>
+    <div class="hashtag-bar">
+      <span class="hashtag">#TheTRIBALBox</span>
+      <span class="hashtag">#GamerMummy</span>
+      <span class="hashtag">#PS5</span>
+      <span class="hashtag">#IndianMom</span>
+      <span class="hashtag">#Gaming</span>
+      <span class="hashtag">#SpiderMan</span>
+      <span class="hashtag">#GranTurismo</span>
+      <span class="hashtag">#BreakingStereotypes</span>
+      <span class="hashtag">#MomGoals</span>
+      <span class="hashtag">#Viral</span>
+      <span class="hashtag">#PlayStation</span>
+      <span class="hashtag">#RealStory</span>
+      <span class="hashtag">#HumanStory</span>
+      <span class="hashtag">#IndianFamily</span>
+      <span class="hashtag">#India</span>
     </div>
   </div>
 </div>
 
-<!-- METHODOLOGY -->
-<div class="methodology">
-  <h3>Methodology &mdash; India Story Intelligence</h3>
-  <p>Stories are selected using a 5-agent pipeline: Discovery (trend scanning + news crawl), Verification (source + IG + visual cross-referencing), Scoring (trust score /15), Script Writing (60-second video scripts), and Editorial (angle selection + quality control).</p>
-  <ul>
-    <li><strong>Trust Score /15:</strong> Source Authority (5) + Instagram Handle Verified (5) + Visual Footage Available (5)</li>
-    <li><strong>Rejection criteria:</strong> &gt;72 hours old, unverified facts, no human angle, sports/parade events, no visual footage potential, no IG handle traceable</li>
-    <li><strong>Sources today:</strong> Latestly, India TV News, Down Syndrome Federation, Earth.org, FAO, SA History, Britannica, UN, UNESCO, NewKerala, Countercurrents</li>
-    <li><strong>Stories rejected today:</strong> Generic Eid/Navratri greetings (no human angle), cricket updates, Bollywood gossip, brand promotions, political statements</li>
-  </ul>
+<!-- ==================== REJECTED STORIES ==================== -->
+<div class="rejected-section">
+  <div class="section-title">Rejected Stories <span class="badge" style="background:#ef4444;">23 Rejected</span></div>
+
+  <div class="rejected-card">
+    <div class="title">Kashmir Widow Donates Gold for Iran</div>
+    <div class="reason">REJECTED: Protagonist anonymous — no name, no Instagram handle available in any coverage. Source verified, story fresh, but identity requirement not met.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Rouble Nagi — $1M Global Teacher Prize</div>
+    <div class="reason">REJECTED: Story dated — prize announced Feb 5, 2026 (7 weeks ago). IG confirmed (@roublenagi, 2M). Failed freshness gate.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Joyeeta Banerjee — Fulbright Teacher, Bankura</div>
+    <div class="reason">REJECTED: Instagram handle unverified. @b.joyeeta found but cannot confirm it belongs to this teacher. Rural govt school teacher likely has no public IG.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Aajibaichi Shala — Grandmother School, Maharashtra</div>
+    <div class="reason">REJECTED: Recycled story (founded 2016, featured by WEF 2017, covered repeatedly). No Instagram for founder Yogendra Bangar. Double disqualification.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Nithya — Mason-Entrepreneur, Tamil Nadu</div>
+    <div class="reason">REJECTED: World Bank feature from Feb 2025 (13 months old). Protagonist has first name only. No Instagram. Triple disqualification.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Ashi Grewal — JEE Main 2026 Female Topper</div>
+    <div class="reason">REJECTED: Results announced Feb 16, 2026 (5 weeks old). No Instagram handle found — likely a minor/student with no public social media.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Afsana Begum — Panchayat Leader, Bihar</div>
+    <div class="reason">REJECTED: Women's Day re-feature of ongoing work (since ~2022). Multiple Instagram accounts with same name — none verifiable as this person.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">SKY Bows to Sanju Samson — T20 World Cup</div>
+    <div class="reason">REJECTED: Sports event story — does not fit editorial guidelines.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Prithvi Shaw — IPL Comeback</div>
+    <div class="reason">REJECTED: Sports event story — does not fit editorial guidelines.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Khelo India Tribal Games 2026</div>
+    <div class="reason">REJECTED: Sports event — does not fit editorial guidelines.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Shaheed Diwas 2026 — National Tributes</div>
+    <div class="reason">REJECTED: National day observance, not a human story with identifiable protagonist.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Rohan Rana — "Main India Se Hoon" in Japan</div>
+    <div class="reason">REJECTED: Likely recycled/resurfacing viral video. Freshness unconfirmed.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Pulkit Mani — Modi Impersonation Reel Blocked</div>
+    <div class="reason">REJECTED: Political/censorship story — does not align with The Tribal Box brand (human stories, not political commentary).</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Vikas Khanna — Mumbai Airport Carpet</div>
+    <div class="reason">REJECTED: Story from January 2026 — too old for daily content format.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Bengaluru Auto with Meta ID Card</div>
+    <div class="reason">REJECTED: Protagonist (auto driver) unidentified. IG handle is of the person who filmed, not the subject.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Ranvir Sachdeva — 8-Year-Old AI Summit Speaker</div>
+    <div class="reason">REJECTED: Event from mid-February 2026 — 5+ weeks old.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Manali Snowfall Rescue — 1,000+ Vehicles</div>
+    <div class="reason">REJECTED: Event from March 15 — 8 days old. Rescue operation story, not human-centric narrative.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Mumbai Cop's "Cradle of Kindness"</div>
+    <div class="reason">REJECTED: Date unclear. No Instagram for the cop or the mother. Source quality low (blog).</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Mumbai Coastal Road Car Breakdown — "Bombay Spirit"</div>
+    <div class="reason">REJECTED: Source dates to Dec 2025. Recycled story.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">PM Modi & Baby Omy Photo</div>
+    <div class="reason">REJECTED: Celebrity interaction, not a grassroots human story.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Prabhat School Flameless Kitchen, Akola</div>
+    <div class="reason">REJECTED: No Instagram for school or kitchen innovator found.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Tripura "Jal Bastra" — Water Hyacinth Project</div>
+    <div class="reason">REJECTED: No Instagram for SHG women. Project-level story without individual protagonist.</div>
+  </div>
+  <div class="rejected-card">
+    <div class="title">Purple Fest 2026 — Rashtrapati Bhavan</div>
+    <div class="reason">REJECTED: Government event story. No individual protagonist with Instagram.</div>
+  </div>
+</div>
+
+<!-- ==================== DASHBOARD TABLE ==================== -->
+<div class="section-title" style="margin-top:50px;">Team Review Dashboard <span class="badge">Copy to Sheets</span></div>
+<div style="overflow-x:auto;">
+<table class="dashboard-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Location</th>
+      <th>Source</th>
+      <th>Instagram</th>
+      <th>Date</th>
+      <th>Fresh</th>
+      <th>Source OK</th>
+      <th>IG OK</th>
+      <th>Status</th>
+      <th>Hook</th>
+      <th>Caption</th>
+      <th>Editor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>IN-230326-01</td>
+      <td>Papa Will Take Medicine If Modi Ji Says So</td>
+      <td>Family / Humor</td>
+      <td>Delhi</td>
+      <td><a href="https://www.indiatvnews.com/health/yuvraj-dua-prime-minister-narendra-modi-sugar-intake-request-2026-03-20-1034521" target="_blank" style="color:#e94560;">Link</a></td>
+      <td>@yuvraj.dua</td>
+      <td>Mar 20</td>
+      <td>Fresh</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td class="status-approved">APPROVED</td>
+      <td>A son asked the PM to do what his father wouldn't</td>
+      <td>Papa. Modi. Sugar.</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>IN-230326-02</td>
+      <td>IndiGo Pilot Flies Nani for First Time</td>
+      <td>Family / Achievement</td>
+      <td>Pune &rarr; Delhi</td>
+      <td><a href="https://curlytales.com/india/trending/indigo-pilot-shares-wholesome-moment-of-flying-nani-for-the-first-time-netizens-shower-love/" target="_blank" style="color:#e94560;">Link</a></td>
+      <td>@livininversatility</td>
+      <td>Mar 20</td>
+      <td>Fresh</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td class="status-approved">APPROVED</td>
+      <td>A grandmother told co-passengers: the pilot is my granddaughter</td>
+      <td>Nani. Captain. Home.</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>IN-230326-03</td>
+      <td>Daughter Gets Mom Remarried at 49</td>
+      <td>Love / Second Chances</td>
+      <td>India</td>
+      <td><a href="https://thebetterindia.com/changemakers/daughter-gets-mother-remarried-second-chance-love-11228428" target="_blank" style="color:#e94560;">Link</a></td>
+      <td>@pooja_bhatnagar_</td>
+      <td>Mar 20</td>
+      <td>Fresh</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td class="status-approved">APPROVED</td>
+      <td>A daughter got her mother remarried. In India. At 49.</td>
+      <td>Mom. Married. Again.</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>IN-230326-04</td>
+      <td>Hemkunt Foundation — COVID Rotis to Volunteer Army</td>
+      <td>Seva / Service</td>
+      <td>Gurgaon / Pan-India</td>
+      <td><a href="https://www.business-standard.com/content/press-releases-ani/harteerath-singh-ahluwalias-book-the-power-of-doing-good-coming-out-this-vaisakhi-from-harpercollins-india-126031900945_1.html" target="_blank" style="color:#e94560;">Link</a></td>
+      <td>@harteerathsingh</td>
+      <td>Mar 19</td>
+      <td>Fresh</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td class="status-approved">APPROVED</td>
+      <td>It started with rotis for migrants. It became a movement.</td>
+      <td>Rotis. Seva. India.</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>IN-230326-05</td>
+      <td>Gamer Mummy — Indian Mom Wins at PlayStation</td>
+      <td>Breaking Stereotypes</td>
+      <td>India</td>
+      <td><a href="https://www.freepressjournal.in/viral/gamer-mummy-goes-viral-indian-mom-wins-internet-with-ps5-skills-racing-dominance-netizens-say-lewis-hamilton-who" target="_blank" style="color:#e94560;">Link</a></td>
+      <td>@officialgamermummy</td>
+      <td>Mar 22</td>
+      <td>Fresh</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td class="status-approved">APPROVED</td>
+      <td>An Indian mom picked up a PS5 controller. She came first.</td>
+      <td>Mummy. PS5. Champion.</td>
+      <td>—</td>
+    </tr>
+    <tr style="color:#666;">
+      <td>IN-230326-R1</td>
+      <td>Kashmir Widow Donates Gold for Iran</td>
+      <td>Kindness</td>
+      <td>Budgam, J&K</td>
+      <td>Multiple</td>
+      <td>NOT FOUND</td>
+      <td>Mar 22</td>
+      <td>Fresh</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td class="status-rejected">REJECTED</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr style="color:#666;">
+      <td>IN-230326-R2</td>
+      <td>Rouble Nagi — $1M Teacher Prize</td>
+      <td>Education</td>
+      <td>Mumbai</td>
+      <td>Multiple</td>
+      <td>@roublenagi</td>
+      <td>Feb 5</td>
+      <td>Dated</td>
+      <td>Yes</td>
+      <td>Yes</td>
+      <td class="status-rejected">REJECTED</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+    <tr style="color:#666;">
+      <td>IN-230326-R3</td>
+      <td>Aajibaichi Shala — Grandmother School</td>
+      <td>Education</td>
+      <td>Thane, MH</td>
+      <td>The Better India</td>
+      <td>NOT FOUND</td>
+      <td>2016</td>
+      <td>Recycled</td>
+      <td>Yes</td>
+      <td>No</td>
+      <td class="status-rejected">REJECTED</td>
+      <td>—</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 
 </div>
 
 <div class="footer">
-  <p>The Tribal Box &mdash; India Story Intelligence &mdash; March 21, 2026 &mdash; Morning Edition</p>
-  <p><a href="international.html">International Stories &rarr;</a> &nbsp;|&nbsp; <a href="x-posts.html">X Trending Posts &rarr;</a></p>
+  <p>The Tribal Box &mdash; India Story Intelligence &mdash; March 23, 2026 &mdash; Shaheed Diwas Edition</p>
+  <p>5 Approved &bull; 23 Rejected &bull; Trust &gt; Virality</p>
+  <p style="margin-top:8px;"><a href="home.html">Command Centre &rarr;</a> &nbsp;|&nbsp; <a href="international.html">International Stories &rarr;</a> &nbsp;|&nbsp; <a href="x-posts.html">X Posts &rarr;</a></p>
 </div>
 
 <script>
 function toggleScript(id) {
   const el = document.getElementById(id);
-  el.classList.toggle('active');
+  const btn = el.previousElementSibling;
+  if (el.classList.contains('active')) {
+    el.classList.remove('active');
+    btn.textContent = btn.textContent.replace('Hide', 'Show');
+  } else {
+    el.classList.add('active');
+    btn.textContent = btn.textContent.replace('Show', 'Hide');
+  }
 }
 </script>
 
